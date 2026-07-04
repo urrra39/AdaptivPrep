@@ -40,10 +40,20 @@ class TestEmailAuth:
         token = schema.create_password_reset_token("dave@gmail.com", db_path=db)
         assert not schema.reset_password_with_token(token, "short", db_path=db)
 
-    def test_duplicate_username_rejected(self, db):
+    def test_duplicate_display_name_allowed(self, db):
         schema.register_user("a@gmail.com", "password99", "Ali", db_path=db)
-        with pytest.raises(schema.UsernameTakenError):
-            schema.register_user("b@gmail.com", "password88", "Ali", db_path=db)
+        uid2 = schema.register_user("b@gmail.com", "password88", "Ali", db_path=db)
+        assert uid2 > 0
+
+    def test_password_requires_letter_and_digit(self, db):
+        with pytest.raises(ValueError):
+            schema.register_user("x@gmail.com", "12345678", "X", db_path=db)
+        with pytest.raises(ValueError):
+            schema.register_user("y@gmail.com", "abcdefgh", "Y", db_path=db)
+
+    def test_email_domain_requires_letters(self, db):
+        with pytest.raises(ValueError):
+            schema.register_user("123@123.com", "pass1234", "Z", db_path=db)
 
     def test_short_password_rejected(self, db):
         with pytest.raises(ValueError):

@@ -7,7 +7,7 @@ from src.data import loader
 def test_reading_bank_available():
     bank = loader.load_reading_bank()
     assert loader.reading_bank_available()
-    assert loader.reading_passage_count() >= 40
+    assert loader.reading_passage_count() >= 4
     assert bank["meta"]["passage_count"] == 199
     assert bank["meta"]["question_count"] >= 3000
     assert bank["meta"]["parse_errors"] == []

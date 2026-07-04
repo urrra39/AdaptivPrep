@@ -6,6 +6,11 @@ def test_accuracy_to_band_monotonic():
     assert session_report.accuracy_to_band(0.99) >= session_report.accuracy_to_band(0.50)
 
 
+def test_low_accuracy_gets_realistic_band():
+    assert session_report.accuracy_to_band(0.25) == 3.5
+    assert session_report.accuracy_to_band(0.10) == 2.5
+
+
 def test_build_session_report_shape():
     report = session_report.build_session_report(
         bucket_stats={

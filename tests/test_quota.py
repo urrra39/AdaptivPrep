@@ -73,7 +73,7 @@ def test_no_repeats_and_session_length_is_min_quota_supply():
         )
         if bucket == "Reading":
             assert per_bucket[bucket] <= cap
-            assert per_bucket[bucket] >= cap - 50  # allow small parse gaps in corpus
+            assert per_bucket[bucket] >= max(0, cap - 15)
         else:
             assert per_bucket[bucket] == min(cap, supply[bucket]), bucket
 

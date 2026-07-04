@@ -9,7 +9,7 @@ from src.data import loader
 
 
 def accuracy_to_band(accuracy: float) -> float:
-    """Map a [0, 1] accuracy to an IELTS band in [4.0, 9.0] (0.5 steps)."""
+    """Map a [0, 1] accuracy to an IELTS band in [2.0, 9.0] (0.5 steps)."""
     if accuracy >= 0.97:
         return 9.0
     if accuracy >= 0.93:
@@ -30,7 +30,15 @@ def accuracy_to_band(accuracy: float) -> float:
         return 5.0
     if accuracy >= 0.36:
         return 4.5
-    return 4.0
+    if accuracy >= 0.30:
+        return 4.0
+    if accuracy >= 0.24:
+        return 3.5
+    if accuracy >= 0.18:
+        return 3.0
+    if accuracy >= 0.10:
+        return 2.5
+    return 2.0
 
 
 def build_session_report(
@@ -99,7 +107,7 @@ def _recommendations(top_weak: list, bucket_accuracy: dict) -> list[str]:
             )
     for bucket, acc in bucket_accuracy.items():
         if acc < 0.55:
-            label = {"Reading": "O'qish", "Grammar": "Grammatika", "Vocabulary": "Lug'at"}.get(
+            label = {"Reading": "READING", "Grammar": "Grammatika", "Vocabulary": "Lug'at"}.get(
                 bucket, bucket
             )
             out.append(f"{label} bo'limi zaif — har kuni 15 daqiqa {label.lower()} mashqi qiling.")

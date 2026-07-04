@@ -225,15 +225,28 @@ def verify_pin(user_id: int, pin: str, db_path: Optional[PathLike] = None) -> bo
 
 def hash_password(password: str, salt: Optional[bytes] = None) -> str:
     """Return a salted PBKDF2 hash for an account password (min 8 chars)."""
-    if len(password) < 8:
-        raise ValueError("password must be at least 8 characters")
+    validate_password(password)
     return hash_pin(password, salt=salt)
+
+
+def validate_password(password: str) -> None:
+    """Require min length plus at least one letter and one digit."""
+    if len(password) < 8:
+        raise ValueError("Parol kamida 8 belgidan iborat bo'lishi kerak.")
+    if not re.search(r"[A-Za-z]", password):
+        raise ValueError("Parol kamida bitta harf bo'lishi kerak.")
+    if not re.search(r"\d", password):
+        raise ValueError("Parol kamida bitta raqam bo'lishi kerak.")
 
 
 def _normalize_email(email: str) -> str:
     email = (email or "").strip().lower()
     if not _EMAIL_RE.match(email):
-        raise ValueError("invalid email address")
+        raise ValueError("Email manzil noto'g'ri.")
+    domain = email.split("@", 1)[1]
+    host = domain.split(".", 1)[0]
+    if not re.search(r"[A-Za-z]", host):
+        raise ValueError("Email domenida (@ dan keyin) kamida bitta harf bo'lishi kerak.")
     return email
 
 
@@ -276,15 +289,13 @@ def register_user(
         raise ValueError("display name required")
     if get_user_by_email(email, db_path=db_path) is not None:
         raise EmailTakenError("email already registered")
-    if get_user(display_name, db_path=db_path) is not None:
-        raise UsernameTakenError("username already taken")
     conn = get_connection(db_path)
     try:
         cur = conn.execute(
             """INSERT INTO users
                    (username, created_at, email, password_hash, display_name)
                VALUES (?, ?, ?, ?, ?)""",
-            (display_name, _utc_now_iso(), email, hash_password(password), display_name),
+            (email, _utc_now_iso(), email, hash_password(password), display_name),
         )
         conn.commit()
         return int(cur.lastrowid)
@@ -330,7 +341,11 @@ def reset_password_with_token(
 ) -> bool:
     """Set a new password when ``token`` is valid and not expired."""
     token = (token or "").strip()
-    if not token or len(new_password) < 8:
+    if not token:
+        return False
+    try:
+        validate_password(new_password)
+    except ValueError:
         return False
     conn = get_connection(db_path)
     try:

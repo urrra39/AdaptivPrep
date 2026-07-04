@@ -1,6 +1,6 @@
-"""AdaptivPrep - Streamlit quiz interface (v4: full ELS reading bank).
+"""AdaptivPrep - Streamlit quiz interface (v5: 4 ELS passages per session).
 
-Phase order: Reading (40 random ELS passages, Ex 1-2-3 each) -> Grammar (50) ->
+Phase order: Reading (4 random ELS passages, Ex 1-2-3 each) -> Grammar (50) ->
 Vocabulary (50).  Reading passages are sampled per session so each user sees a
 different random subset from the full book corpus.
 """
@@ -36,13 +36,13 @@ from src.models.bkt import BKTModel, get_mastery  # noqa: E402
 
 APP_TITLE = "AdaptivPrep - IELTS mashqlari"
 APP_VERSION = "v5"
-SESSION_SCHEMA_VERSION = 4
+SESSION_SCHEMA_VERSION = 5
 _BKT = BKTModel()
 _EPSILON = 0.15
 
 # Fixed exam section order — UI and selector both iterate this tuple.
 PHASE_ORDER = ("Reading", "Grammar", "Vocabulary")
-READING_PASSAGES_PER_SESSION = 40
+READING_PASSAGES_PER_SESSION = 4
 QUOTAS = {"Reading": 0, "Grammar": 50, "Vocabulary": 50}  # Reading quota set at login
 
 
@@ -155,7 +155,7 @@ def quiz_caption_details(
     else:
         category = loader.get_skill(question["skill_id"])["category"]
         detail = {
-            "Reading": "O'qish",
+            "Reading": "READING",
             "Grammar": "Grammatika",
             "Vocabulary": "Lug'at",
         }.get(category, category)
@@ -176,11 +176,9 @@ def _session_needs_repair() -> bool:
     if st.session_state.get("session_schema_version") != SESSION_SCHEMA_VERSION:
         return True
     r_pass = st.session_state.get("reading_passage_ids") or []
-    expected_passages = min(READING_PASSAGES_PER_SESSION, loader.reading_passage_count())
-    if len(r_pass) < expected_passages:
+    if len(r_pass) != min(READING_PASSAGES_PER_SESSION, loader.reading_passage_count()):
         return True
-    # Legacy builds capped Reading at 10 flat questions instead of 40 passages.
-    if int(st.session_state.get("session_reading_quota", 0)) <= 20:
+    if len(r_pass) > READING_PASSAGES_PER_SESSION:
         return True
     if not st.session_state.get("grammar_question_ids"):
         return True
@@ -372,7 +370,7 @@ def _session_ctx() -> dict:
 
 
 def _init_reading_session(rng: random.Random) -> None:
-    """Sample 40 random ELS passages — unique per session/user RNG draw."""
+    """Sample 4 random ELS passages — Ex 1, 2, 3 for each."""
     pool = loader.reading_passage_ids()
     n = min(READING_PASSAGES_PER_SESSION, len(pool))
     st.session_state.reading_passage_ids = rng.sample(pool, n)
@@ -435,6 +433,23 @@ def _apply_theme_css() -> None:
     moon_anim = "animation: moonGlow 2s ease-in-out infinite;" if is_night else ""
 
     accent_css = """
+    .stApp .new-session-marker + div[data-testid="stButton"] > button {
+        background: rgba(10, 61, 98, 0.75) !important;
+        background-color: rgba(10, 61, 98, 0.75) !important;
+        color: #ffffff !important;
+        border: 2px solid #0a3d62 !important;
+        border-radius: 10px !important;
+        font-weight: 700 !important;
+        min-height: 2.85rem !important;
+        box-shadow: 0 0 14px rgba(10, 61, 98, 0.35) !important;
+    }
+    .stApp .new-session-marker + div[data-testid="stButton"] > button:hover {
+        background: rgba(10, 61, 98, 0.92) !important;
+        background-color: rgba(10, 61, 98, 0.92) !important;
+    }
+    .stApp .new-session-marker + div[data-testid="stButton"] > button p {
+        color: #ffffff !important;
+    }
     .user-badge {
         display: inline-block;
         background: rgba(46, 134, 171, 0.35) !important;
@@ -1448,14 +1463,14 @@ def _login_view() -> None:
                     st.error("Parollar mos kelmadi.")
                 elif len(password) < 8:
                     st.error("Parol kamida 8 belgidan iborat bo'lishi kerak.")
+                elif not any(c.isalpha() for c in password) or not any(c.isdigit() for c in password):
+                    st.error("Parol harf va raqamdan iborat bo'lishi kerak.")
                 else:
                     try:
                         uid = schema.register_user(email, password, name)
                         _start_session(uid, name)
                     except schema.EmailTakenError:
                         st.error("Bu Gmail allaqachon ro'yxatdan o'tgan.")
-                    except schema.UsernameTakenError:
-                        st.error("Bu ism allaqachon band. Boshqa ism tanlang.")
                     except ValueError as exc:
                         st.error(str(exc))
 
@@ -1468,7 +1483,7 @@ def _sidebar() -> None:
         )
         st.metric("Javob berilgan", st.session_state.session_total)
         st.markdown(
-            "**READING: 40 ta** · **Grammar: 50 ta** · **Vocabulary: 50 ta**"
+            "**READING: 4 paragraph (Ex 1-2-3)** · **Grammar: 50 ta** · **Vocabulary: 50 ta**"
         )
         used = st.session_state.quota_used
         phase = active_phase(used, st.session_state.seen_question_ids, _session_ctx())
@@ -1559,8 +1574,19 @@ def _submit_answer(question: dict, choice: int) -> None:
     st.rerun()
 
 
+def _format_question_prompt(question: dict) -> str:
+    """Human-readable prompt; garbled Ex.1 ingest rows get a safe fallback."""
+    text = question.get("question_text") or ""
+    if question.get("exercise") == 1 and loader.is_garbled_prompt(text):
+        return (
+            "[Exercise 1] Passagedagi so'z bankidan to'g'ri javobni tanlang "
+            "(ta'rif buzilgan — variantlardan mosini toping)."
+        )
+    return text
+
+
 def _render_question_panel(question: dict) -> None:
-    st.write(f"**{question['question_text']}**")
+    st.write(f"**{_format_question_prompt(question)}**")
     choice = st.radio(
         "Javobni tanlang:",
         options=list(range(len(question["options"]))),
@@ -1601,7 +1627,7 @@ def _quiz_view() -> None:
     if question.get("passage_id"):
         ex = question.get("exercise")
         heading = READING_EXERCISE_HEADINGS.get(ex, f"Exercise {ex}")
-        st.subheader(f"📖 O'qish — {detail}")
+        st.subheader(f"📖 READING — {detail}")
         st.markdown(f"**{title}**")
         st.markdown(f"*{heading}*")
     if question.get("passage_text"):
@@ -1901,9 +1927,9 @@ def _summary_view() -> None:
         )
 
     st.divider()
-    if st.button("Yangi sessiya boshlash"):
-        st.session_state.clear()
-        st.rerun()
+    st.markdown('<div class="new-session-marker"></div>', unsafe_allow_html=True)
+    if st.button("Yangi sessiya boshlash", type="primary", use_container_width=True, key="btn_new_session"):
+        _start_session(st.session_state.user_id, st.session_state.username)
 
 
 def main() -> None:

@@ -10,6 +10,7 @@ Each bank is kept separate on disk:
 from __future__ import annotations
 
 import json
+import re
 from functools import lru_cache
 from pathlib import Path
 
@@ -20,6 +21,29 @@ QUESTIONS_PATH = DATA_DIR / "questions.json"
 READING_BANK_PATH = DATA_DIR / "reading_bank.json"
 GRAMMAR_BANK_PATH = DATA_DIR / "grammar_bank.json"
 VOCABULARY_BANK_PATH = DATA_DIR / "vocabulary_bank.json"
+
+_EXercise_PROMPT_RE = re.compile(r"^\[Exercise \d+\]\s*", re.I)
+
+
+def is_garbled_prompt(text: str) -> bool:
+    """True when ingest produced unreadable Exercise 1 definition text."""
+    body = _EXercise_PROMPT_RE.sub("", (text or "").strip())
+    if len(body) < 12:
+        return False
+    if "))" in body:
+        return True
+    if body.count(" ") < max(2, len(body) // 25):
+        return True
+    words = body.split()
+    if words and max(len(w) for w in words) > 35:
+        return True
+    return False
+
+
+def _usable_reading_question(q: dict) -> bool:
+    if q.get("exercise") == 1 and is_garbled_prompt(q.get("question_text", "")):
+        return False
+    return True
 
 
 @lru_cache(maxsize=1)
@@ -98,7 +122,9 @@ def get_reading_passage(passage_id: str) -> dict | None:
 
 def questions_for_passage_id(passage_id: str) -> list:
     p = _reading_passages_by_id().get(passage_id)
-    return list(p["questions"]) if p else []
+    if not p:
+        return []
+    return [q for q in p["questions"] if _usable_reading_question(q)]
 
 
 def reading_passage_count() -> int:
