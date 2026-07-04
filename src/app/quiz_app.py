@@ -1729,17 +1729,12 @@ def _record_stats(question: dict, is_correct: bool) -> None:
     ss["correct"] += int(is_correct)
 
 
-def _submit_answer(question: dict, choice) -> None:
-    if choice is None:
-        st.session_state.nav_msg = "Javobni tanlang."
-        return
-    choice = int(choice)
+def _commit_answer(question: dict, choice: int) -> None:
+    """Record a selected answer into stats/DB. Handles re-answers gracefully."""
     qid = question["id"]
     prev = st.session_state.answers.get(qid)
     if prev is not None:
         if prev == choice:
-            _advance_to_next_question()
-            st.rerun()
             return
         was_correct = prev == question["correct_answer"]
         _reverse_answer_stats(question, was_correct)
@@ -1773,9 +1768,11 @@ def _submit_answer(question: dict, choice) -> None:
             m for m in st.session_state.mistakes if m["question"]["id"] != qid
         ]
         st.session_state.mistakes.append({"question": question, "choice": choice})
+    else:
+        st.session_state.mistakes = [
+            m for m in st.session_state.mistakes if m["question"]["id"] != qid
+        ]
     st.session_state.answers[qid] = choice
-    _advance_to_next_question()
-    st.rerun()
 
 
 def _format_question_prompt(question: dict) -> str:
@@ -1822,6 +1819,7 @@ def _render_question_panel(question: dict) -> None:
     if saved is not None and not is_current:
         st.info(f"Sizning javobingiz: **{question['options'][saved]}**")
         st.success(f"To'g'ri javob: **{question['options'][question['correct_answer']]}**")
+        choice = saved
     else:
         choice = st.radio(
             "Javobni tanlang:",
@@ -1830,22 +1828,19 @@ def _render_question_panel(question: dict) -> None:
             index=saved if saved is not None else None,
             key=f"choice_{question['id']}",
         )
-        if st.button(
-            "Javobni saqlash",
-            type="primary",
-            use_container_width=True,
-            disabled=choice is None,
-        ):
-            _submit_answer(question, choice)
 
     st.markdown('<div class="quiz-nav-marker"></div>', unsafe_allow_html=True)
     nav_l, nav_r = st.columns(2)
     with nav_l:
         if st.button("← Orqaga", type="primary", use_container_width=True, disabled=idx <= 0):
+            if choice is not None:
+                _commit_answer(question, int(choice))
             _load_question_at_index(idx - 1)
             st.rerun()
     with nav_r:
         if st.button("Keyingi →", type="primary", use_container_width=True, disabled=idx >= len(queue) - 1):
+            if choice is not None:
+                _commit_answer(question, int(choice))
             _load_question_at_index(idx + 1)
             st.rerun()
 
@@ -1853,6 +1848,8 @@ def _render_question_panel(question: dict) -> None:
     _render_finish_warnings()
     st.markdown('<div class="quiz-finish-marker"></div>', unsafe_allow_html=True)
     if st.button("Sessiyani yakunlash", type="primary", use_container_width=True, key="btn_finish_session"):
+        if choice is not None:
+            _commit_answer(question, int(choice))
         _request_finish_session()
         st.rerun()
 
