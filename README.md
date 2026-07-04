@@ -6,11 +6,18 @@
 ![Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B)
 ![Model](https://img.shields.io/badge/AI%20feedback-Claude%20Sonnet%204.6-8A2BE2)
 
+**🟢 [Live Demo: AdaptivPrep](https://adaptivprep-sardor.streamlit.app)**
+
 **An AI-powered adaptive learning system for IELTS preparation.** AdaptivPrep models a learner's mastery of every skill in real time with Bayesian Knowledge Tracing, uses a multi-armed bandit to always serve the *most valuable next question*, and generates mistake-specific explanations in Uzbek with Claude. In simulation, the adaptive policy reaches **+17.6% higher final mastery than random practice** (Cohen's d = 1.26) for the same number of questions.
 
 ---
 
 ## The problem
+
+**The Motivation Behind AdaptivPrep**
+"During my gap year preparing for the IELTS and SAT exams, I hit a frustrating plateau. While doing dozens of practice tests (like the 420-page ELS book), I realized I was wasting over 60% of my study time blindly answering questions on grammar rules I had already mastered, simply because they were part of the standard test format. Meanwhile, my actual weak points in academic vocabulary were barely getting targeted."
+
+"I needed a tutor that could instantly recognize what I knew and dynamically generate tests targeting only what I didn't know. Finding no such tool, I built **AdaptivPrep** to mathematically solve this inefficiency using Bayesian Knowledge Tracing and Multi-Armed Bandit algorithms."
 
 Most students preparing for IELTS (or SAT, or olympiads) review *everything with the same intensity* — splitting time equally between topics they already know and their actual weak points. Every question spent on a mastered topic teaches nothing. The waste is measurable: in our simulation, random practice spends **55.6%** of its questions on already-learned skills.
 
