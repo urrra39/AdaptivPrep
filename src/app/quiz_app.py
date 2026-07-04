@@ -36,7 +36,7 @@ from src.models.bkt import BKTModel, get_mastery  # noqa: E402
 
 APP_TITLE = "AdaptivPrep - IELTS mashqlari"
 APP_VERSION = "v5"
-SESSION_SCHEMA_VERSION = 7
+SESSION_SCHEMA_VERSION = 10
 _BKT = BKTModel()
 _EPSILON = 0.15
 
@@ -202,9 +202,12 @@ READING_EXERCISE_HEADINGS = {
 
 def _session_needs_repair() -> bool:
     """Stale Streamlit state from an older app version or pre-bank sessions."""
-    if not st.session_state.get("user_id") or st.session_state.finished:
+    if not st.session_state.get("user_id"):
         return False
     if st.session_state.get("session_schema_version") != SESSION_SCHEMA_VERSION:
+        return True
+    if st.session_state.get("finished"):
+        return False
         return True
     r_pass = st.session_state.get("reading_passage_ids") or []
     if len(r_pass) != min(READING_PASSAGES_PER_SESSION, loader.reading_passage_count()):
@@ -1323,6 +1326,14 @@ def _compare_banner(message: str, improved: bool) -> None:
     )
 
 
+def _session_quotas() -> dict:
+    return {
+        "Reading": int(st.session_state.get("session_reading_quota", QUOTAS["Reading"])),
+        "Grammar": int(st.session_state.get("session_grammar_quota", QUOTAS["Grammar"])),
+        "Vocabulary": int(st.session_state.get("session_vocabulary_quota", QUOTAS["Vocabulary"])),
+    }
+
+
 def _build_live_report() -> dict:
     secs = int(time.monotonic() - st.session_state.start_time)
     return session_report.build_session_report(
@@ -1333,6 +1344,7 @@ def _build_live_report() -> dict:
         secs,
         st.session_state.session_total,
         st.session_state.session_correct,
+        quotas=_session_quotas(),
     )
 
 
@@ -1646,10 +1658,18 @@ def _sidebar() -> None:
             f"**Grammar: {st.session_state.get('session_grammar_quota', QUOTAS['Grammar'])} ta** · "
             f"**Vocabulary: {st.session_state.get('session_vocabulary_quota', QUOTAS['Vocabulary'])} ta**"
         )
-        used = st.session_state.quota_used
-        phase = active_phase(used, st.session_state.seen_question_ids, _session_ctx())
-        if phase and not st.session_state.finished:
-            st.info(f"Joriy bosqich: **{phase}**")
+        cur = st.session_state.get("current")
+        if cur and not st.session_state.finished:
+            cur_bank = cur.get("bank", "")
+            if cur.get("passage_id"):
+                cur_phase = "Reading"
+            elif cur_bank == "grammar":
+                cur_phase = "Grammar"
+            elif cur_bank == "vocabulary":
+                cur_phase = "Vocabulary"
+            else:
+                cur_phase = quota_bucket(loader.display_category(cur.get("skill_id", "")))
+            st.info(f"Joriy bosqich: **{cur_phase}**")
         st.divider()
         if st.button("📊 NATIJALAR", use_container_width=True, type="primary"):
             st.session_state.show_results = True
@@ -1814,7 +1834,26 @@ def _render_question_panel(question: dict) -> None:
     saved = st.session_state.answers.get(qid)
     is_current = queue[idx] == qid if queue else True
 
-    st.write(f"**{_format_question_prompt(question)}**")
+    prompt_text = _format_question_prompt(question)
+    if prompt_text:
+        q_bank = question.get("bank", "")
+        if q_bank in ("grammar", "vocabulary") and len(prompt_text) > 100:
+            st.markdown(
+                f"""<div style="
+                    background: var(--secondary-background-color, #f0f2f6);
+                    border-radius: 8px;
+                    padding: 1rem 1.2rem;
+                    margin-bottom: 1rem;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    line-height: 1.6;
+                    font-size: 0.95rem;
+                    border-left: 4px solid #2e86ab;
+                "><strong>{prompt_text}</strong></div>""",
+                unsafe_allow_html=True,
+            )
+        else:
+            st.write(f"**{prompt_text}**")
 
     if saved is not None and not is_current:
         st.info(f"Sizning javobingiz: **{question['options'][saved]}**")
@@ -1879,12 +1918,37 @@ def _quiz_view() -> None:
             st.markdown(f"**{passage['title']}**")
         st.markdown(f"*{heading}*")
         passage_body = loader.passage_display_text(question["passage_id"])
-        left, right = st.columns([1.5, 1])
-        with left:
-            st.markdown(passage_body, unsafe_allow_html=True)
-        with right:
-            _render_question_panel(question)
+        st.markdown(
+            f"""<div style="
+                background: var(--secondary-background-color, #f0f2f6);
+                border-radius: 8px;
+                padding: 1.2rem 1.5rem;
+                margin-bottom: 1rem;
+                max-height: 450px;
+                overflow-y: auto;
+                line-height: 1.7;
+                font-size: 1rem;
+                border-left: 4px solid #1f77b4;
+            ">{passage_body}</div>""",
+            unsafe_allow_html=True,
+        )
+        st.divider()
+        _render_question_panel(question)
     else:
+        q_bank = question.get("bank", "")
+        if q_bank == "grammar":
+            idx = int(st.session_state.get("queue_index", 0))
+            reading_count = len(st.session_state.get("reading_order", []))
+            gram_num = idx - reading_count + 1
+            gram_total = int(st.session_state.get("session_grammar_quota", QUOTAS["Grammar"]))
+            st.subheader(f"📝 GRAMMAR — Savol {gram_num}/{gram_total}")
+        elif q_bank == "vocabulary":
+            idx = int(st.session_state.get("queue_index", 0))
+            reading_count = len(st.session_state.get("reading_order", []))
+            gram_count = len(st.session_state.get("grammar_order", []))
+            vocab_num = idx - reading_count - gram_count + 1
+            vocab_total = int(st.session_state.get("session_vocabulary_quota", QUOTAS["Vocabulary"]))
+            st.subheader(f"📚 VOCABULARY — Savol {vocab_num}/{vocab_total}")
         _render_question_panel(question)
 
 
@@ -2060,6 +2124,136 @@ def _results_view() -> None:
             )
 
 
+def _deep_explanation(question: dict, chosen: int) -> str:
+    """Generate a detailed explanation for a wrong answer."""
+    correct_idx = question["correct_answer"]
+    correct_opt = question["options"][correct_idx]
+    chosen_opt = question["options"][chosen]
+    correct_letter = chr(65 + correct_idx)
+    chosen_letter = chr(65 + chosen)
+
+    lines: list[str] = []
+
+    lines.append("#### Batafsil tushuntirish")
+    lines.append("")
+    lines.append(f"**Siz tanladingiz:** {chosen_letter}) {chosen_opt} ❌")
+    lines.append(f"**To'g'ri javob:** {correct_letter}) {correct_opt} ✅")
+    lines.append("")
+
+    lines.append("**Nima uchun sizning javobingiz xato?**")
+    bank = question.get("bank", "")
+    skill = question.get("skill_id", "")
+    source = question.get("source", "")
+
+    if bank == "grammar" or "sat_" in skill:
+        if "boundaries" in skill.lower() or "boundaries" in source.lower():
+            lines.append(
+                f'Siz "{chosen_opt}" ni tanladingiz, lekin bu gapning tuzilishiga '
+                f"mos kelmaydi. To'g'ri javob \"{correct_opt}\" — chunki bu yerda "
+                f"tinish belgilari (vergul, nuqtali vergul, tire) to'g'ri ishlatilgan. "
+                f"Mustaqil gaplar orasida nuqtali vergul (;) yoki nuqta (.) kerak, "
+                f"bog'liq gaplar orasida esa vergul (,) ishlatiladi."
+            )
+        elif "transition" in skill.lower():
+            lines.append(
+                f'Siz "{chosen_opt}" ni tanladingiz, lekin bu so\'z matn oqimiga '
+                f"mos kelmaydi. To'g'ri javob \"{correct_opt}\" — chunki bu transition "
+                f"so'zi oldingi va keyingi gaplar orasidagi mantiqiy bog'lanishni "
+                f"to'g'ri ifodalaydi. Transition so'zlarini o'rganayotganda: "
+                f"however/but = zidlik, therefore/thus = sabab-natija, "
+                f"moreover/furthermore = qo'shimcha, for example = misol."
+            )
+        elif "rhetorical" in skill.lower() or "synthesis" in skill.lower():
+            lines.append(
+                f'Siz "{chosen_opt}" ni tanladingiz, lekin bu savolda berilgan '
+                f"notes/ma'lumotlarni eng to'g'ri umumlashtiradigan javob "
+                f"\"{correct_opt}\" edi. Rhetorical Synthesis savollarida avval "
+                f"savol nimani so'rayotganini aniqlang (compare, explain, emphasize), "
+                f"keyin variantlardan shu maqsadga mos keluvchisini tanlang."
+            )
+        else:
+            lines.append(
+                f'Siz "{chosen_opt}" ni tanladingiz, lekin grammatik jihatdan '
+                f"to'g'ri javob \"{correct_opt}\" edi. Grammar savollarida gapning "
+                f"tuzilishiga e'tibor bering: subject-verb agreement, pronoun reference, "
+                f"modifier placement, va parallel structure eng ko'p uchraydigan mavzular."
+            )
+        lines.append("")
+        lines.append(
+            "**Strategiya:** Har bir variantni gapga qo'yib o'qing. Grammatik va "
+            "mantiqiy jihatdan eng tabiiy eshitiladigani — to'g'ri javob."
+        )
+
+    elif bank == "vocabulary":
+        lines.append(
+            f'Siz "{chosen_opt}" ni tanladingiz, lekin matn kontekstiga qarasangiz, '
+            f"\"{correct_opt}\" eng mos javob. Vocabulary savollarida so'zning "
+            f"lug'aviy ma'nosi emas, balki KONTEKSTDAGI ma'nosi muhim. "
+            f"Bir so'z bir nechta ma'noga ega bo'lishi mumkin — matn nimani talab "
+            f"qilayotganiga qarang."
+        )
+        lines.append("")
+        lines.append(
+            "**Strategiya:** Bo'sh joyni o'rab turgan gaplarni diqqat bilan o'qing. "
+            "Ko'pincha oldingi yoki keyingi gapda javobga ishora (clue) bo'ladi. "
+            "Tanish bo'lmagan so'zlarni ildiz (root), prefix va suffix orqali "
+            "taxmin qilishga harakat qiling."
+        )
+
+    elif question.get("passage_id"):
+        ex = question.get("exercise", 1)
+        if ex == 1:
+            lines.append(
+                f'Siz "{chosen_opt}" ni tanladingiz, lekin passage matnida '
+                f"berilgan ta'rifga eng mos keladigan so'z \"{correct_opt}\" edi. "
+                f"Exercise 1 da so'z bankidagi so'zlarning ta'rifi beriladi — "
+                f"siz passage matnidan o'sha ta'rifga mos keladigan so'zni topishingiz kerak."
+            )
+            lines.append("")
+            lines.append(
+                "**Strategiya:** Avval ta'rifni diqqat bilan o'qing, keyin passage "
+                "matnida shu ma'noga ega bo'lgan so'zni qidiring. Sinonimlar va "
+                "parafrazlarga e'tibor bering."
+            )
+        elif ex == 2:
+            lines.append(
+                f'Siz "{chosen_opt}" ni tanladingiz, lekin passage mazmuniga ko\'ra '
+                f"to'g'ri javob \"{correct_opt}\" edi. Exercise 2 da passage haqidagi "
+                f"savollar beriladi — javob doim passage matnida topiladi."
+            )
+            lines.append("")
+            lines.append(
+                "**Strategiya:** Savol nimani so'rayotganini aniq tushuning, keyin "
+                "passage matnining tegishli qismini qayta o'qing. Javobni taxmin "
+                "qilmang — dalil passage ichida bo'lishi kerak."
+            )
+        elif ex == 3:
+            lines.append(
+                f'Siz "{chosen_opt}" ni tanladingiz, lekin gapning grammatik '
+                f"tuzilishi va ma'nosiga ko'ra \"{correct_opt}\" to'g'ri. "
+                f"Exercise 3 da so'z bankidan foydalanib gaplarni to'ldirasiz."
+            )
+            lines.append("")
+            lines.append(
+                "**Strategiya:** Gapning grammatik tuzilishiga qarang — "
+                "ot kerakmi, fe'lmi, sifatmi? So'z shakli (noun/verb/adjective) "
+                "to'g'ri kelishini tekshiring, keyin ma'no jihatidan mosini tanlang."
+            )
+        else:
+            lines.append(
+                f'To\'g\'ri javob "{correct_opt}" edi. Passage matnini diqqat bilan '
+                f"o'qib, javobni aniqlang."
+            )
+    else:
+        lines.append(
+            f'Siz "{chosen_opt}" ni tanladingiz, lekin to\'g\'ri javob '
+            f'"{correct_opt}" edi. Savolni qaytadan diqqat bilan o\'qib, '
+            f"nima uchun to'g'ri javob boshqacha ekanligini tushuning."
+        )
+
+    return "\n\n".join(lines)
+
+
 def _summary_view() -> None:
     _save_session_to_history()
     top_l, top_r = st.columns([5, 1])
@@ -2070,6 +2264,7 @@ def _summary_view() -> None:
     secs = int(time.monotonic() - st.session_state.start_time)
     total = st.session_state.session_total
     correct = st.session_state.session_correct
+    quotas = _session_quotas()
     report = session_report.build_session_report(
         st.session_state.bucket_stats,
         st.session_state.skill_stats,
@@ -2078,6 +2273,7 @@ def _summary_view() -> None:
         secs,
         total,
         correct,
+        quotas=quotas,
     )
 
     cfg = _ai_config()
@@ -2098,41 +2294,63 @@ def _summary_view() -> None:
         st.divider()
 
     _summary_section_header("📊 Sessiya statistikasi")
+    total_quota = report["total_quota"]
     c1, c2, c3, c4 = st.columns(4)
     with c1:
         _summary_card("Sarflangan vaqt", f"{secs // 60:02d}:{secs % 60:02d}")
     with c2:
-        _summary_card("To'g'ri javoblar", str(correct))
+        _summary_card("To'g'ri javoblar", f"{correct} / {total_quota}")
     with c3:
-        _summary_card("Xato javoblar", str(report["wrong"]))
+        _summary_card("Xato javoblar", str(total - correct))
     with c4:
         _summary_card(
             "Aniqlik",
-            f"{100 * report['accuracy']:.0f}%" if total else "—",
+            f"{100 * report['accuracy']:.0f}%" if total_quota else "—",
         )
 
-    if report["overall_band"] is not None:
-        _summary_section_header(
-            "🎯 Taxminiy IELTS bali (Listening va Speaking'siz)",
-            "Bu ball faqat shu mashq sessiyasidagi natijalaringizga asoslangan taxminiy "
-            "ko'rsatkich — haqiqiy IELTS imtihonidagi ballingiz farq qilishi mumkin.",
-        )
-        bands = report["bucket_bands"]
-        b1, b2, b3, b4 = st.columns(4)
-        with b1:
-            _summary_card("Reading", _fmt_band(bands.get("Reading")))
-        with b2:
-            _summary_card("Grammar", _fmt_band(bands.get("Grammar")))
-        with b3:
-            _summary_card("Vocabulary", _fmt_band(bands.get("Vocabulary")))
-        with b4:
-            _summary_card("Umumiy o'rtacha", _fmt_band(report["overall_band"]))
+    _summary_section_header(
+        "🎯 Taxminiy IELTS bali (Speaking va Writing'siz)",
+        "Bu ball faqat shu mashq sessiyasidagi Reading, Grammar va Vocabulary natijalaringizga "
+        "asoslangan taxminiy ko'rsatkich (Speaking va Writing hisoblanmaydi). "
+        f"Jami {total_quota} ta savoldan {correct} ta to'g'ri = {100 * report['accuracy']:.1f}% aniqlik.",
+    )
+    bands = report["bucket_bands"]
+    b1, b2, b3, b4 = st.columns(4)
+    with b1:
+        r_stats = st.session_state.bucket_stats.get("Reading", {})
+        r_correct = r_stats.get("correct", 0)
+        _summary_card("Reading", f"{_fmt_band(bands.get('Reading'))}")
+    with b2:
+        g_stats = st.session_state.bucket_stats.get("Grammar", {})
+        g_correct = g_stats.get("correct", 0)
+        _summary_card("Grammar", f"{_fmt_band(bands.get('Grammar'))}")
+    with b3:
+        v_stats = st.session_state.bucket_stats.get("Vocabulary", {})
+        v_correct = v_stats.get("correct", 0)
+        _summary_card("Vocabulary", f"{_fmt_band(bands.get('Vocabulary'))}")
+    with b4:
+        _summary_card("Umumiy o'rtacha", _fmt_band(report["overall_band"]))
 
-    weakness_lines = [
-        f"<strong>{w['name']}</strong> — sessiya aniqligi "
-        f"{100 * w['accuracy']:.0f}% ({w['total']} savol)"
-        for w in report["weaknesses"]
-    ]
+    detail_c1, detail_c2, detail_c3 = st.columns(3)
+    with detail_c1:
+        r_q = quotas.get("Reading", 40)
+        st.caption(f"Reading: {r_correct}/{r_q} to'g'ri ({100*r_correct/r_q:.0f}%)" if r_q else "")
+    with detail_c2:
+        g_q = quotas.get("Grammar", 50)
+        st.caption(f"Grammar: {g_correct}/{g_q} to'g'ri ({100*g_correct/g_q:.0f}%)" if g_q else "")
+    with detail_c3:
+        v_q = quotas.get("Vocabulary", 50)
+        st.caption(f"Vocabulary: {v_correct}/{v_q} to'g'ri ({100*v_correct/v_q:.0f}%)" if v_q else "")
+
+    weakness_lines = []
+    for w in report["weaknesses"]:
+        line = (
+            f"<strong>{w['name']}</strong> — "
+            f"{w['correct']}/{w['quota']} to'g'ri ({100 * w['accuracy']:.0f}%)"
+        )
+        if w.get("unanswered", 0) > 0:
+            line += f" · {w['unanswered']} ta javobsiz"
+        weakness_lines.append(line)
     _summary_list_panel(
         "Zaif tomonlar",
         weakness_lines,
@@ -2145,39 +2363,115 @@ def _summary_view() -> None:
     )
 
     st.divider()
-    mistakes = st.session_state.mistakes
-    if mistakes:
-        st.subheader(f"Xatolar tahlili ({len(mistakes)} ta)")
-        grouped: dict[str, list] = {"Reading": [], "Grammar": [], "Vocabulary": []}
-        for mistake in mistakes:
-            q = mistake["question"]
-            cat = loader.display_category(q["skill_id"])
-            grouped.setdefault(cat, []).append(mistake)
+
+    section_labels = {"Reading": "READING", "Grammar": "GRAMMAR", "Vocabulary": "VOCABULARY"}
+
+    wrong_grouped: dict[str, list] = {"Reading": [], "Grammar": [], "Vocabulary": []}
+    correct_grouped: dict[str, list] = {"Reading": [], "Grammar": [], "Vocabulary": []}
+    answers = st.session_state.get("answers", {})
+    queue = st.session_state.get("session_queue", [])
+    for qid in queue:
+        if qid not in answers:
+            continue
+        q = loader.get_question(qid)
+        if q is None:
+            continue
+        chosen = answers[qid]
+        cat = quota_bucket(loader.display_category(q["skill_id"]))
+        if chosen == q["correct_answer"]:
+            correct_grouped[cat].append({"question": q, "choice": chosen})
+        else:
+            wrong_grouped[cat].append({"question": q, "choice": chosen})
+
+    total_wrong = sum(len(v) for v in wrong_grouped.values())
+    total_correct = sum(len(v) for v in correct_grouped.values())
+
+    # ── XATOLAR BO'LIMI ──
+    st.subheader(f"❌ XATOLAR — {total_wrong} ta")
+    if total_wrong > 0:
         for cat in PHASE_ORDER:
-            items = grouped.get(cat, [])
+            items = wrong_grouped.get(cat, [])
             if not items:
                 continue
-            st.markdown(f"#### {loader.display_skill_name(items[0]['question']['skill_id'])} — {len(items)} ta xato")
+            label = section_labels.get(cat, cat)
+            st.markdown(f"### {label} — {len(items)} ta xato")
+
             for idx, mistake in enumerate(items):
                 question, chosen = mistake["question"], mistake["choice"]
-                prompt = _format_question_prompt(question)[:100]
-                with st.expander(f"{idx + 1}. {prompt}"):
-                    st.markdown(f"**Savol:** {_format_question_prompt(question)}")
+                prompt_text = _format_question_prompt(question)
+                short = prompt_text[:120]
+                if len(prompt_text) > 120:
+                    short += "..."
+                ex_info = ""
+                if question.get("passage_id"):
+                    ex = question.get("exercise", "?")
+                    ex_info = f"[Exercise {ex}] "
+
+                with st.expander(f"{idx + 1}. {ex_info}{short}", expanded=True):
+                    st.markdown(f"**Savol:** {prompt_text}")
+                    st.write("")
                     for i, option in enumerate(question["options"]):
-                        if i == question["correct_answer"]:
-                            st.success(f"{option} — to'g'ri javob")
-                        elif i == chosen:
-                            st.error(f"{option} — sizning javobingiz")
+                        letter = chr(65 + i)
+                        if i == chosen:
+                            st.error(f"{letter}) {option} — sizning javobingiz ❌")
+                        elif i == question["correct_answer"]:
+                            st.success(f"{letter}) {option} — to'g'ri javob ✅")
                         else:
-                            st.write(f"- {option}")
+                            st.write(f"  {letter}) {option}")
+                    st.markdown("---")
+                    explanation = _deep_explanation(question, chosen)
+                    st.markdown(explanation)
                     st.markdown("**AI izohi**")
                     if "ai" in mistake:
                         st.info(mistake["ai"])
-                    elif st.button("Izohni yuklash", key=f"ai_btn_{cat}_{idx}"):
-                        _fetch_mistake_ai(mistake)
-                        st.rerun()
-    elif total:
-        st.success("Barcha javoblar to'g'ri — barakalla!")
+                    else:
+                        m_from_state = next(
+                            (m for m in st.session_state.mistakes if m["question"]["id"] == question["id"]),
+                            None,
+                        )
+                        if m_from_state and "ai" in m_from_state:
+                            st.info(m_from_state["ai"])
+                        elif st.button("Izohni yuklash", key=f"ai_wrong_{cat}_{idx}"):
+                            if m_from_state:
+                                _fetch_mistake_ai(m_from_state)
+                            st.rerun()
+    else:
+        st.success("Xato javob yo'q — barakalla! 🎉")
+
+    st.divider()
+
+    # ── TO'G'RI JAVOBLAR BO'LIMI ──
+    st.subheader(f"✅ TO'G'RI JAVOBLAR — {total_correct} ta")
+    if total_correct > 0:
+        for cat in PHASE_ORDER:
+            items = correct_grouped.get(cat, [])
+            if not items:
+                continue
+            label = section_labels.get(cat, cat)
+            st.markdown(f"### {label} — {len(items)} ta to'g'ri")
+
+            for idx, entry in enumerate(items):
+                question, chosen = entry["question"], entry["choice"]
+                prompt_text = _format_question_prompt(question)
+                short = prompt_text[:120]
+                if len(prompt_text) > 120:
+                    short += "..."
+                ex_info = ""
+                if question.get("passage_id"):
+                    ex = question.get("exercise", "?")
+                    ex_info = f"[Exercise {ex}] "
+
+                with st.expander(f"{idx + 1}. {ex_info}{short}"):
+                    st.markdown(f"**Savol:** {prompt_text}")
+                    st.write("")
+                    for i, option in enumerate(question["options"]):
+                        letter = chr(65 + i)
+                        if i == chosen:
+                            st.success(f"{letter}) {option} — sizning javobingiz ✅")
+                        else:
+                            st.write(f"  {letter}) {option}")
+    else:
+        st.info("Bu sessiyada to'g'ri javob topilmadi.")
 
     if not cfg:
         st.info(

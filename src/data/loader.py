@@ -23,20 +23,16 @@ GRAMMAR_BANK_PATH = DATA_DIR / "grammar_bank.json"
 VOCABULARY_BANK_PATH = DATA_DIR / "vocabulary_bank.json"
 
 _EXercise_PROMPT_RE = re.compile(r"^\[Exercise \d+\]\s*", re.I)
-_PASSAGE_BLANK_RE = re.compile(
-    r"\s+1\s+(?=[a-z])|"  # "he 1 may" -> "he may"
-    r"\s+I\s+(?=[a-z])|"  # "a I truly" -> "a truly"
-    r"\bwhen I a\b",  # "when I a joke" -> "when a joke"
-    flags=re.I,
-)
-
-
 def clean_passage_text(text: str) -> str:
-    """Strip Exercise-3 blank markers accidentally baked into passage text."""
+    """Return passage text with only whitespace normalization.
+
+    The old regex-based blank-marker stripping was too aggressive and removed
+    legitimate "I" pronouns and "1" numerals from 21+ passages. Now we only
+    collapse redundant whitespace.
+    """
     if not text:
         return text
-    cleaned = _PASSAGE_BLANK_RE.sub(lambda m: " when a" if "when" in m.group(0).lower() else " ", text)
-    cleaned = re.sub(r"\s{2,}", " ", cleaned)
+    cleaned = re.sub(r"\s{2,}", " ", text)
     return cleaned.strip()
 
 

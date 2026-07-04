@@ -27,7 +27,7 @@
       "512f0ac9": "sat_suite_qb"
     },
     "parse_errors": [],
-    "note": "20 SAT official + 30 supplementary = 50 total grammar items."
+    "note": "SAT questions from Writing Questions.pdf, Writing Questions (Hard) 2.0.pdf, and SAToplam Writing Book = 50 total grammar items."
   },
   "skills": [
     "sat_rhetorical_synthesis",
@@ -376,513 +376,513 @@
       "bank": "grammar"
     },
     {
-      "skill_id": "sat_transitions",
-      "question_text": "The ancient Egyptians developed one of the earliest writing systems. ______ the Sumerians in Mesopotamia independently created cuneiform around the same period. Which choice completes the text with the most logical transition?",
-      "options": [
-        "Therefore,",
-        "Similarly,",
-        "In contrast,",
-        "As a result,"
-      ],
-      "correct_answer": 1,
-      "correct_letter": "B",
-      "difficulty": "medium",
-      "id": "gram_8bace9a7",
-      "external_id": "8bace9a7",
-      "source": "Grammar supplement (sat_transitions)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_transitions",
-      "question_text": "Renewable energy sources like solar and wind power produce no greenhouse gas emissions during operation. ______ they require significant initial investment in infrastructure. Which choice completes the text with the most logical transition?",
-      "options": [
-        "Furthermore,",
-        "However,",
-        "Therefore,",
-        "In other words,"
-      ],
-      "correct_answer": 1,
-      "correct_letter": "B",
-      "difficulty": "medium",
-      "id": "gram_7103ffaf",
-      "external_id": "7103ffaf",
-      "source": "Grammar supplement (sat_transitions)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_transitions",
-      "question_text": "The city council approved the new park design after months of public consultation. ______ construction is expected to begin early next year. Which choice completes the text with the most logical transition?",
-      "options": [
-        "Nevertheless,",
-        "In contrast,",
-        "Accordingly,",
-        "On the other hand,"
-      ],
-      "correct_answer": 2,
-      "correct_letter": "C",
-      "difficulty": "medium",
-      "id": "gram_e82a9a46",
-      "external_id": "e82a9a46",
-      "source": "Grammar supplement (sat_transitions)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_transitions",
-      "question_text": "Many scientists initially dismissed the theory of continental drift proposed by Alfred Wegener in 1912. ______ mounting evidence from fossils, rock formations, and ocean floor mapping eventually led to its acceptance as plate tectonics. Which choice completes the text with the most logical transition?",
-      "options": [
-        "Moreover,",
-        "For instance,",
-        "Yet,",
-        "In addition,"
-      ],
-      "correct_answer": 2,
-      "correct_letter": "C",
-      "difficulty": "hard",
-      "id": "gram_b7344a8b",
-      "external_id": "b7344a8b",
-      "source": "Grammar supplement (sat_transitions)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_transitions",
-      "question_text": "The museum had planned to open its new wing in September. ______ unexpected delays in construction pushed the opening to December. Which choice completes the text with the most logical transition?",
-      "options": [
-        "However,",
-        "Furthermore,",
-        "Likewise,",
-        "For example,"
-      ],
-      "correct_answer": 0,
-      "correct_letter": "A",
-      "difficulty": "easy",
-      "id": "gram_9f768878",
-      "external_id": "9f768878",
-      "source": "Grammar supplement (sat_transitions)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_transitions",
-      "question_text": "Dr. Martinez has published extensively on the effects of sleep deprivation on cognitive function. Her research shows that even moderate sleep loss impairs attention. ______ she has demonstrated that chronic sleep deprivation can lead to long-term memory deficits. Which choice completes the text with the most logical transition?",
-      "options": [
-        "In contrast,",
-        "Additionally,",
-        "Nevertheless,",
-        "Instead,"
-      ],
-      "correct_answer": 1,
-      "correct_letter": "B",
-      "difficulty": "medium",
-      "id": "gram_402cfbcb",
-      "external_id": "402cfbcb",
-      "source": "Grammar supplement (sat_transitions)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_transitions",
-      "question_text": "The small island nation faced severe economic challenges due to its limited natural resources and remote location. ______ it developed a thriving tourism industry that now accounts for more than half of its GDP. Which choice completes the text with the most logical transition?",
-      "options": [
-        "Similarly,",
-        "Consequently,",
-        "Nonetheless,",
-        "In addition,"
-      ],
-      "correct_answer": 2,
-      "correct_letter": "C",
-      "difficulty": "hard",
-      "id": "gram_ea6f4526",
-      "external_id": "ea6f4526",
-      "source": "Grammar supplement (sat_transitions)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_transitions",
-      "question_text": "Classical music concerts traditionally require audiences to remain silent during performances. ______ many contemporary orchestras have introduced casual concerts where audience members may clap between movements. Which choice completes the text with the most logical transition?",
-      "options": [
-        "Therefore,",
-        "For instance,",
-        "In recent years, however,",
-        "As a result,"
-      ],
-      "correct_answer": 2,
-      "correct_letter": "C",
-      "difficulty": "medium",
-      "id": "gram_ae53d5ed",
-      "external_id": "ae53d5ed",
-      "source": "Grammar supplement (sat_transitions)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_transitions",
-      "question_text": "The experiment confirmed that higher temperatures accelerate chemical reactions. ______ the rate of reaction doubled with every 10-degree increase in temperature, consistent with the Arrhenius equation. Which choice completes the text with the most logical transition?",
-      "options": [
-        "Specifically,",
-        "However,",
-        "In contrast,",
-        "Nevertheless,"
-      ],
-      "correct_answer": 0,
-      "correct_letter": "A",
-      "difficulty": "medium",
-      "id": "gram_2ff21c37",
-      "external_id": "2ff21c37",
-      "source": "Grammar supplement (sat_transitions)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_transitions",
-      "question_text": "Urban gardens provide fresh produce to communities that may lack access to affordable healthy food. ______ they create green spaces that improve air quality and reduce the urban heat island effect. Which choice completes the text with the most logical transition?",
-      "options": [
-        "In contrast,",
-        "Moreover,",
-        "Nevertheless,",
-        "Instead,"
-      ],
-      "correct_answer": 1,
-      "correct_letter": "B",
-      "difficulty": "easy",
-      "id": "gram_7efbb2e4",
-      "external_id": "7efbb2e4",
-      "source": "Grammar supplement (sat_transitions)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_transitions",
-      "question_text": "The new hybrid vehicle consumes 40% less fuel than its predecessor. ______ its reduced emissions make it an environmentally friendlier option for daily commuting. Which choice completes the text with the most logical transition?",
-      "options": [
-        "In contrast,",
-        "Furthermore,",
-        "Nevertheless,",
-        "Instead,"
-      ],
-      "correct_answer": 1,
-      "correct_letter": "B",
-      "difficulty": "easy",
-      "id": "gram_0d778816",
-      "external_id": "0d778816",
-      "source": "Grammar supplement (sat_transitions)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_transitions",
-      "question_text": "The ancient Romans built an extensive network of roads that connected the far reaches of their empire. These roads facilitated trade, military movement, and communication. ______ many of these roads still exist today and form the basis of modern European highway systems. Which choice completes the text with the most logical transition?",
-      "options": [
-        "In contrast,",
-        "Remarkably,",
-        "Therefore,",
-        "Instead,"
-      ],
-      "correct_answer": 1,
-      "correct_letter": "B",
-      "difficulty": "medium",
-      "id": "gram_9358d6f2",
-      "external_id": "9358d6f2",
-      "source": "Grammar supplement (sat_transitions)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_standard_english",
-      "question_text": "The committee, along with several independent advisors, ______ reviewed the proposal before submitting the final report to the board. Which choice completes the text so that it conforms to the conventions of Standard English?",
-      "options": [
-        "have thoroughly",
-        "has thoroughly",
-        "are thoroughly",
-        "were thoroughly"
-      ],
-      "correct_answer": 1,
-      "correct_letter": "B",
-      "difficulty": "medium",
-      "id": "gram_8adfaa23",
-      "external_id": "8adfaa23",
-      "source": "Grammar supplement (sat_standard_english)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_standard_english",
-      "question_text": "Neither the students nor the teacher ______ aware of the schedule change until the morning announcement. Which choice completes the text so that it conforms to the conventions of Standard English?",
-      "options": [
-        "were",
-        "was",
-        "are",
-        "have been"
-      ],
-      "correct_answer": 1,
-      "correct_letter": "B",
-      "difficulty": "medium",
-      "id": "gram_008b684f",
-      "external_id": "008b684f",
-      "source": "Grammar supplement (sat_standard_english)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_standard_english",
-      "question_text": "The painting, which was completed in 1889 by Vincent van ______ depicts a swirling night sky over a quiet village. Which choice completes the text so that it conforms to the conventions of Standard English?",
-      "options": [
-        "Gogh,",
-        "Gogh:",
-        "Gogh;",
-        "Gogh"
-      ],
-      "correct_answer": 0,
-      "correct_letter": "A",
-      "difficulty": "easy",
-      "id": "gram_1cc3b5be",
-      "external_id": "1cc3b5be",
-      "source": "Grammar supplement (sat_standard_english)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_standard_english",
-      "question_text": "Having completed ______ research on migratory patterns, the ornithologist published her findings in a peer-reviewed journal. Which choice completes the text so that it conforms to the conventions of Standard English?",
-      "options": [
-        "hers",
-        "her",
-        "their",
-        "its"
-      ],
-      "correct_answer": 1,
-      "correct_letter": "B",
-      "difficulty": "easy",
-      "id": "gram_b67b902b",
-      "external_id": "b67b902b",
-      "source": "Grammar supplement (sat_standard_english)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_standard_english",
-      "question_text": "The data collected from the satellite ______ that ocean temperatures have risen significantly over the past two decades. Which choice completes the text so that it conforms to the conventions of Standard English?",
-      "options": [
-        "suggests",
-        "suggest",
-        "is suggesting",
-        "has suggested"
-      ],
-      "correct_answer": 1,
-      "correct_letter": "B",
-      "difficulty": "medium",
-      "id": "gram_2d643801",
-      "external_id": "2d643801",
-      "source": "Grammar supplement (sat_standard_english)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_standard_english",
-      "question_text": "Each of the participants in the study ______ required to sign a consent form before the experiment began. Which choice completes the text so that it conforms to the conventions of Standard English?",
-      "options": [
-        "were",
-        "was",
-        "are",
-        "have been"
-      ],
-      "correct_answer": 1,
-      "correct_letter": "B",
-      "difficulty": "easy",
-      "id": "gram_d23e70dc",
-      "external_id": "d23e70dc",
-      "source": "Grammar supplement (sat_standard_english)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_standard_english",
-      "question_text": "The novelist, known for her vivid descriptions of rural ______ has won numerous literary awards, including the Pulitzer Prize. Which choice completes the text so that it conforms to the conventions of Standard English?",
-      "options": [
-        "life,",
-        "life;",
-        "life:",
-        "life"
-      ],
-      "correct_answer": 0,
-      "correct_letter": "A",
-      "difficulty": "medium",
-      "id": "gram_247ee399",
-      "external_id": "247ee399",
-      "source": "Grammar supplement (sat_standard_english)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_standard_english",
-      "question_text": "The research team found that plants exposed to classical music grew ______ than those kept in silence. Which choice completes the text so that it conforms to the conventions of Standard English?",
-      "options": [
-        "more taller",
-        "most tallest",
-        "taller",
-        "more tall"
-      ],
-      "correct_answer": 2,
-      "correct_letter": "C",
-      "difficulty": "easy",
-      "id": "gram_9cb5e532",
-      "external_id": "9cb5e532",
-      "source": "Grammar supplement (sat_standard_english)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_standard_english",
-      "question_text": "The archaeologist carefully ______ the artifacts, making sure not to damage any of the delicate pottery fragments found at the site. Which choice completes the text so that it conforms to the conventions of Standard English?",
-      "options": [
-        "cataloged",
-        "has cataloged",
-        "cataloging",
-        "catalog"
-      ],
-      "correct_answer": 0,
-      "correct_letter": "A",
-      "difficulty": "medium",
-      "id": "gram_b9dc4324",
-      "external_id": "b9dc4324",
-      "source": "Grammar supplement (sat_standard_english)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_standard_english",
-      "question_text": "Between the two proposed ______ the board chose the one that required less initial investment. Which choice completes the text so that it conforms to the conventions of Standard English?",
-      "options": [
-        "solutions:",
-        "solutions;",
-        "solutions,",
-        "solutions"
-      ],
-      "correct_answer": 2,
-      "correct_letter": "C",
-      "difficulty": "medium",
-      "id": "gram_10dceee7",
-      "external_id": "10dceee7",
-      "source": "Grammar supplement (sat_standard_english)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_standard_english",
-      "question_text": "The professor, along with two graduate ______ is conducting a study on the effects of urbanization on local bird populations. Which choice completes the text so that it conforms to the conventions of Standard English?",
-      "options": [
-        "students,",
-        "students;",
-        "students:",
-        "students"
-      ],
-      "correct_answer": 0,
-      "correct_letter": "A",
-      "difficulty": "medium",
-      "id": "gram_19b062cc",
-      "external_id": "19b062cc",
-      "source": "Grammar supplement (sat_standard_english)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_standard_english",
-      "question_text": "After the team ______ the experiment three times and obtained consistent results, they submitted their findings for publication. Which choice completes the text so that it conforms to the conventions of Standard English?",
-      "options": [
-        "had replicated",
-        "have replicated",
-        "replicating",
-        "replicate"
-      ],
-      "correct_answer": 0,
-      "correct_letter": "A",
-      "difficulty": "hard",
-      "id": "gram_2170aa22",
-      "external_id": "2170aa22",
-      "source": "Grammar supplement (sat_standard_english)",
-      "bank": "grammar"
-    },
-    {
+      "id": "sat_6c9df5d1",
+      "external_id": "6c9df5d1",
       "skill_id": "sat_rhetorical_synthesis",
-      "question_text": "While researching a topic, a student has taken the following notes: The Great Barrier Reef is the world's largest coral reef system. It is located off the coast of Queensland, Australia. Rising ocean temperatures have caused mass coral bleaching events. A 2022 survey found that 91% of the reef's coral had been bleached. Conservation efforts include reducing agricultural runoff and limiting fishing. The student wants to emphasize the severity of the environmental threat to the reef. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+      "question_text": "While researching a topic, a student has taken the following notes: Some powerful works of literature have so influenced readers that new legislation has been passed as a result. The Interesting Narrativeof the Life of Olaudah Equiano (1789) is the autobiography of a man who endured slavery on both sides of the Atlantic. Equiano’s book contributed to the passage of the Slave Trade Act of 1807. The Jungle (1906) is a fictional work by Upton Sinclair that describes unsanitary conditions in US meatpacking plants. Sinclair’s book contributed to the passage of the Pure Food and Drug Act in 1906. The student wants to emphasize a difference between the two books. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
       "options": [
-        "A 2022 survey revealed that 91% of the Great Barrier Reef's coral had been bleached due to rising ocean temperatures.",
-        "The Great Barrier Reef, the world's largest coral reef system, is located off the coast of Queensland, Australia.",
-        "Conservation efforts for the Great Barrier Reef include reducing agricultural runoff and limiting fishing.",
-        "Rising ocean temperatures have affected coral reefs worldwide, including the Great Barrier Reef."
+        "Although both are powerful works of literature that contributed to new legislation, Equiano’s book is an autobiography, while Sinclair’s is fictional.",
+        "They may have written about different topics, but Equiano and Sinclair both influenced readers.",
+        "The 1807 Slave Trade Act resulted in part from a book by Equiano, while the 1906 Pure Food and Drug Act resulted in part from a book by Sinclair.",
+        "The Interesting Narrative of the Life of Olaudah Equiano and The Jungle are two works of literature that contributed to new legislation (concerning the slave trade and food safety, respectively)."
       ],
       "correct_answer": 0,
       "correct_letter": "A",
-      "difficulty": "medium",
-      "id": "gram_122a8d06",
-      "external_id": "122a8d06",
-      "source": "Grammar supplement (sat_rhetorical_synthesis)",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Expression of Ideas Rhetorical Synthesis Hard)",
       "bank": "grammar"
     },
     {
+      "id": "sat_e6b1e12c",
+      "external_id": "e6b1e12c",
       "skill_id": "sat_transitions",
-      "question_text": "The volcanic eruption destroyed much of the infrastructure. ______ the resilient community rebuilt within two years, attracting global admiration. Which choice completes the text with the most logical transition?",
+      "question_text": "Long thought to be sessile (immobile), adult Chelonibia testudinaria, barnacles that adhere to sea turtle shells, have been observed to shift slightly in position over time—a phenomenon that has been attributed to the barnacles’ passive displacement by water currents. ______ a research team found that adult C. testudinaria moved toward the heads of their sea turtle hosts and thus against the prevailing water flow, behavior consistent with self-initiated locomotion. Which choice completes the text with the most logical transition?",
       "options": [
-        "Similarly,",
-        "In addition,",
-        "Nevertheless,",
-        "For example,"
-      ],
-      "correct_answer": 2,
-      "correct_letter": "C",
-      "difficulty": "medium",
-      "id": "gram_dfbced6c",
-      "external_id": "dfbced6c",
-      "source": "Grammar supplement (sat_transitions)",
-      "bank": "grammar"
-    },
-    {
-      "skill_id": "sat_standard_english",
-      "question_text": "The discovery of penicillin by Alexander Fleming in 1928 ______ one of the most important breakthroughs in medical history. Which choice conforms to Standard English?",
-      "options": [
-        "remain",
-        "remains",
-        "are remaining",
-        "have remained"
+        "Contrary to this phenomenon,",
+        "Undermining this explanation,",
+        "Drawing a similar conclusion,",
+        "Confirming this hypothesis,"
       ],
       "correct_answer": 1,
       "correct_letter": "B",
-      "difficulty": "easy",
-      "id": "gram_248c60f3",
-      "external_id": "248c60f3",
-      "source": "Grammar supplement (sat_standard_english)",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Expression of Ideas Transitions Hard)",
       "bank": "grammar"
     },
     {
-      "skill_id": "sat_standard_english",
-      "question_text": "The athletes who trained the ______ during the off-season showed the greatest improvement. Which choice conforms to Standard English?",
-      "options": [
-        "most hardest",
-        "more harder",
-        "hardest",
-        "most hard"
-      ],
-      "correct_answer": 2,
-      "correct_letter": "C",
-      "difficulty": "easy",
-      "id": "gram_e2ce603a",
-      "external_id": "e2ce603a",
-      "source": "Grammar supplement (sat_standard_english)",
-      "bank": "grammar"
-    },
-    {
+      "id": "sat_a965c6ed",
+      "external_id": "a965c6ed",
       "skill_id": "sat_transitions",
-      "question_text": "Deep-sea creatures have adapted to extreme pressure and complete darkness. ______ some species have evolved bioluminescence to attract prey. Which choice completes the text with the most logical transition?",
+      "question_text": "A turtle shell appears external to the animal, protecting its body like armor. ______ the shell is often incorrectly assumed to be an exoskeleton, a rigid outer casing like that of a crustacean or an insect, when in fact it is an endoskeleton, a part of the turtle’s internal bone structure, more akin to a spine or a pair of ribs. Which choice completes the text with the most logical transition?",
       "options": [
+        "That being said,",
         "However,",
         "For instance,",
-        "In contrast,",
-        "Nevertheless,"
+        "Hence,"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Expression of Ideas Transitions Hard)",
+      "bank": "grammar"
+    },
+    {
+      "id": "sat_7d5c32e6",
+      "external_id": "7d5c32e6",
+      "skill_id": "sat_rhetorical_synthesis",
+      "question_text": "While researching a topic, a student has taken the following notes: The fifth Solvay Conference on Physics was held in 1927. It brought together twenty-nine of the era’s preeminent scientists to discuss the emerging field of quantum theory. The conference famously featured a debate between physicists Albert Einstein and Niels Bohr. Bohr proposed that subatomic entities like electrons had only probable realities until they were observed. Einstein argued that subatomic entities like electrons had a reality independent of observation. Bohr’s position, later called the Copenhagen interpretation, remains the most widely accepted theory of quantum mechanics. The student wants to place Einstein’s argument within its historical context. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+      "options": [
+        "During the dawn of quantum theory, Einstein maintained the independent reality of some subatomic entities, although Bohr’s opposing interpretation would become the widely accepted view.",
+        "At the 1927 Solvay Conference on Physics, Einstein disagreed with Bohr’s argument that subatomic entities like electrons had a reality independent of observation.",
+        "The attendees of the 1927 Solvay Conference were among the preeminent scientists of their era, including Einstein, who opposed Bohr’s proposal.",
+        "In 1927, Einstein and Bohr engaged in a famous debate; Bohr’s argument, later called the Copenhagen interpretation, would remain popular decades after."
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Expression of Ideas Rhetorical Synthesis Hard)",
+      "bank": "grammar"
+    },
+    {
+      "id": "sat_b07a7634",
+      "external_id": "b07a7634",
+      "skill_id": "sat_rhetorical_synthesis",
+      "question_text": "While researching a topic, a student has taken the following notes: Digital Light Synthesis (DLS) is a form of additive manufacturing that utilizes light to rapidly cure liquid resin into high-quality, 3D objects. Step 1: Ultraviolet (UV) light images are projected up into a pool of liquid resin, where the object’s first layer takes shape. Step 2: The partially cured resin object is raised, leaving a thin space (a “dead zone”) beneath it for oxygen and liquid resin to flow through. Step 3: The UV light passes through the dead zone—maintaining the flow of resin—and partially cures additional layers of the object. Step 4: When the resin object is complete, it is baked in an oven to complete the curing. The student wants to describe how DLS cures 3D objects. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+      "options": [
+        "DLS is a form of additive manufacturing that creates a “dead zone” in which UV light solidifies layer by layer before being baked in an oven, creating a high-quality, 3D object.",
+        "DLS cures 3D objects by passing through a “dead zone,” adding layers to the object, then curing the object in an oven.",
+        "In DLS, UV light images are projected into a liquid resin pool to cure a 3D object layer by layer; once solidified, the object is baked in an oven.",
+        "In DLS, UV light is projected into layers of liquid resin until the resin solidifies and passes through a “dead zone,” wherein the curing is completed."
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Expression of Ideas Rhetorical Synthesis Hard)",
+      "bank": "grammar"
+    },
+    {
+      "id": "sat_3fa48bf3",
+      "external_id": "3fa48bf3",
+      "skill_id": "sat_rhetorical_synthesis",
+      "question_text": "While researching a topic, a student has taken the following notes: British scholar Robert Plot described fossilized dinosaur bones in his 1676 book The Natural History of Oxfordshire. Plot earned a reputation for being the first person to have discovered dinosaur remains. In 1990, archaeologists in Lesotho, in southern Africa, discovered a fossilized phalanx of a Massospondylus carinatus dinosaur in a cave once inhabited by humans. Indigenous Khoesan and Basotho peoples had inhabited the cave beginning around 1100 CE. According to paleontologist Julien Benoit, these peoples may have found the phalanx and brought it to the cave centuries before Plot’s descriptions. The student wants to emphasize the significance of the 1990 discovery to Plot’s reputation. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+      "options": [
+        "Benoit challenged Plot’s reputation for being the first person to have discovered M. carinatus remains.",
+        "Evidence that Khoesan and Basotho peoples may have found an M. carinatus phalanx as long ago as 1100 CE suggests that Plot may not have been the first person to have discovered dinosaur remains.",
+        "According to Benoit’s analysis of the 1990 discovery, Indigenous peoples in southern Africa may have brought the fossilized phalanx to the cave as long ago as 1100 CE.",
+        "In 1990, more than three centuries after Plot claimed in his book that he had found fossilized dinosaur bones, archaeologists uncovered evidence in southern Africa that disproved his claims."
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Expression of Ideas Rhetorical Synthesis Hard)",
+      "bank": "grammar"
+    },
+    {
+      "id": "sat_8fe4f4ab",
+      "external_id": "8fe4f4ab",
+      "skill_id": "sat_rhetorical_synthesis",
+      "question_text": "While researching a topic, a student has taken the following notes: One of history’s greatest libraries was the House of Wisdom in Baghdad, Iraq. It was founded in the eighth century with the goal of preserving all the world’s knowledge. Scholars at the House of Wisdom collected ancient and contemporary texts from Greece, India, and elsewhere and translated them into Arabic. Writings included those of the Greek philosopher Aristotle and the Indian mathematician Aryabhata. The House of Wisdom used Chinese papermaking technology to create paper versions to be studied and shared. The student wants to explain how the House of Wisdom preserved the world’s knowledge. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+      "options": [
+        "The House of Wisdom was known for bringing together knowledge from around the world, including from Greece, India, and China.",
+        "Founded in Iraq in the eighth century, the House of Wisdom employed many scholars as translators.",
+        "Writings from the Greek philosopher Aristotle and the Indian mathematician Aryabhata were preserved at the House of Wisdom.",
+        "The House of Wisdom collected writings from different countries and created paper versions in Arabic to be studied and shared."
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Expression of Ideas Rhetorical Synthesis Hard)",
+      "bank": "grammar"
+    },
+    {
+      "id": "sat_3b02e88a",
+      "external_id": "3b02e88a",
+      "skill_id": "sat_rhetorical_synthesis",
+      "question_text": "While researching a topic, a student has taken the following notes: The ancient Arab dhow was a sailing vessel distinguishable by its triangular sails and stitched hull construction. Dhows were used primarily for trade along the coasts of Arab, South Asian, and East African countries. Contemporary shipbuilders in Oman use a mix of modern and traditional materials to build replicas of ancient dhows. Most of the materials used are traditional. Replica hulls are stitched together using the same traditional coconut palm fiber rope used on the hulls of ancient dhows. The student wants to make a generalization about the materials used in dhow replicas. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+      "options": [
+        "A traditional material that was used to stitch together the hulls of ancient dhows, coconut palm fiber rope is still used by shipbuilders.",
+        "The ancient Arab dhow was a sailing vessel used primarily for trade and distinguishable by its triangular sails.",
+        "Although most materials used in dhow replicas are traditional, some modern materials are used.",
+        "Contemporary shipbuilders in Oman build replicas of the dhow, which was an ancient sailing vessel with a stitched hull construction."
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Expression of Ideas Rhetorical Synthesis Hard)",
+      "bank": "grammar"
+    },
+    {
+      "id": "sat_8112b7e3",
+      "external_id": "8112b7e3",
+      "skill_id": "sat_transitions",
+      "question_text": "Ugandan American professor Peter Nazareth believed that Elvis Presley’s music is best understood not as a homogeneous collection but as an anthology (because Elvis showcased the contributions of a wide range of gospel, blues, and rock artists). ______ Nazareth entitled his college course on Elvis and his music, which focused on Elvis’s many musical influences, “Elvis as Anthology.” Which choice completes the text with the most logical transition?",
+      "options": [
+        "To that end,",
+        "In sum,",
+        "That is,",
+        "In addition,"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Expression of Ideas Transitions Hard)",
+      "bank": "grammar"
+    },
+    {
+      "id": "sat_964c6055",
+      "external_id": "964c6055",
+      "skill_id": "sat_rhetorical_synthesis",
+      "question_text": "While researching a topic, a student has taken the following notes: Two opposing theories of vision divided scholars for many centuries. The ancient Greek mathematician Euclid (circa 300 BCE) supported the extramission theory. This theory held that the eyes emit a form of radiation that illuminates objects in its range. The ancient Greek philosopher Aristotle (384–322 BCE) supported the intromission theory. This theory held that objects emit a form of radiation that reaches the eyes. In the eleventh century, Arab mathematician Ibn al-Haytham (965–1040 CE) largely settled the debate with the first conclusive experiments supporting intromission. The student wants to provide a historical overview of the two theories. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+      "options": [
+        "Scholars were divided between the extramission and intromission theories of vision until Ibn al-Haytham’s eleventh-century experiments largely settled the debate in support of intromission.",
+        "Through two opposing theories of vision—extramission and intromission—Euclid, Aristotle, and Ibn al-Haytham held that a form of radiation is emitted either from objects or from the eyes.",
+        "While Ibn al-Haytham largely settled the debate in the eleventh century, Aristotle supported the theory of intromission centuries before.",
+        "Before the eleventh century, the ancient Greek philosopher Aristotle supported the intromission theory, which held that objects emit a form of radiation that reaches the eyes."
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Expression of Ideas Rhetorical Synthesis Hard)",
+      "bank": "grammar"
+    },
+    {
+      "id": "sat_a9e5b788",
+      "external_id": "a9e5b788",
+      "skill_id": "sat_standard_english",
+      "question_text": "In discussing Mary Shelley’s 1818 epistolary novel Frankenstein, literary theorist Gayatri Spivak directs the reader’s attention to the character of Margaret Saville. As Spivak points out, Saville is not the protagonist of Shelley’s ______ as the recipient of the letters that frame the book’s narrative, she’s the “occasion” of it. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "novel",
+        "novel,",
+        "novel; rather,",
+        "novel, rather,"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Standard English Boundaries Hard Conventions)",
+      "bank": "grammar"
+    },
+    {
+      "id": "sat_d2b81427",
+      "external_id": "d2b81427",
+      "skill_id": "sat_standard_english",
+      "question_text": "In assessing the films of Japanese director Akira Kurosawa, ______ have missed his equally deep engagement with Japanese artistic traditions such as Noh theater. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "many critics have focused on Kurosawa’s use of Western literary sources but",
+        "Kurosawa’s use of Western literary sources has been the focus of many critics, who",
+        "there are many critics who have focused on Kurosawa’s use of Western literary sources, but they",
+        "the focus of many critics has been on Kurosawa’s use of Western literary sources; they"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Standard English Form, Structure, and Hard Conventions Sense)",
+      "bank": "grammar"
+    },
+    {
+      "id": "sat_e76e74e8",
+      "external_id": "e76e74e8",
+      "skill_id": "sat_standard_english",
+      "question_text": "Over twenty years ago, in a landmark experiment in the psychology of choice, professor Sheena Iyengar set up a jam-tasting booth at a grocery store. The number of jams available for tasting ______ some shoppers had twenty-four different options, others only six. Interestingly, the shoppers with fewer jams to choose from purchased more jam. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "varied:",
+        "varied,",
+        "varied, while",
+        "varied while"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Standard English Boundaries Hard Conventions)",
+      "bank": "grammar"
+    },
+    {
+      "id": "sat_1a61e2ae",
+      "external_id": "1a61e2ae",
+      "skill_id": "sat_standard_english",
+      "question_text": "English poet and Shakespeare contemporary John Donne’s ______ much admired during his lifetime (1572–1631) and in the decades that followed, had, at the time of their enthusiastic rediscovery by the early twentieth-century modernists, been essentially gathering dust for the intervening 250 years. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "works were",
+        "works, were",
+        "works,",
+        "works had been"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Standard English Form, Structure, and Hard Conventions Sense)",
+      "bank": "grammar"
+    },
+    {
+      "id": "sat_73a6603c",
+      "external_id": "73a6603c",
+      "skill_id": "sat_standard_english",
+      "question_text": "On sunny days, dark rooftops absorb solar energy and convert it to unwanted heat, raising the surrounding air ______ a light-colored covering to an existing dark roof, either by attaching prefabricated reflective sheets or spraying on a paint-like coating, helps combat this effect. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "temperature; by adding",
+        "temperature, adding",
+        "temperature. Adding",
+        "temperature by adding"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Standard English Boundaries Hard Conventions)",
+      "bank": "grammar"
+    },
+    {
+      "id": "sat_3bceeb93",
+      "external_id": "3bceeb93",
+      "skill_id": "sat_standard_english",
+      "question_text": "When they were first discovered in Australia in 1798, duck-billed, beaver-tailed platypuses so defied categorization that one scientist assigned them the name Ornithorhynchusparadoxus: “paradoxical bird-snout.” The animal,which lays eggs but also nurses ______ young with milk, has since been classified as belonging to the monotremes group. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "they’re",
+        "their",
+        "its",
+        "it’s"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Standard English Form, Structure, and Hard Conventions Sense)",
+      "bank": "grammar"
+    },
+    {
+      "id": "sat_6fac7f45",
+      "external_id": "6fac7f45",
+      "skill_id": "sat_standard_english",
+      "question_text": "Butterfly is a 1988 painting by the Japanese artist Ay-O. Like many of Ay-O’s paintings, Butterfly, which portrays a swimmer performing the butterfly stroke, attempts to make use of the entire visual light ______ sporting rainbow-striped goggles, the rainbow-hued swimmer splashes through a wavy rainbow of water. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "spectrum",
+        "spectrum:",
+        "spectrum while",
+        "spectrum, while"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Standard English Boundaries Hard Conventions)",
+      "bank": "grammar"
+    },
+    {
+      "id": "sat_aecdb820",
+      "external_id": "aecdb820",
+      "skill_id": "sat_standard_english",
+      "question_text": "Featuring works by the photographers Lola Álvarez Bravo and Else “Yva” Neuländer-Simon, the 2021 exhibition The New Woman Behind the Camera set out to provide a wide-ranging overview of photography by women in the 1920s through the ______ given the collection’s breadth of more than 120 photos, its efforts were largely successful. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "1950s, and",
+        "1950s and",
+        "1950s",
+        "1950s,"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Standard English Boundaries Hard Conventions)",
+      "bank": "grammar"
+    },
+    {
+      "id": "sat_2c9c6ca9",
+      "external_id": "2c9c6ca9",
+      "skill_id": "sat_standard_english",
+      "question_text": "The term “retroflex” derives from Latin and means “bent back,” an apt descriptor for the branch of consonants—retroflex consonants— pronounced with the tongue curling up and back in the mouth. In many languages, including English, these consonants are ______ in some dialects of Mandarin, however, four such consonants (“ch,” “sh,” “zh,” and “r”) are relatively common. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "rare and",
+        "rare,",
+        "rare",
+        "rare;"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Standard English Boundaries Hard Conventions)",
+      "bank": "grammar"
+    },
+    {
+      "id": "sat_dab8b8ee",
+      "external_id": "dab8b8ee",
+      "skill_id": "sat_standard_english",
+      "question_text": "Known as Earth’s “living skin,” biocrusts are thin layers of soil held together by surface-dwelling microorganisms such as fungi, lichens, and cyanobacteria. Fortifying soil in arid ecosystems against erosion, ______ Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "a recent study’s estimate is that these crusts reduce global dust emissions by 60 percent each year.",
+        "an estimated 60 percent reduction in global dust emissions each year is due to these crusts, according to a recent study.",
+        "these crusts reduce global dust emissions by an estimated 60 percent each year, according to a recent study.",
+        "a recent study has estimated that these crusts reduce global dust emissions by 60 percent each year."
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "hard",
+      "source": "SAT Suite QB Hard 2.0 (SAT Reading and Writing Standard English Form, Structure, and Hard Conventions Sense)",
+      "bank": "grammar"
+    },
+    {
+      "id": "satoplam_boundaries_3",
+      "external_id": "satoplam_b3",
+      "skill_id": "sat_standard_english",
+      "question_text": "Sociologist Alton Okinaka sits on the review 3 board tasked with adding new sites to the Which choice completes the text so that it Hawaii Register of Historic Places, which conforms to the conventions of Standard includes the Pufu’opae Bridge, built in 1915, English? and the Ma’alaea General Store, built in 1910. Okinaka doesn’t make such decisions",
+      "options": [
+        "however, all single-handedly, historical designations must be approved by a group of",
+        "however and all nine other experts.",
+        "however all",
+        "however. All"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "SAToplam Writing Book - Boundaries Q3",
+      "bank": "grammar"
+    },
+    {
+      "id": "satoplam_boundaries_6",
+      "external_id": "satoplam_b6",
+      "skill_id": "sat_standard_english",
+      "question_text": "There is a common misconception that all cats 6 detest fishing cat, Prionailurus Which choice completes the text so that it viverrinus, proves this assumption is false. This conforms to the conventions of Standard wild cat that lives in Southeastern Asia can not English? only swim long distances but also relies on fish for roughly 75 percent of its diet.",
+      "options": [
+        "water; the",
+        "water, the",
+        "water the",
+        "water – the"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "SAToplam Writing Book - Boundaries Q6",
+      "bank": "grammar"
+    },
+    {
+      "id": "satoplam_boundaries_9",
+      "external_id": "satoplam_b9",
+      "skill_id": "sat_standard_english",
+      "question_text": "A 2004 study led by studied 9 the impact of fertilizers containing nitrogen on Which choice completes the text so that it grassland arthropod populations. Another conforms to the conventions of Standard study, led by Tracy in 2002, looked at fertilizers English? containing nitrogen and two other macronutrients: phosphorus and potassium.",
+      "options": [
+        "researcher Peter Dennis",
+        "researcher Peter Dennis,",
+        "researcher, Peter Dennis,",
+        "researcher, Peter Dennis"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "SAToplam Writing Book - Boundaries Q9",
+      "bank": "grammar"
+    },
+    {
+      "id": "satoplam_boundaries_12",
+      "external_id": "satoplam_b12",
+      "skill_id": "sat_standard_english",
+      "question_text": "Today, the Michelin Gaise is widely known as 12 the arbiter of fine dining, but when it was Which choice completes the text so that it created in 1909, it was little more than a conforms to the conventions of Standard marketing gimmick. Brothers Andre and English? Edoward Michelin sought to increase profits for their tire company by encouraging their",
+      "options": [
+        "restaurants customers to drive across France, visiting the guide’s recommended hotels and",
+        "restaurants; as it grew in scope and",
+        "restaurants and influence, the guide had its modest French eateries replaced with the best restaurants from",
+        "restaurants, around the world including The Light in Macau and Sushi Weda in Nagoya."
       ],
       "correct_answer": 1,
       "correct_letter": "B",
       "difficulty": "medium",
-      "id": "gram_7a5ef6fa",
-      "external_id": "7a5ef6fa",
-      "source": "Grammar supplement (sat_transitions)",
+      "source": "SAToplam Writing Book - Boundaries Q12",
       "bank": "grammar"
     },
     {
+      "id": "satoplam_boundaries_15",
+      "external_id": "satoplam_b15",
       "skill_id": "sat_standard_english",
-      "question_text": "The library, which houses over two million ______ is open to both students and the public. Which choice conforms to Standard English?",
+      "question_text": "In the thought-provoking 2010 exhibition 15 Relative Pelican at the Stux Gallery in New Which choice completes the text so that it York, Sokari Douglas camp presented sculptures conforms to the conventions of Standard that had been welded from English? recycled metal materials, such as oil drums. In doing so, the London-based Nigerian sculptor",
       "options": [
-        "volumes,",
-        "volumes;",
-        "volumes:",
-        "volumes"
+        "cut, bent, and, challenged viewers to imagine new uses and futures for the material wastes of the past.",
+        "cut, bent, and",
+        "cut, bent; and",
+        "cut bent, and"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "SAToplam Writing Book - Boundaries Q15",
+      "bank": "grammar"
+    },
+    {
+      "id": "satoplam_boundaries_18",
+      "external_id": "satoplam_b18",
+      "skill_id": "sat_standard_english",
+      "question_text": "In 2020, internationally renowned Slovak 18 photographer Mária Švarbová exhibited her Which choice completes the text so that it work at the Contessa Gallery and the Art Angel conforms to the conventions of Standard Gallery in the United States and English? utilizing vivid pastel colors, overexposed tones, and mirror like symmetry,",
+      "options": [
+        "Japan, respectively, Švarbová’s photographs evoke a Socialist-era aesthetic that she describes as \"minimalistic but",
+        "Japan, respectively; also futuristic.\"",
+        "Japan; respectively",
+        "Japan, respectively"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "SAToplam Writing Book - Boundaries Q18",
+      "bank": "grammar"
+    },
+    {
+      "id": "satoplam_boundaries_21",
+      "external_id": "satoplam_b21",
+      "skill_id": "sat_standard_english",
+      "question_text": "Each year, the Nobel Prize in Literature is given 21 to an author who has, in the words of its founder Which choice completes the text so that it Alfre Nobel, \"produced the most outstanding conforms to the conventions of Standard work in an idealistic in 1952, English? for instance, judges recognized François Mauriac \"for the deep spiritual insight and the artistic",
+      "options": [
+        "direction\" and, intensity with which he has in his novels penetrated the drama of human life.\"",
+        "direction\"",
+        "direction,\"",
+        "direction\";"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "SAToplam Writing Book - Boundaries Q21",
+      "bank": "grammar"
+    },
+    {
+      "id": "satoplam_boundaries_24",
+      "external_id": "satoplam_b24",
+      "skill_id": "sat_standard_english",
+      "question_text": "Featuring works by the photographers Liselotte 24 Grschebina and Else \"Yva\" Neuländer-Simon, Which choice completes the text so that it the 2021 exhibition The New Woman Behind conforms to the conventions of Standard the Camera set out to provide a wide-ranging English? overview of photography by women in the 1920s through the given the",
+      "options": [
+        "1950s, and collection’s breadth of more than 120 photos, its efforts were largely successful.",
+        "1950s",
+        "1950s,",
+        "1950s and"
       ],
       "correct_answer": 0,
       "correct_letter": "A",
-      "difficulty": "easy",
-      "id": "gram_5be6b9ce",
-      "external_id": "5be6b9ce",
-      "source": "Grammar supplement (sat_standard_english)",
+      "difficulty": "medium",
+      "source": "SAToplam Writing Book - Boundaries Q24",
+      "bank": "grammar"
+    },
+    {
+      "id": "satoplam_boundaries_27",
+      "external_id": "satoplam_b27",
+      "skill_id": "sat_standard_english",
+      "question_text": "Photosynthesis, the mechanism by which plants 27 use sunlight to turn carbon dioxide and water Which choice completes the text so that it into is fueled in part by an conforms to the conventions of Standard enzyme called Photosystem II that harvests English? energy-giving electrons from water molecules.",
+      "options": [
+        "nutrients",
+        "nutrients and",
+        "nutrients,",
+        "nutrients—"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "SAToplam Writing Book - Boundaries Q27",
+      "bank": "grammar"
+    },
+    {
+      "id": "satoplam_boundaries_30",
+      "external_id": "satoplam_b30",
+      "skill_id": "sat_standard_english",
+      "question_text": "Coalition is the term for a group of male 30 across the Greater Kruger Which choice completes the text so that it National Park of South Africa, many coalitions conforms to the conventions of Standard vie for territory. Between 2006 and 2012, the English? lions of the Mapogo coalition—including Pretty Boy, Kinky Tail, and Makhulu—thrived within a",
+      "options": [
+        "lions part of the park called the Sabi Sands.",
+        "lions,",
+        "lions and",
+        "lions, and"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "SAToplam Writing Book - Boundaries Q30",
       "bank": "grammar"
     }
   ]
