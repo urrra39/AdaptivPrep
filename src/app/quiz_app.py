@@ -36,7 +36,7 @@ from src.models.bkt import BKTModel, get_mastery  # noqa: E402
 
 APP_TITLE = "AdaptivPrep - IELTS mashqlari"
 APP_VERSION = "v5"
-SESSION_SCHEMA_VERSION = 11
+SESSION_SCHEMA_VERSION = 12
 _BKT = BKTModel()
 _EPSILON = 0.15
 
@@ -133,20 +133,8 @@ def quota_bucket(category: str) -> str:
 
 
 def pick_reading_question_ids(passage_id: str, n: int = READING_QUESTIONS_PER_PASSAGE) -> list[str]:
-    """Up to ``n`` unique questions per passage, Ex 1 → 2 → 3 order."""
-    qs = loader.questions_for_passage_id(passage_id)
-    seen = {q["id"] for q in qs}
-    if len(qs) < n:
-        for q in sorted(
-            loader.all_questions_for_passage_id(passage_id),
-            key=lambda item: (item["exercise"], str(item.get("sub_id", ""))),
-        ):
-            if q["id"] in seen:
-                continue
-            qs.append(q)
-            seen.add(q["id"])
-            if len(qs) >= n:
-                break
+    """Up to ``n`` unique questions per passage, Ex 1 → 2 → 3 order. Garbled items rejected."""
+    qs = list(loader.questions_for_passage_id(passage_id))
     qs.sort(key=lambda q: (q["exercise"], str(q.get("sub_id", ""))))
     out: list[str] = []
     picked: set[str] = set()
@@ -1798,8 +1786,9 @@ def _commit_answer(question: dict, choice: int) -> None:
 
 
 def _format_question_prompt(question: dict) -> str:
-    """Human-readable prompt; garbled Ex.1 ingest rows get a safe fallback."""
+    """Human-readable prompt; strip book/page leakage and fall back on unreadable rows."""
     text = question.get("question_text") or ""
+    text = loader.clean_display_prompt(text)
     if question.get("exercise") == 1 and loader.is_garbled_prompt(text):
         return (
             "[Exercise 1] Passagedagi so'z bankidan to'g'ri javobni tanlang "
@@ -1829,6 +1818,54 @@ def _render_finish_warnings() -> None:
             st.rerun()
 
 
+def _theme_box_colors() -> tuple[str, str, str, str]:
+    """Return (bg, fg, border, accent) tuned for current theme."""
+    if st.session_state.get("theme") == "night":
+        return "#1e293b", "#e2e8f0", "rgba(148,163,184,0.35)", "#38bdf8"
+    return "#f8fafc", "#0f172a", "rgba(148,163,184,0.4)", "#1f77b4"
+
+
+def _render_reading_passage_box(text: str) -> None:
+    bg, fg, border, accent = _theme_box_colors()
+    st.markdown(
+        f"""<div style="
+            background:{bg};
+            color:{fg};
+            border:1px solid {border};
+            border-left:4px solid {accent};
+            border-radius:10px;
+            padding:1.2rem 1.5rem;
+            margin-bottom:1rem;
+            max-height:450px;
+            overflow-y:auto;
+            line-height:1.7;
+            font-size:1rem;
+        ">{text}</div>""",
+        unsafe_allow_html=True,
+    )
+
+
+def _render_prompt_box(text: str) -> None:
+    bg, fg, border, accent = _theme_box_colors()
+    st.markdown(
+        f"""<div style="
+            background:{bg};
+            color:{fg};
+            border:1px solid {border};
+            border-left:4px solid {accent};
+            border-radius:10px;
+            padding:1rem 1.2rem;
+            margin-bottom:1rem;
+            max-height:320px;
+            overflow-y:auto;
+            line-height:1.65;
+            font-size:1rem;
+            font-weight:600;
+        ">{text}</div>""",
+        unsafe_allow_html=True,
+    )
+
+
 def _render_question_panel(question: dict) -> None:
     queue = st.session_state.get("session_queue") or []
     idx = int(st.session_state.get("queue_index", 0))
@@ -1838,24 +1875,7 @@ def _render_question_panel(question: dict) -> None:
 
     prompt_text = _format_question_prompt(question)
     if prompt_text:
-        q_bank = question.get("bank", "")
-        if q_bank in ("grammar", "vocabulary") and len(prompt_text) > 100:
-            st.markdown(
-                f"""<div style="
-                    background: var(--secondary-background-color, #f0f2f6);
-                    border-radius: 8px;
-                    padding: 1rem 1.2rem;
-                    margin-bottom: 1rem;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    line-height: 1.6;
-                    font-size: 0.95rem;
-                    border-left: 4px solid #2e86ab;
-                "><strong>{prompt_text}</strong></div>""",
-                unsafe_allow_html=True,
-            )
-        else:
-            st.write(f"**{prompt_text}**")
+        _render_prompt_box(prompt_text)
 
     if saved is not None and not is_current:
         st.info(f"Sizning javobingiz: **{question['options'][saved]}**")
@@ -1920,20 +1940,7 @@ def _quiz_view() -> None:
             st.markdown(f"**{passage['title']}**")
         st.markdown(f"*{heading}*")
         passage_body = loader.passage_display_text(question["passage_id"])
-        st.markdown(
-            f"""<div style="
-                background: var(--secondary-background-color, #f0f2f6);
-                border-radius: 8px;
-                padding: 1.2rem 1.5rem;
-                margin-bottom: 1rem;
-                max-height: 450px;
-                overflow-y: auto;
-                line-height: 1.7;
-                font-size: 1rem;
-                border-left: 4px solid #1f77b4;
-            ">{passage_body}</div>""",
-            unsafe_allow_html=True,
-        )
+        _render_reading_passage_box(passage_body)
         st.divider()
         _render_question_panel(question)
     else:

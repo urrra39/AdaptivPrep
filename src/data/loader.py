@@ -23,6 +23,46 @@ GRAMMAR_BANK_PATH = DATA_DIR / "grammar_bank.json"
 VOCABULARY_BANK_PATH = DATA_DIR / "vocabulary_bank.json"
 
 _EXercise_PROMPT_RE = re.compile(r"^\[Exercise \d+\]\s*", re.I)
+
+# Junk fingerprints that make a question unusable (options must be real English words).
+_OPTION_JUNK_PATTERNS = [
+    re.compile(r"[\^<>»«]"),                          # stray typographic marks
+    re.compile(r"::+"),                                # double-colon garbage
+    re.compile(r"[a-z]{2}i{3,}", re.I),                # attiiua-like triple-i runs
+    re.compile(r"[bcdfghjklmnpqrstvwxz]{5,}", re.I),   # 5+ consonants in a row
+    re.compile(r"\bmmjfmmm\b", re.I),
+]
+
+# Source/page leakage suffixes that appear inside ELS Exercise-1 prompts.
+_SOURCE_LEAK_PATTERNS = [
+    re.compile(r"\s*\d{1,3}\s*[•·-]?\s*ELS\b.*$", re.I),        # "52 • ELS ::mmjfmmm 11»"
+    re.compile(r"\s*\bELS\b\s*.*$", re.I),                       # bare "ELS ..." tail
+    re.compile(r"\s*::+.*$"),                                    # trailing "::junk"
+    re.compile(r"\s*[»«].*$"),                                   # trailing »« junk
+    re.compile(r"\s*\^\s*.*$"),                                  # trailing "^ in turn"
+]
+
+
+def _has_option_junk(text: str) -> bool:
+    if not text:
+        return False
+    for pat in _OPTION_JUNK_PATTERNS:
+        if pat.search(text):
+            return True
+    return False
+
+
+def clean_display_prompt(text: str) -> str:
+    """Strip book/page leakage (ELS, page nums, stray marks) from a prompt before display."""
+    if not text:
+        return text
+    cleaned = text
+    for pat in _SOURCE_LEAK_PATTERNS:
+        cleaned = pat.sub("", cleaned)
+    cleaned = re.sub(r"\s{2,}", " ", cleaned).strip()
+    return cleaned
+
+
 def clean_passage_text(text: str) -> str:
     """Return passage text with only whitespace normalization.
 
@@ -44,13 +84,11 @@ def passage_display_text(passage_id: str) -> str:
 
 
 def is_garbled_prompt(text: str) -> bool:
-    """True when ingest produced unreadable Exercise 1 definition text."""
-    body = _EXercise_PROMPT_RE.sub("", (text or "").strip())
-    if len(body) < 12:
-        return False
-    if "))" in body:
+    """True when the Exercise-1 definition body is unreadable even after cleaning."""
+    body = _EXercise_PROMPT_RE.sub("", clean_display_prompt(text or ""))
+    if len(body) < 3:
         return True
-    if body.count(" ") < max(2, len(body) // 25):
+    if "))" in body:
         return True
     words = body.split()
     if words and max(len(w) for w in words) > 35:
@@ -59,8 +97,13 @@ def is_garbled_prompt(text: str) -> bool:
 
 
 def _usable_reading_question(q: dict) -> bool:
-    if q.get("exercise") == 1 and is_garbled_prompt(q.get("question_text", "")):
-        return False
+    """Reject Ex-1 items where the prompt is unreadable or any option carries OCR junk."""
+    if q.get("exercise") == 1:
+        if is_garbled_prompt(q.get("question_text", "")):
+            return False
+        for opt in q.get("options", []):
+            if _has_option_junk(opt or ""):
+                return False
     return True
 
 

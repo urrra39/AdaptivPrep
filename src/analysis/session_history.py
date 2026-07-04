@@ -1,9 +1,11 @@
 """Persistent session history helpers: compare runs, charts, motivational copy."""
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 import plotly.graph_objects as go
+
+TASHKENT_TZ = timezone(timedelta(hours=5), name="UZB")
 
 PHASE_LABELS = {
     "Reading": "O'qish",
@@ -18,9 +20,12 @@ def format_duration(secs: int) -> str:
 
 
 def format_completed_at(iso_utc: str) -> str:
+    """Render a stored UTC ISO timestamp in Uzbekistan local time (Asia/Tashkent)."""
     try:
         dt = datetime.fromisoformat(iso_utc.replace("Z", "+00:00"))
-        return dt.strftime("%Y-%m-%d %H:%M")
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(TASHKENT_TZ).strftime("%Y-%m-%d %H:%M")
     except ValueError:
         return iso_utc
 

@@ -27,7 +27,7 @@
       "512f0ac9": "sat_suite_qb"
     },
     "parse_errors": [],
-    "note": "SAT questions from Writing Questions.pdf, Writing Questions (Hard) 2.0.pdf, and SAToplam Writing Book = 50 total grammar items."
+    "note": "Cleaned SAT + supplement bank: removed 9 OCR-corrupted rows, topped up with 9 supplementary items. Total: 50."
   },
   "skills": [
     "sat_rhetorical_synthesis",
@@ -716,57 +716,6 @@
       "bank": "grammar"
     },
     {
-      "id": "satoplam_boundaries_3",
-      "external_id": "satoplam_b3",
-      "skill_id": "sat_standard_english",
-      "question_text": "Sociologist Alton Okinaka sits on the review 3 board tasked with adding new sites to the Which choice completes the text so that it Hawaii Register of Historic Places, which conforms to the conventions of Standard includes the Pufu’opae Bridge, built in 1915, English? and the Ma’alaea General Store, built in 1910. Okinaka doesn’t make such decisions",
-      "options": [
-        "however, all single-handedly, historical designations must be approved by a group of",
-        "however and all nine other experts.",
-        "however all",
-        "however. All"
-      ],
-      "correct_answer": 3,
-      "correct_letter": "D",
-      "difficulty": "medium",
-      "source": "SAToplam Writing Book - Boundaries Q3",
-      "bank": "grammar"
-    },
-    {
-      "id": "satoplam_boundaries_6",
-      "external_id": "satoplam_b6",
-      "skill_id": "sat_standard_english",
-      "question_text": "There is a common misconception that all cats 6 detest fishing cat, Prionailurus Which choice completes the text so that it viverrinus, proves this assumption is false. This conforms to the conventions of Standard wild cat that lives in Southeastern Asia can not English? only swim long distances but also relies on fish for roughly 75 percent of its diet.",
-      "options": [
-        "water; the",
-        "water, the",
-        "water the",
-        "water – the"
-      ],
-      "correct_answer": 0,
-      "correct_letter": "A",
-      "difficulty": "medium",
-      "source": "SAToplam Writing Book - Boundaries Q6",
-      "bank": "grammar"
-    },
-    {
-      "id": "satoplam_boundaries_9",
-      "external_id": "satoplam_b9",
-      "skill_id": "sat_standard_english",
-      "question_text": "A 2004 study led by studied 9 the impact of fertilizers containing nitrogen on Which choice completes the text so that it grassland arthropod populations. Another conforms to the conventions of Standard study, led by Tracy in 2002, looked at fertilizers English? containing nitrogen and two other macronutrients: phosphorus and potassium.",
-      "options": [
-        "researcher Peter Dennis",
-        "researcher Peter Dennis,",
-        "researcher, Peter Dennis,",
-        "researcher, Peter Dennis"
-      ],
-      "correct_answer": 0,
-      "correct_letter": "A",
-      "difficulty": "medium",
-      "source": "SAToplam Writing Book - Boundaries Q9",
-      "bank": "grammar"
-    },
-    {
       "id": "satoplam_boundaries_12",
       "external_id": "satoplam_b12",
       "skill_id": "sat_standard_english",
@@ -784,105 +733,156 @@
       "bank": "grammar"
     },
     {
-      "id": "satoplam_boundaries_15",
-      "external_id": "satoplam_b15",
-      "skill_id": "sat_standard_english",
-      "question_text": "In the thought-provoking 2010 exhibition 15 Relative Pelican at the Stux Gallery in New Which choice completes the text so that it York, Sokari Douglas camp presented sculptures conforms to the conventions of Standard that had been welded from English? recycled metal materials, such as oil drums. In doing so, the London-based Nigerian sculptor",
+      "skill_id": "sat_transitions",
+      "question_text": "The ancient Egyptians developed one of the earliest writing systems. ______ the Sumerians in Mesopotamia independently created cuneiform around the same period. Which choice completes the text with the most logical transition?",
       "options": [
-        "cut, bent, and, challenged viewers to imagine new uses and futures for the material wastes of the past.",
-        "cut, bent, and",
-        "cut, bent; and",
-        "cut bent, and"
+        "Therefore,",
+        "Similarly,",
+        "In contrast,",
+        "As a result,"
       ],
       "correct_answer": 1,
       "correct_letter": "B",
       "difficulty": "medium",
-      "source": "SAToplam Writing Book - Boundaries Q15",
+      "id": "gram_8bace9a7",
+      "external_id": "8bace9a7",
+      "source": "Grammar supplement (sat_transitions)",
       "bank": "grammar"
     },
     {
-      "id": "satoplam_boundaries_18",
-      "external_id": "satoplam_b18",
-      "skill_id": "sat_standard_english",
-      "question_text": "In 2020, internationally renowned Slovak 18 photographer Mária Švarbová exhibited her Which choice completes the text so that it work at the Contessa Gallery and the Art Angel conforms to the conventions of Standard Gallery in the United States and English? utilizing vivid pastel colors, overexposed tones, and mirror like symmetry,",
+      "skill_id": "sat_transitions",
+      "question_text": "Renewable energy sources like solar and wind power produce no greenhouse gas emissions during operation. ______ they require significant initial investment in infrastructure. Which choice completes the text with the most logical transition?",
       "options": [
-        "Japan, respectively, Švarbová’s photographs evoke a Socialist-era aesthetic that she describes as \"minimalistic but",
-        "Japan, respectively; also futuristic.\"",
-        "Japan; respectively",
-        "Japan, respectively"
+        "Furthermore,",
+        "However,",
+        "Therefore,",
+        "In other words,"
       ],
       "correct_answer": 1,
       "correct_letter": "B",
       "difficulty": "medium",
-      "source": "SAToplam Writing Book - Boundaries Q18",
+      "id": "gram_7103ffaf",
+      "external_id": "7103ffaf",
+      "source": "Grammar supplement (sat_transitions)",
       "bank": "grammar"
     },
     {
-      "id": "satoplam_boundaries_21",
-      "external_id": "satoplam_b21",
-      "skill_id": "sat_standard_english",
-      "question_text": "Each year, the Nobel Prize in Literature is given 21 to an author who has, in the words of its founder Which choice completes the text so that it Alfre Nobel, \"produced the most outstanding conforms to the conventions of Standard work in an idealistic in 1952, English? for instance, judges recognized François Mauriac \"for the deep spiritual insight and the artistic",
+      "skill_id": "sat_transitions",
+      "question_text": "The city council approved the new park design after months of public consultation. ______ construction is expected to begin early next year. Which choice completes the text with the most logical transition?",
       "options": [
-        "direction\" and, intensity with which he has in his novels penetrated the drama of human life.\"",
-        "direction\"",
-        "direction,\"",
-        "direction\";"
-      ],
-      "correct_answer": 3,
-      "correct_letter": "D",
-      "difficulty": "medium",
-      "source": "SAToplam Writing Book - Boundaries Q21",
-      "bank": "grammar"
-    },
-    {
-      "id": "satoplam_boundaries_24",
-      "external_id": "satoplam_b24",
-      "skill_id": "sat_standard_english",
-      "question_text": "Featuring works by the photographers Liselotte 24 Grschebina and Else \"Yva\" Neuländer-Simon, Which choice completes the text so that it the 2021 exhibition The New Woman Behind conforms to the conventions of Standard the Camera set out to provide a wide-ranging English? overview of photography by women in the 1920s through the given the",
-      "options": [
-        "1950s, and collection’s breadth of more than 120 photos, its efforts were largely successful.",
-        "1950s",
-        "1950s,",
-        "1950s and"
-      ],
-      "correct_answer": 0,
-      "correct_letter": "A",
-      "difficulty": "medium",
-      "source": "SAToplam Writing Book - Boundaries Q24",
-      "bank": "grammar"
-    },
-    {
-      "id": "satoplam_boundaries_27",
-      "external_id": "satoplam_b27",
-      "skill_id": "sat_standard_english",
-      "question_text": "Photosynthesis, the mechanism by which plants 27 use sunlight to turn carbon dioxide and water Which choice completes the text so that it into is fueled in part by an conforms to the conventions of Standard enzyme called Photosystem II that harvests English? energy-giving electrons from water molecules.",
-      "options": [
-        "nutrients",
-        "nutrients and",
-        "nutrients,",
-        "nutrients—"
+        "Nevertheless,",
+        "In contrast,",
+        "Accordingly,",
+        "On the other hand,"
       ],
       "correct_answer": 2,
       "correct_letter": "C",
       "difficulty": "medium",
-      "source": "SAToplam Writing Book - Boundaries Q27",
+      "id": "gram_e82a9a46",
+      "external_id": "e82a9a46",
+      "source": "Grammar supplement (sat_transitions)",
       "bank": "grammar"
     },
     {
-      "id": "satoplam_boundaries_30",
-      "external_id": "satoplam_b30",
-      "skill_id": "sat_standard_english",
-      "question_text": "Coalition is the term for a group of male 30 across the Greater Kruger Which choice completes the text so that it National Park of South Africa, many coalitions conforms to the conventions of Standard vie for territory. Between 2006 and 2012, the English? lions of the Mapogo coalition—including Pretty Boy, Kinky Tail, and Makhulu—thrived within a",
+      "skill_id": "sat_transitions",
+      "question_text": "Many scientists initially dismissed the theory of continental drift proposed by Alfred Wegener in 1912. ______ mounting evidence from fossils, rock formations, and ocean floor mapping eventually led to its acceptance as plate tectonics. Which choice completes the text with the most logical transition?",
       "options": [
-        "lions part of the park called the Sabi Sands.",
-        "lions,",
-        "lions and",
-        "lions, and"
+        "Moreover,",
+        "For instance,",
+        "Yet,",
+        "In addition,"
       ],
-      "correct_answer": 3,
-      "correct_letter": "D",
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "hard",
+      "id": "gram_b7344a8b",
+      "external_id": "b7344a8b",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "The museum had planned to open its new wing in September. ______ unexpected delays in construction pushed the opening to December. Which choice completes the text with the most logical transition?",
+      "options": [
+        "However,",
+        "Furthermore,",
+        "Likewise,",
+        "For example,"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "easy",
+      "id": "gram_9f768878",
+      "external_id": "9f768878",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "Dr. Martinez has published extensively on the effects of sleep deprivation on cognitive function. Her research shows that even moderate sleep loss impairs attention. ______ she has demonstrated that chronic sleep deprivation can lead to long-term memory deficits. Which choice completes the text with the most logical transition?",
+      "options": [
+        "In contrast,",
+        "Additionally,",
+        "Nevertheless,",
+        "Instead,"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
       "difficulty": "medium",
-      "source": "SAToplam Writing Book - Boundaries Q30",
+      "id": "gram_402cfbcb",
+      "external_id": "402cfbcb",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "The small island nation faced severe economic challenges due to its limited natural resources and remote location. ______ it developed a thriving tourism industry that now accounts for more than half of its GDP. Which choice completes the text with the most logical transition?",
+      "options": [
+        "Similarly,",
+        "Consequently,",
+        "Nonetheless,",
+        "In addition,"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "hard",
+      "id": "gram_ea6f4526",
+      "external_id": "ea6f4526",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "Classical music concerts traditionally require audiences to remain silent during performances. ______ many contemporary orchestras have introduced casual concerts where audience members may clap between movements. Which choice completes the text with the most logical transition?",
+      "options": [
+        "Therefore,",
+        "For instance,",
+        "In recent years, however,",
+        "As a result,"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "id": "gram_ae53d5ed",
+      "external_id": "ae53d5ed",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "The experiment confirmed that higher temperatures accelerate chemical reactions. ______ the rate of reaction doubled with every 10-degree increase in temperature, consistent with the Arrhenius equation. Which choice completes the text with the most logical transition?",
+      "options": [
+        "Specifically,",
+        "However,",
+        "In contrast,",
+        "Nevertheless,"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "id": "gram_2ff21c37",
+      "external_id": "2ff21c37",
+      "source": "Grammar supplement (sat_transitions)",
       "bank": "grammar"
     }
   ]
