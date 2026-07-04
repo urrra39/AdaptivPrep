@@ -36,7 +36,7 @@ from src.models.bkt import BKTModel, get_mastery  # noqa: E402
 
 APP_TITLE = "AdaptivPrep - IELTS mashqlari"
 APP_VERSION = "v5"
-SESSION_SCHEMA_VERSION = 12
+SESSION_SCHEMA_VERSION = 13
 _BKT = BKTModel()
 _EPSILON = 0.15
 
@@ -1821,16 +1821,17 @@ def _render_finish_warnings() -> None:
 def _theme_box_colors() -> tuple[str, str, str, str]:
     """Return (bg, fg, border, accent) tuned for current theme."""
     if st.session_state.get("theme") == "night":
-        return "#1e293b", "#e2e8f0", "rgba(148,163,184,0.35)", "#38bdf8"
-    return "#f8fafc", "#0f172a", "rgba(148,163,184,0.4)", "#1f77b4"
+        # High-contrast on pure-black page: dark slate box, bright text.
+        return "#111c2e", "#f8fafc", "#64748b", "#38bdf8"
+    return "#f1f5f9", "#0f172a", "#94a3b8", "#1f77b4"
 
 
 def _render_reading_passage_box(text: str) -> None:
     bg, fg, border, accent = _theme_box_colors()
     st.markdown(
-        f"""<div style="
-            background:{bg};
-            color:{fg};
+        f"""<div class="content-box" style="
+            background:{bg} !important;
+            color:{fg} !important;
             border:1px solid {border};
             border-left:4px solid {accent};
             border-radius:10px;
@@ -1840,7 +1841,7 @@ def _render_reading_passage_box(text: str) -> None:
             overflow-y:auto;
             line-height:1.7;
             font-size:1rem;
-        ">{text}</div>""",
+        "><span style="color:{fg} !important;">{text}</span></div>""",
         unsafe_allow_html=True,
     )
 
@@ -1848,9 +1849,9 @@ def _render_reading_passage_box(text: str) -> None:
 def _render_prompt_box(text: str) -> None:
     bg, fg, border, accent = _theme_box_colors()
     st.markdown(
-        f"""<div style="
-            background:{bg};
-            color:{fg};
+        f"""<div class="content-box" style="
+            background:{bg} !important;
+            color:{fg} !important;
             border:1px solid {border};
             border-left:4px solid {accent};
             border-radius:10px;
@@ -1861,7 +1862,7 @@ def _render_prompt_box(text: str) -> None:
             line-height:1.65;
             font-size:1rem;
             font-weight:600;
-        ">{text}</div>""",
+        "><span style="color:{fg} !important;">{text}</span></div>""",
         unsafe_allow_html=True,
     )
 

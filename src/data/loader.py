@@ -59,6 +59,10 @@ def clean_display_prompt(text: str) -> str:
     cleaned = text
     for pat in _SOURCE_LEAK_PATTERNS:
         cleaned = pat.sub("", cleaned)
+    # Remove OCR replacement chars (U+FFFD) and stray bullet/interpunct marks anywhere.
+    cleaned = re.sub(r"[\ufffd\u2022\u00b7]+", " ", cleaned)
+    cleaned = re.sub(r"\.\s*\.", ".", cleaned)             # ". ." / ".." -> "."
+    cleaned = re.sub(r"\s+([,.;:])", r"\1", cleaned)       # space before punctuation
     cleaned = re.sub(r"\s{2,}", " ", cleaned).strip()
     return cleaned
 
@@ -83,12 +87,22 @@ def passage_display_text(passage_id: str) -> str:
     return clean_passage_text(p.get("passage_text") or "")
 
 
+_INNER_CAPS_RE = re.compile(r"[a-z][A-Z][a-z]*[A-Z]")   # "uEgLhtSs" fused OCR garble
+_DIGIT_FUSED_RE = re.compile(r"\b\d+[a-z]{2,}\b", re.I)   # "174thoughts" page-num fused into a word
+
+
 def is_garbled_prompt(text: str) -> bool:
     """True when the Exercise-1 definition body is unreadable even after cleaning."""
     body = _EXercise_PROMPT_RE.sub("", clean_display_prompt(text or ""))
     if len(body) < 3:
         return True
     if "))" in body:
+        return True
+    if "\ufffd" in body:
+        return True
+    if _INNER_CAPS_RE.search(body):
+        return True
+    if _DIGIT_FUSED_RE.search(body):
         return True
     words = body.split()
     if words and max(len(w) for w in words) > 35:
