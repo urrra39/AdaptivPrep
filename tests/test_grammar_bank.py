@@ -22,9 +22,9 @@ def test_grammar_caption_not_reading_exercise():
     from src.app.quiz_app import quiz_caption_details
 
     q = loader.load_grammar_bank()["questions"][0]
-    _title, detail = quiz_caption_details(q)
+    title, detail = quiz_caption_details(q)
     assert "Exercise" not in detail
-    assert detail == "Grammatika"
+    assert title == "Grammatika"
 
 
 def test_grammar_bank_separate_from_vocabulary():

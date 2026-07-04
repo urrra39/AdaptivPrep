@@ -20,9 +20,9 @@ def test_vocabulary_caption_not_reading_exercise():
     from src.app.quiz_app import quiz_caption_details
 
     q = loader.load_vocabulary_bank()["questions"][0]
-    _title, detail = quiz_caption_details(q)
+    title, detail = quiz_caption_details(q)
     assert "Exercise" not in detail
-    assert detail == "Lug'at"
+    assert title == "Lug'at"
 
 
 def test_vocabulary_bank_separate_from_reading_and_grammar():

@@ -36,14 +36,16 @@ from src.models.bkt import BKTModel, get_mastery  # noqa: E402
 
 APP_TITLE = "AdaptivPrep - IELTS mashqlari"
 APP_VERSION = "v5"
-SESSION_SCHEMA_VERSION = 5
+SESSION_SCHEMA_VERSION = 6
 _BKT = BKTModel()
 _EPSILON = 0.15
 
 # Fixed exam section order — UI and selector both iterate this tuple.
 PHASE_ORDER = ("Reading", "Grammar", "Vocabulary")
 READING_PASSAGES_PER_SESSION = 4
-QUOTAS = {"Reading": 0, "Grammar": 50, "Vocabulary": 50}  # Reading quota set at login
+READING_QUESTIONS_PER_PASSAGE = 10
+READING_TOTAL = READING_PASSAGES_PER_SESSION * READING_QUESTIONS_PER_PASSAGE  # 40
+QUOTAS = {"Reading": READING_TOTAL, "Grammar": 50, "Vocabulary": 50}
 
 
 def _bridge_streamlit_secrets() -> None:
@@ -130,36 +132,65 @@ def quota_bucket(category: str) -> str:
     return category if category in QUOTAS else "Vocabulary"
 
 
+def pick_reading_question_ids(passage_id: str, n: int = READING_QUESTIONS_PER_PASSAGE) -> list[str]:
+    """Up to ``n`` unique questions per passage, Ex 1 → 2 → 3 order."""
+    qs = loader.questions_for_passage_id(passage_id)
+    seen = {q["id"] for q in qs}
+    if len(qs) < n:
+        for q in sorted(
+            loader.all_questions_for_passage_id(passage_id),
+            key=lambda item: (item["exercise"], str(item.get("sub_id", ""))),
+        ):
+            if q["id"] in seen:
+                continue
+            qs.append(q)
+            seen.add(q["id"])
+            if len(qs) >= n:
+                break
+    qs.sort(key=lambda q: (q["exercise"], str(q.get("sub_id", ""))))
+    out: list[str] = []
+    picked: set[str] = set()
+    for q in qs:
+        if q["id"] in picked:
+            continue
+        out.append(q["id"])
+        picked.add(q["id"])
+        if len(out) >= n:
+            break
+    return out
+
+
 def quiz_caption_details(
     question: dict,
     reading_passage_ids: list | None = None,
 ) -> tuple[str, str]:
-    """Return (title, detail) for the question caption bar."""
+    """Return (title, detail) for the question caption bar — no source/book names."""
     passage_id = question.get("passage_id")
-    passage = loader.get_reading_passage(passage_id) if passage_id else None
-    title = passage["title"] if passage else loader.skill_name(question["skill_id"])
-    if "exercise" in question:
-        ex = question["exercise"]
-        if passage_id and reading_passage_ids:
-            try:
-                pnum = reading_passage_ids.index(passage_id) + 1
-                detail = f"Paragraph {pnum}/{len(reading_passage_ids)} · Exercise {ex}"
-            except ValueError:
-                detail = f"Exercise {ex}"
-        else:
+    if passage_id and reading_passage_ids:
+        ex = question.get("exercise", 1)
+        try:
+            pnum = reading_passage_ids.index(passage_id) + 1
+            detail = f"Paragraph {pnum}/{len(reading_passage_ids)} · Exercise {ex}"
+        except ValueError:
             detail = f"Exercise {ex}"
-    elif question.get("bank") == "grammar":
-        detail = "Grammatika"
-    elif question.get("bank") == "vocabulary":
-        detail = "Lug'at"
-    else:
-        category = loader.get_skill(question["skill_id"])["category"]
-        detail = {
-            "Reading": "READING",
-            "Grammar": "Grammatika",
-            "Vocabulary": "Lug'at",
-        }.get(category, category)
-    return title, detail
+        return "READING", detail
+    if question.get("bank") == "grammar":
+        return "Grammatika", ""
+    if question.get("bank") == "vocabulary":
+        return "Lug'at", ""
+    category = loader.get_skill(question["skill_id"])["category"]
+    label = {
+        "Reading": "READING",
+        "Grammar": "Grammatika",
+        "Vocabulary": "Lug'at",
+    }.get(category, category)
+    return label, ""
+
+
+def _format_savol_caption(question_num: int, title: str, detail: str) -> str:
+    if detail:
+        return f"Savol #{question_num} — {title} — {detail}"
+    return f"Savol #{question_num} — {title}"
 
 
 READING_EXERCISE_HEADINGS = {
@@ -180,11 +211,14 @@ def _session_needs_repair() -> bool:
         return True
     if len(r_pass) > READING_PASSAGES_PER_SESSION:
         return True
+    if not st.session_state.get("reading_question_ids"):
+        return True
+    if int(st.session_state.get("session_reading_quota", 0)) != READING_TOTAL:
+        return True
     if not st.session_state.get("grammar_question_ids"):
         return True
-    if not st.session_state.get("vocabulary_question_ids"):
+    if not st.session_state.get("session_queue"):
         return True
-    return False
 
 
 def _phase_has_supply(
@@ -193,11 +227,13 @@ def _phase_has_supply(
     reading_passage_ids: list | None = None,
     grammar_question_ids: list | None = None,
     vocabulary_question_ids: list | None = None,
+    reading_order: list | None = None,
 ) -> bool:
     if phase == "Reading":
-        if not reading_passage_ids:
-            return False
-        for pid in reading_passage_ids:
+        if reading_order:
+            return any(qid not in seen_ids for qid in reading_order)
+        pool = reading_passage_ids or []
+        for pid in pool:
             if any(q["id"] not in seen_ids for q in loader.questions_for_passage_id(pid)):
                 return True
         return False
@@ -243,6 +279,7 @@ def active_phase(quota_used: dict, seen_ids: set, session: dict | None = None) -
             session.get("reading_passage_ids"),
             session.get("grammar_question_ids"),
             session.get("vocabulary_question_ids"),
+            session.get("reading_order"),
         ):
             return phase
     return None
@@ -280,16 +317,11 @@ def eligible_skills(seen_ids: set, quota_used: dict, session: dict | None = None
     return out
 
 
-def _select_reading_question(seen_ids: set, reading_passage_ids: list) -> dict | None:
-    """Sequential Ex1 -> Ex2 -> Ex3 within each passage, passages in session order."""
-    for pid in reading_passage_ids:
-        pool = [
-            q for q in loader.questions_for_passage_id(pid) if q["id"] not in seen_ids
-        ]
-        if not pool:
-            continue
-        pool.sort(key=lambda q: (q["exercise"], q.get("sub_id", "")))
-        return pool[0]
+def _select_reading_question(seen_ids: set, session: dict) -> dict | None:
+    """Next reading question following the pre-built 40-question session order."""
+    for qid in session.get("reading_order", []):
+        if qid not in seen_ids:
+            return loader.get_question(qid)
     return None
 
 
@@ -315,7 +347,7 @@ def select_next_question(
     session = session or {}
     phase = active_phase(quota_used, seen_ids, session)
     if phase == "Reading":
-        return _select_reading_question(seen_ids, session.get("reading_passage_ids", []))
+        return _select_reading_question(seen_ids, session)
     if phase == "Grammar":
         return _select_bank_question(
             seen_ids,
@@ -359,6 +391,8 @@ def _reset_api_validation() -> None:
 def _session_ctx() -> dict:
     return {
         "reading_passage_ids": st.session_state.get("reading_passage_ids", []),
+        "reading_question_ids": st.session_state.get("reading_question_ids", []),
+        "reading_order": st.session_state.get("reading_order", []),
         "session_reading_quota": st.session_state.get("session_reading_quota", 0),
         "grammar_question_ids": st.session_state.get("grammar_question_ids", []),
         "grammar_order": st.session_state.get("grammar_order", []),
@@ -370,14 +404,22 @@ def _session_ctx() -> dict:
 
 
 def _init_reading_session(rng: random.Random) -> None:
-    """Sample 4 random ELS passages — Ex 1, 2, 3 for each."""
+    """4 passages × 10 questions = 40 reading items (Ex 1→2→3 within each)."""
     pool = loader.reading_passage_ids()
-    n = min(READING_PASSAGES_PER_SESSION, len(pool))
-    st.session_state.reading_passage_ids = rng.sample(pool, n)
-    st.session_state.session_reading_quota = sum(
-        len(loader.questions_for_passage_id(pid))
-        for pid in st.session_state.reading_passage_ids
-    )
+    eligible = [
+        pid
+        for pid in pool
+        if len(loader.all_questions_for_passage_id(pid)) >= READING_QUESTIONS_PER_PASSAGE
+    ]
+    source = eligible if len(eligible) >= READING_PASSAGES_PER_SESSION else pool
+    n = min(READING_PASSAGES_PER_SESSION, len(source))
+    st.session_state.reading_passage_ids = rng.sample(source, n)
+    reading_ids: list[str] = []
+    for pid in st.session_state.reading_passage_ids:
+        reading_ids.extend(pick_reading_question_ids(pid))
+    st.session_state.reading_question_ids = reading_ids
+    st.session_state.reading_order = reading_ids.copy()
+    st.session_state.session_reading_quota = len(reading_ids)
 
 
 def _init_grammar_session(rng: random.Random) -> None:
@@ -449,6 +491,29 @@ def _apply_theme_css() -> None:
     }
     .stApp .new-session-marker + div[data-testid="stButton"] > button p {
         color: #ffffff !important;
+    }
+    .stApp .quiz-nav-marker + div[data-testid="stHorizontalBlock"] .stButton > button {
+        background: rgba(10, 61, 98, 0.75) !important;
+        background-color: rgba(10, 61, 98, 0.75) !important;
+        color: #ffffff !important;
+        border: 2px solid #0a3d62 !important;
+        border-radius: 10px !important;
+        font-weight: 700 !important;
+        min-height: 2.75rem !important;
+        box-shadow: 0 0 14px rgba(10, 61, 98, 0.35) !important;
+    }
+    .stApp .quiz-nav-marker + div[data-testid="stHorizontalBlock"] .stButton > button:hover {
+        background: rgba(10, 61, 98, 0.92) !important;
+    }
+    .stApp .quiz-finish-marker + div[data-testid="stButton"] > button,
+    .stApp .quiz-confirm-marker + div[data-testid="stHorizontalBlock"] .stButton > button {
+        background: rgba(10, 61, 98, 0.75) !important;
+        background-color: rgba(10, 61, 98, 0.75) !important;
+        color: #ffffff !important;
+        border: 2px solid #0a3d62 !important;
+        border-radius: 10px !important;
+        font-weight: 700 !important;
+        box-shadow: 0 0 14px rgba(10, 61, 98, 0.35) !important;
     }
     .user-badge {
         display: inline-block;
@@ -1241,6 +1306,65 @@ def _build_live_report() -> dict:
     )
 
 
+def _build_session_queue() -> list[str]:
+    return (
+        list(st.session_state.get("reading_order", []))
+        + list(st.session_state.get("grammar_order", []))
+        + list(st.session_state.get("vocabulary_order", []))
+    )
+
+
+def _load_question_at_index(idx: int) -> None:
+    queue = st.session_state.session_queue
+    if not queue:
+        st.session_state.current = None
+        return
+    idx = max(0, min(int(idx), len(queue) - 1))
+    st.session_state.queue_index = idx
+    st.session_state.current = loader.get_question(queue[idx])
+    st.session_state.shown_at = time.monotonic()
+
+
+def _unanswered_items() -> list[tuple[int, str, str]]:
+    out: list[tuple[int, str, str]] = []
+    rpass = st.session_state.get("reading_passage_ids") or []
+    for i, qid in enumerate(st.session_state.get("session_queue", [])):
+        if qid in st.session_state.get("answers", {}):
+            continue
+        q = loader.get_question(qid)
+        cat = loader.display_category(q["skill_id"])
+        if q.get("passage_id"):
+            try:
+                pnum = rpass.index(q["passage_id"]) + 1
+                label = f"READING · Paragraph {pnum}/{len(rpass)} · Exercise {q.get('exercise', '?')}"
+            except ValueError:
+                label = f"READING · Exercise {q.get('exercise', '?')}"
+        else:
+            label = loader.display_skill_name(q["skill_id"])
+        out.append((i + 1, cat, label))
+    return out
+
+
+def _request_finish_session() -> None:
+    missing = _unanswered_items()
+    if not missing:
+        st.session_state.finish_confirm = True
+        return
+    if not st.session_state.get("finish_warn_shown"):
+        st.session_state.finish_warn_shown = True
+        st.session_state.finish_warn_until = time.monotonic() + 10
+        lines = [f"#{num} — {label}" for num, _cat, label in missing[:15]]
+        extra = len(missing) - 15
+        if extra > 0:
+            lines.append(f"... va yana {extra} ta savol")
+        st.session_state.finish_warn_text = (
+            "Belgilanmagan savollar qoldi! 10 soniya davomida ko'rib chiqing:\n"
+            + "\n".join(lines)
+        )
+        return
+    st.session_state.finish_confirm = True
+
+
 def _save_session_to_history() -> None:
     if st.session_state.get("result_saved") or st.session_state.session_total <= 0:
         return
@@ -1261,18 +1385,12 @@ def _finish_session() -> None:
 
 
 def _advance_to_next_question() -> None:
-    nxt = select_next_question(
-        st.session_state.mastery,
-        st.session_state.rng,
-        st.session_state.seen_question_ids,
-        st.session_state.quota_used,
-        _session_ctx(),
-    )
-    if nxt is None:
-        _finish_session()
+    idx = int(st.session_state.get("queue_index", 0))
+    queue = st.session_state.get("session_queue") or []
+    if idx + 1 < len(queue):
+        _load_question_at_index(idx + 1)
     else:
-        st.session_state.current = nxt
-        st.session_state.shown_at = time.monotonic()
+        _finish_session()
 
 
 def _start_session(user_id: int, username: str) -> None:
@@ -1284,6 +1402,12 @@ def _start_session(user_id: int, username: str) -> None:
     st.session_state.session_total = 0
     st.session_state.session_correct = 0
     st.session_state.mistakes = []
+    st.session_state.answers = {}
+    st.session_state.queue_index = 0
+    st.session_state.finish_warn_shown = False
+    st.session_state.finish_warn_until = 0.0
+    st.session_state.finish_warn_text = ""
+    st.session_state.finish_confirm = False
     st.session_state.start_time = time.monotonic()
     st.session_state.finished = False
     st.session_state.result_saved = False
@@ -1293,6 +1417,7 @@ def _start_session(user_id: int, username: str) -> None:
     _init_reading_session(st.session_state.rng)
     _init_grammar_session(st.session_state.rng)
     _init_vocabulary_session(st.session_state.rng)
+    st.session_state.session_queue = _build_session_queue()
     for pid in st.session_state.reading_passage_ids:
         st.session_state.mastery.setdefault(pid, _BKT.params_for(pid).p_init)
     for qid in (
@@ -1302,7 +1427,11 @@ def _start_session(user_id: int, username: str) -> None:
         st.session_state.mastery.setdefault(q["skill_id"], _BKT.params_for(q["skill_id"]).p_init)
     _init_session_stats()
     _init_ai_defaults()
-    _advance_to_next_question()
+    if st.session_state.session_queue:
+        _load_question_at_index(0)
+    else:
+        st.session_state.current = None
+        _finish_session()
     st.rerun()
 
 
@@ -1483,7 +1612,9 @@ def _sidebar() -> None:
         )
         st.metric("Javob berilgan", st.session_state.session_total)
         st.markdown(
-            "**READING: 4 paragraph (Ex 1-2-3)** · **Grammar: 50 ta** · **Vocabulary: 50 ta**"
+            f"**READING: {READING_TOTAL} ta** · "
+            f"**Grammar: {st.session_state.get('session_grammar_quota', QUOTAS['Grammar'])} ta** · "
+            f"**Vocabulary: {st.session_state.get('session_vocabulary_quota', QUOTAS['Vocabulary'])} ta**"
         )
         used = st.session_state.quota_used
         phase = active_phase(used, st.session_state.seen_question_ids, _session_ctx())
@@ -1570,6 +1701,7 @@ def _submit_answer(question: dict, choice: int) -> None:
     _record_stats(question, is_correct)
     if not is_correct:
         st.session_state.mistakes.append({"question": question, "choice": int(choice)})
+    st.session_state.answers[question["id"]] = int(choice)
     _advance_to_next_question()
     st.rerun()
 
@@ -1585,25 +1717,81 @@ def _format_question_prompt(question: dict) -> str:
     return text
 
 
+def _render_finish_warnings() -> None:
+    warn_until = st.session_state.get("finish_warn_until", 0.0)
+    if warn_until and time.monotonic() < warn_until:
+        remaining = max(0, int(warn_until - time.monotonic()))
+        text = st.session_state.get("finish_warn_text", "")
+        st.warning(f"{text}\n\n⏳ {remaining} soniya")
+
+    if st.session_state.get("finish_confirm"):
+        st.error("SIZ ROSTDAN HAM TUGATMOQCHIMISZ?")
+        st.markdown('<div class="quiz-confirm-marker"></div>', unsafe_allow_html=True)
+        c1, c2 = st.columns(2)
+        if c1.button("HA", type="primary", use_container_width=True, key="finish_yes"):
+            st.session_state.finish_confirm = False
+            st.session_state.finish_warn_shown = False
+            _finish_session()
+            st.rerun()
+        if c2.button("YO'Q", type="primary", use_container_width=True, key="finish_no"):
+            st.session_state.finish_confirm = False
+            st.rerun()
+
+
 def _render_question_panel(question: dict) -> None:
+    queue = st.session_state.get("session_queue") or []
+    idx = int(st.session_state.get("queue_index", 0))
+    qid = question["id"]
+    saved = st.session_state.answers.get(qid)
+    is_current = queue[idx] == qid if queue else True
+
+    st.markdown('<div class="quiz-nav-marker"></div>', unsafe_allow_html=True)
+    nav_l, nav_m, nav_r = st.columns([1, 2, 1])
+    with nav_l:
+        if st.button("← Orqaga", type="primary", use_container_width=True, disabled=idx <= 0):
+            _load_question_at_index(idx - 1)
+            st.rerun()
+    with nav_m:
+        st.caption(f"Savol {idx + 1} / {len(queue)}")
+    with nav_r:
+        forward_disabled = saved is None or idx >= len(queue) - 1
+        if st.button("Keyingi →", type="primary", use_container_width=True, disabled=forward_disabled):
+            if saved is None:
+                st.session_state.nav_msg = "Avval javobni saqlang."
+            else:
+                _load_question_at_index(idx + 1)
+            st.rerun()
+
+    nav_msg = st.session_state.pop("nav_msg", None)
+    if nav_msg:
+        st.info(nav_msg)
+
     st.write(f"**{_format_question_prompt(question)}**")
-    choice = st.radio(
-        "Javobni tanlang:",
-        options=list(range(len(question["options"]))),
-        format_func=lambda i: question["options"][i],
-        index=None,
-        key=f"choice_{question['id']}",
-    )
-    if st.button(
-        "Javobni saqlash va davom etish",
-        type="primary",
-        use_container_width=True,
-        disabled=choice is None,
-    ):
-        _submit_answer(question, choice)
+
+    if saved is not None and not is_current:
+        st.info(f"Sizning javobingiz: **{question['options'][saved]}**")
+        st.success(f"To'g'ri javob: **{question['options'][question['correct_answer']]}**")
+    else:
+        choice = st.radio(
+            "Javobni tanlang:",
+            options=list(range(len(question["options"]))),
+            format_func=lambda i: question["options"][i],
+            index=saved if saved is not None else None,
+            key=f"choice_{question['id']}",
+        )
+        if st.button(
+            "Javobni saqlash va davom etish",
+            type="primary",
+            use_container_width=True,
+            disabled=choice is None,
+        ):
+            _submit_answer(question, choice)
+
     st.divider()
-    if st.button("Sessiyani yakunlash", type="primary", use_container_width=True):
-        _finish_session()
+    _render_finish_warnings()
+    st.markdown('<div class="quiz-finish-marker"></div>', unsafe_allow_html=True)
+    if st.button("Sessiyani yakunlash", type="primary", use_container_width=True, key="btn_finish_session"):
+        _request_finish_session()
         st.rerun()
 
 
@@ -1623,18 +1811,19 @@ def _quiz_view() -> None:
     question = st.session_state.current
     r_pass = st.session_state.get("reading_passage_ids", [])
     title, detail = quiz_caption_details(question, r_pass)
-    st.caption(f"Savol #{st.session_state.session_total + 1} — {title} — {detail}")
+    st.caption(_format_savol_caption(st.session_state.session_total + 1, title, detail))
     if question.get("passage_id"):
         ex = question.get("exercise")
         heading = READING_EXERCISE_HEADINGS.get(ex, f"Exercise {ex}")
         st.subheader(f"📖 READING — {detail}")
-        st.markdown(f"**{title}**")
+        passage = loader.get_reading_passage(question["passage_id"])
+        if passage:
+            st.markdown(f"**{passage['title']}**")
         st.markdown(f"*{heading}*")
-    if question.get("passage_text"):
+        passage_body = loader.passage_display_text(question["passage_id"])
         left, right = st.columns([1.5, 1])
         with left:
-            with st.container(height=420):
-                st.markdown(question["passage_text"])
+            st.markdown(passage_body)
         with right:
             _render_question_panel(question)
     else:
@@ -1901,22 +2090,34 @@ def _summary_view() -> None:
     mistakes = st.session_state.mistakes
     if mistakes:
         st.subheader(f"Xatolar tahlili ({len(mistakes)} ta)")
-        for idx, mistake in enumerate(mistakes):
-            question, chosen = mistake["question"], mistake["choice"]
-            with st.expander(f"{idx + 1}. {question['question_text'][:90]}"):
-                for i, option in enumerate(question["options"]):
-                    if i == question["correct_answer"]:
-                        st.success(f"{option} — to'g'ri javob")
-                    elif i == chosen:
-                        st.error(f"{option} — sizning javobingiz")
-                    else:
-                        st.write(f"- {option}")
-                st.markdown("**AI izohi**")
-                if "ai" in mistake:
-                    st.info(mistake["ai"])
-                elif st.button("Izohni yuklash", key=f"ai_btn_{idx}"):
-                    _fetch_mistake_ai(mistake)
-                    st.rerun()
+        grouped: dict[str, list] = {"Reading": [], "Grammar": [], "Vocabulary": []}
+        for mistake in mistakes:
+            q = mistake["question"]
+            cat = loader.display_category(q["skill_id"])
+            grouped.setdefault(cat, []).append(mistake)
+        for cat in PHASE_ORDER:
+            items = grouped.get(cat, [])
+            if not items:
+                continue
+            st.markdown(f"#### {loader.display_skill_name(items[0]['question']['skill_id'])} — {len(items)} ta xato")
+            for idx, mistake in enumerate(items):
+                question, chosen = mistake["question"], mistake["choice"]
+                prompt = _format_question_prompt(question)[:100]
+                with st.expander(f"{idx + 1}. {prompt}"):
+                    st.markdown(f"**Savol:** {_format_question_prompt(question)}")
+                    for i, option in enumerate(question["options"]):
+                        if i == question["correct_answer"]:
+                            st.success(f"{option} — to'g'ri javob")
+                        elif i == chosen:
+                            st.error(f"{option} — sizning javobingiz")
+                        else:
+                            st.write(f"- {option}")
+                    st.markdown("**AI izohi**")
+                    if "ai" in mistake:
+                        st.info(mistake["ai"])
+                    elif st.button("Izohni yuklash", key=f"ai_btn_{cat}_{idx}"):
+                        _fetch_mistake_ai(mistake)
+                        st.rerun()
     elif total:
         st.success("Barcha javoblar to'g'ri — barakalla!")
 

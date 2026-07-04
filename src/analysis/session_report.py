@@ -71,7 +71,7 @@ def build_session_report(
         weaknesses.append(
             {
                 "skill_id": skill_id,
-                "name": loader.skill_name(skill_id),
+                "name": loader.display_skill_name(skill_id),
                 "category": loader.get_skill(skill_id)["category"],
                 "accuracy": acc,
                 "total": n,

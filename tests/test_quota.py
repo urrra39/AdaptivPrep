@@ -16,8 +16,17 @@ def _bucket_of(question: dict) -> str:
 
 def _session_for_drain(rng: random.Random) -> dict:
     pool = loader.reading_passage_ids()
-    pids = rng.sample(pool, min(READING_N, len(pool)))
-    rq = sum(len(loader.questions_for_passage_id(p)) for p in pids)
+    eligible = [
+        pid
+        for pid in pool
+        if len(loader.all_questions_for_passage_id(pid)) >= quiz_app.READING_QUESTIONS_PER_PASSAGE
+    ]
+    source = eligible if len(eligible) >= READING_N else pool
+    pids = rng.sample(source, min(READING_N, len(source)))
+    reading_ids: list[str] = []
+    for pid in pids:
+        reading_ids.extend(quiz_app.pick_reading_question_ids(pid))
+    rq = len(reading_ids)
     g_pool = loader.grammar_question_ids()
     g_n = min(quiz_app.QUOTAS["Grammar"], len(g_pool))
     g_ids = rng.sample(g_pool, g_n)
@@ -26,6 +35,8 @@ def _session_for_drain(rng: random.Random) -> dict:
     v_ids = rng.sample(v_pool, v_n)
     return {
         "reading_passage_ids": pids,
+        "reading_question_ids": reading_ids,
+        "reading_order": reading_ids.copy(),
         "session_reading_quota": rq,
         "grammar_question_ids": g_ids,
         "grammar_order": g_ids.copy(),
@@ -72,8 +83,7 @@ def test_no_repeats_and_session_length_is_min_quota_supply():
             else session.get(f"session_{bucket.lower()}_quota", quiz_app.QUOTAS[bucket])
         )
         if bucket == "Reading":
-            assert per_bucket[bucket] <= cap
-            assert per_bucket[bucket] >= max(0, cap - 15)
+            assert per_bucket[bucket] == cap, bucket
         else:
             assert per_bucket[bucket] == min(cap, supply[bucket]), bucket
 
@@ -89,12 +99,19 @@ def test_phases_served_in_reading_grammar_vocabulary_order():
         assert PHASE_ORDER.index(phases[i]) <= PHASE_ORDER.index(phases[i + 1])
 
 
+def test_pick_reading_ten_per_passage():
+    pid = loader.reading_passage_ids()[0]
+    ids = quiz_app.pick_reading_question_ids(pid)
+    assert len(ids) == quiz_app.READING_QUESTIONS_PER_PASSAGE
+
+
 def test_reading_caption_shows_paragraph_and_exercise():
     from src.app.quiz_app import quiz_caption_details
 
     pids = loader.reading_passage_ids()[:3]
     q = loader.questions_for_passage_id(pids[0])[0]
-    _title, detail = quiz_caption_details(q, pids)
+    title, detail = quiz_caption_details(q, pids)
+    assert title == "READING"
     assert "Paragraph 1/3" in detail
     assert "Exercise 1" in detail
 
@@ -118,13 +135,16 @@ def test_quota_ceiling_binds_when_supply_exceeds_it(monkeypatch):
 
     def _tiny_session(rng):
         pids = loader.reading_passage_ids()[:2]
+        reading_ids = []
+        for pid in pids:
+            reading_ids.extend(quiz_app.pick_reading_question_ids(pid, n=2))
         g_ids = loader.grammar_question_ids()[:3]
         v_ids = loader.vocabulary_question_ids()[:4]
         return {
             "reading_passage_ids": pids,
-            "session_reading_quota": sum(
-                len(loader.questions_for_passage_id(p)) for p in pids
-            ),
+            "reading_question_ids": reading_ids,
+            "reading_order": reading_ids.copy(),
+            "session_reading_quota": len(reading_ids),
             "grammar_question_ids": g_ids,
             "grammar_order": g_ids.copy(),
             "session_grammar_quota": 3,
@@ -144,12 +164,8 @@ def test_quota_ceiling_binds_when_supply_exceeds_it(monkeypatch):
         served.append(q)
         seen.add(q["id"])
         used[_bucket_of(q)] += 1
-    r_q = sum(
-        len(loader.questions_for_passage_id(p))
-        for p in session["reading_passage_ids"]
-    )
+    r_q = session["session_reading_quota"]
     counts = Counter(_bucket_of(q) for q in served)
     assert counts["Grammar"] == 3
     assert counts["Vocabulary"] == 4
-    assert counts["Reading"] >= r_q - 5
-    assert counts["Reading"] <= r_q
+    assert counts["Reading"] == r_q

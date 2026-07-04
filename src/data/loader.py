@@ -23,6 +23,28 @@ GRAMMAR_BANK_PATH = DATA_DIR / "grammar_bank.json"
 VOCABULARY_BANK_PATH = DATA_DIR / "vocabulary_bank.json"
 
 _EXercise_PROMPT_RE = re.compile(r"^\[Exercise \d+\]\s*", re.I)
+_PASSAGE_BLANK_RE = re.compile(
+    r"\s+1\s+(?=[a-z])|"  # "he 1 may" -> "he may"
+    r"\s+I\s+(?=[a-z])|"  # "a I truly" -> "a truly"
+    r"\bwhen I a\b",  # "when I a joke" -> "when a joke"
+    flags=re.I,
+)
+
+
+def clean_passage_text(text: str) -> str:
+    """Strip Exercise-3 blank markers accidentally baked into passage text."""
+    if not text:
+        return text
+    cleaned = _PASSAGE_BLANK_RE.sub(lambda m: " when a" if "when" in m.group(0).lower() else " ", text)
+    cleaned = re.sub(r"\s{2,}", " ", cleaned)
+    return cleaned.strip()
+
+
+def passage_display_text(passage_id: str) -> str:
+    p = _reading_passages_by_id().get(passage_id)
+    if not p:
+        return ""
+    return clean_passage_text(p.get("passage_text") or "")
 
 
 def is_garbled_prompt(text: str) -> bool:
@@ -127,6 +149,13 @@ def questions_for_passage_id(passage_id: str) -> list:
     return [q for q in p["questions"] if _usable_reading_question(q)]
 
 
+def all_questions_for_passage_id(passage_id: str) -> list:
+    p = _reading_passages_by_id().get(passage_id)
+    if not p:
+        return []
+    return list(p["questions"])
+
+
 def reading_passage_count() -> int:
     return len(_reading_passages_by_id())
 
@@ -198,6 +227,24 @@ def skill_name(skill_id: str) -> str:
         return get_skill(skill_id)["name"]
     except KeyError:
         return skill_id
+
+
+def display_skill_name(skill_id: str) -> str:
+    """User-facing skill label — never exposes book/source names."""
+    try:
+        cat = get_skill(skill_id)["category"]
+    except KeyError:
+        return skill_id
+    return {"Reading": "READING", "Grammar": "Grammatika", "Vocabulary": "Lug'at"}.get(
+        cat, cat
+    )
+
+
+def display_category(skill_id: str) -> str:
+    try:
+        return get_skill(skill_id)["category"]
+    except KeyError:
+        return "Other"
 
 
 def clear_caches() -> None:
