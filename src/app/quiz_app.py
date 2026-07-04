@@ -16,13 +16,20 @@ from pathlib import Path
 import streamlit as st
 from dotenv import load_dotenv
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+def _find_project_root() -> Path:
+    here = Path(__file__).resolve()
+    for root in (here.parents[2], here.parents[1], Path.cwd()):
+        if (root / "src" / "data" / "schema.py").is_file():
+            return root
+    return here.parents[2]
+
+
+PROJECT_ROOT = _find_project_root()
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.analysis import session_history, session_report  # noqa: E402
 from src.data import auth_email, loader, schema  # noqa: E402
-from src.data.schema import list_session_results, save_session_result  # noqa: E402
 from src.feedback import ai_provider, llm_feedback  # noqa: E402
 from src.models.bandit import EpsilonGreedyBandit  # noqa: E402
 from src.models.bkt import BKTModel, get_mastery  # noqa: E402
@@ -1223,7 +1230,7 @@ def _save_session_to_history() -> None:
     if st.session_state.get("result_saved") or st.session_state.session_total <= 0:
         return
     report = _build_live_report()
-    save_session_result(
+    schema.save_session_result(
         st.session_state.user_id,
         report,
         report["elapsed_secs"],
@@ -1680,7 +1687,7 @@ def _results_view() -> None:
         st.session_state.show_results = False
         st.rerun()
 
-    rows = list_session_results(st.session_state.user_id)
+    rows = schema.list_session_results(st.session_state.user_id)
     if not rows:
         st.info("Hali saqlangan natija yo'q. Birinchi sessiyani yakunlang.")
         return
