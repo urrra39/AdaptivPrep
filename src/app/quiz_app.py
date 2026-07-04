@@ -1797,6 +1797,11 @@ def _format_question_prompt(question: dict) -> str:
     return text
 
 
+def _clean_option(text: str) -> str:
+    """Sanitize an answer option for display (defense-in-depth vs source/junk leaks)."""
+    return loader.clean_display_prompt(text or "")
+
+
 def _render_finish_warnings() -> None:
     warn_until = st.session_state.get("finish_warn_until", 0.0)
     if warn_until and time.monotonic() < warn_until:
@@ -1879,14 +1884,16 @@ def _render_question_panel(question: dict) -> None:
         _render_prompt_box(prompt_text)
 
     if saved is not None and not is_current:
-        st.info(f"Sizning javobingiz: **{question['options'][saved]}**")
-        st.success(f"To'g'ri javob: **{question['options'][question['correct_answer']]}**")
+        st.info(f"Sizning javobingiz: **{_clean_option(question['options'][saved])}**")
+        st.success(
+            f"To'g'ri javob: **{_clean_option(question['options'][question['correct_answer']])}**"
+        )
         choice = saved
     else:
         choice = st.radio(
             "Javobni tanlang:",
             options=list(range(len(question["options"]))),
-            format_func=lambda i: question["options"][i],
+            format_func=lambda i: _clean_option(question["options"][i]),
             index=saved if saved is not None else None,
             key=f"choice_{question['id']}",
         )
@@ -2135,8 +2142,8 @@ def _results_view() -> None:
 def _deep_explanation(question: dict, chosen: int) -> str:
     """Generate a detailed explanation for a wrong answer."""
     correct_idx = question["correct_answer"]
-    correct_opt = question["options"][correct_idx]
-    chosen_opt = question["options"][chosen]
+    correct_opt = _clean_option(question["options"][correct_idx])
+    chosen_opt = _clean_option(question["options"][chosen])
     correct_letter = chr(65 + correct_idx)
     chosen_letter = chr(65 + chosen)
 
@@ -2420,6 +2427,7 @@ def _summary_view() -> None:
                     st.write("")
                     for i, option in enumerate(question["options"]):
                         letter = chr(65 + i)
+                        option = _clean_option(option)
                         if i == chosen:
                             st.error(f"{letter}) {option} — sizning javobingiz ❌")
                         elif i == question["correct_answer"]:
@@ -2474,6 +2482,7 @@ def _summary_view() -> None:
                     st.write("")
                     for i, option in enumerate(question["options"]):
                         letter = chr(65 + i)
+                        option = _clean_option(option)
                         if i == chosen:
                             st.success(f"{letter}) {option} — sizning javobingiz ✅")
                         else:
