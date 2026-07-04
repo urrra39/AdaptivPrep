@@ -36,7 +36,7 @@ from src.models.bkt import BKTModel, get_mastery  # noqa: E402
 
 APP_TITLE = "AdaptivPrep - IELTS mashqlari"
 APP_VERSION = "v5"
-SESSION_SCHEMA_VERSION = 6
+SESSION_SCHEMA_VERSION = 7
 _BKT = BKTModel()
 _EPSILON = 0.15
 
@@ -218,6 +218,14 @@ def _session_needs_repair() -> bool:
     if not st.session_state.get("grammar_question_ids"):
         return True
     if not st.session_state.get("session_queue"):
+        return True
+    queue = st.session_state.get("session_queue") or []
+    expected = (
+        int(st.session_state.get("session_reading_quota", 0))
+        + int(st.session_state.get("session_grammar_quota", 0))
+        + int(st.session_state.get("session_vocabulary_quota", 0))
+    )
+    if expected and len(queue) != expected:
         return True
 
 
@@ -409,14 +417,21 @@ def _init_reading_session(rng: random.Random) -> None:
     eligible = [
         pid
         for pid in pool
-        if len(loader.all_questions_for_passage_id(pid)) >= READING_QUESTIONS_PER_PASSAGE
+        if len(pick_reading_question_ids(pid)) >= READING_QUESTIONS_PER_PASSAGE
     ]
-    source = eligible if len(eligible) >= READING_PASSAGES_PER_SESSION else pool
-    n = min(READING_PASSAGES_PER_SESSION, len(source))
-    st.session_state.reading_passage_ids = rng.sample(source, n)
+    source = list(eligible if len(eligible) >= READING_PASSAGES_PER_SESSION else pool)
+    rng.shuffle(source)
+    passages: list[str] = []
     reading_ids: list[str] = []
-    for pid in st.session_state.reading_passage_ids:
-        reading_ids.extend(pick_reading_question_ids(pid))
+    for pid in source:
+        ids = pick_reading_question_ids(pid)
+        if len(ids) < READING_QUESTIONS_PER_PASSAGE:
+            continue
+        passages.append(pid)
+        reading_ids.extend(ids[:READING_QUESTIONS_PER_PASSAGE])
+        if len(passages) >= READING_PASSAGES_PER_SESSION:
+            break
+    st.session_state.reading_passage_ids = passages
     st.session_state.reading_question_ids = reading_ids
     st.session_state.reading_order = reading_ids.copy()
     st.session_state.session_reading_quota = len(reading_ids)
@@ -499,7 +514,8 @@ def _apply_theme_css() -> None:
         border: 2px solid #0a3d62 !important;
         border-radius: 10px !important;
         font-weight: 700 !important;
-        min-height: 2.75rem !important;
+        min-height: 2.85rem !important;
+        white-space: nowrap !important;
         box-shadow: 0 0 14px rgba(10, 61, 98, 0.35) !important;
     }
     .stApp .quiz-nav-marker + div[data-testid="stHorizontalBlock"] .stButton > button:hover {
@@ -648,13 +664,6 @@ def _apply_theme_css() -> None:
     .summary-list-panel ul {
         margin: 0;
         padding-left: 1.2rem;
-    }
-    .summary-list-panel li,
-    .summary-list-panel p {
-        color: #ffffff !important;
-        font-size: 0.95rem;
-        line-height: 1.55;
-        margin-bottom: 0.35rem;
     }
     .compare-banner {
         background: rgba(46, 134, 171, 0.18);
@@ -835,7 +844,9 @@ def _apply_theme_css() -> None:
     }
     .summary-list-title { color: #0a3d62 !important; }
     .summary-list-panel li,
+    .summary-list-panel li strong,
     .summary-list-panel p { color: #1A1A2E !important; }
+    .summary-section-caption { color: #444444 !important; }
     .compare-banner {
         background: rgba(10, 61, 98, 0.08) !important;
         border: 1px solid rgba(10, 61, 98, 0.4) !important;
@@ -866,6 +877,17 @@ def _apply_theme_css() -> None:
         color: #ffffff !important;
         box-shadow: 0 0 16px rgba(10, 61, 98, 0.35) !important;
     }
+    .stApp .summary-list-panel {
+        background: rgba(10, 61, 98, 0.06) !important;
+        border: 1px solid rgba(10, 61, 98, 0.35) !important;
+        border-left: 4px solid #0a3d62 !important;
+    }
+    .stApp .summary-list-title { color: #0a3d62 !important; }
+    .stApp .summary-list-panel li,
+    .stApp .summary-list-panel li strong,
+    .stApp .summary-list-panel p { color: #1A1A2E !important; }
+    .stApp .summary-section-title { color: #0a3d62 !important; }
+    .stApp .summary-section-caption { color: #444444 !important; }
     .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stVerticalBlockBorderWrapper"] {
         background: rgba(10, 61, 98, 0.06) !important;
         border-color: rgba(10, 61, 98, 0.35) !important;
@@ -937,6 +959,14 @@ def _apply_theme_css() -> None:
         border-width: 2px !important;
     }
     .stApp hr { border-color: #333333 !important; }
+    .stApp .summary-list-panel li,
+    .stApp .summary-list-panel p {
+        color: #ffffff !important;
+        font-size: 0.95rem;
+        line-height: 1.55;
+        margin-bottom: 0.35rem;
+    }
+    .stApp .summary-section-caption { color: #aaaaaa !important; }
     """
 
     theme_css = (night_css if is_night else day_css) + accent_css + login_css
@@ -1412,7 +1442,7 @@ def _start_session(user_id: int, username: str) -> None:
     st.session_state.finished = False
     st.session_state.result_saved = False
     st.session_state.show_results = False
-    st.session_state.rng = random.Random()
+    st.session_state.rng = random.Random(os.urandom(16))
     st.session_state.mastery = get_mastery(user_id)
     _init_reading_session(st.session_state.rng)
     _init_grammar_session(st.session_state.rng)
@@ -1610,7 +1640,7 @@ def _sidebar() -> None:
             f'**Foydalanuvchi:** <span class="user-badge">{st.session_state.username}</span>',
             unsafe_allow_html=True,
         )
-        st.metric("Javob berilgan", st.session_state.session_total)
+        st.metric("Javob berilgan", _answered_count())
         st.markdown(
             f"**READING: {READING_TOTAL} ta** · "
             f"**Grammar: {st.session_state.get('session_grammar_quota', QUOTAS['Grammar'])} ta** · "
@@ -1664,6 +1694,30 @@ def _sidebar() -> None:
             st.rerun()
 
 
+def _answered_count() -> int:
+    return len(st.session_state.get("answers") or {})
+
+
+def _reverse_answer_stats(question: dict, was_correct: bool) -> None:
+    skill_id = question["skill_id"]
+    bucket = quota_bucket(loader.get_skill(skill_id)["category"])
+    bs = st.session_state.bucket_stats[bucket]
+    bs["total"] -= 1
+    bs["correct"] -= int(was_correct)
+    ss = st.session_state.skill_stats.get(skill_id)
+    if ss:
+        ss["total"] -= 1
+        ss["correct"] -= int(was_correct)
+    st.session_state.session_correct -= int(was_correct)
+    st.session_state.quota_used[bucket] -= 1
+    st.session_state.session_total -= 1
+    if not was_correct:
+        qid = question["id"]
+        st.session_state.mistakes = [
+            m for m in st.session_state.mistakes if m["question"]["id"] != qid
+        ]
+
+
 def _record_stats(question: dict, is_correct: bool) -> None:
     skill_id = question["skill_id"]
     bucket = quota_bucket(loader.get_skill(skill_id)["category"])
@@ -1675,7 +1729,21 @@ def _record_stats(question: dict, is_correct: bool) -> None:
     ss["correct"] += int(is_correct)
 
 
-def _submit_answer(question: dict, choice: int) -> None:
+def _submit_answer(question: dict, choice) -> None:
+    if choice is None:
+        st.session_state.nav_msg = "Javobni tanlang."
+        return
+    choice = int(choice)
+    qid = question["id"]
+    prev = st.session_state.answers.get(qid)
+    if prev is not None:
+        if prev == choice:
+            _advance_to_next_question()
+            st.rerun()
+            return
+        was_correct = prev == question["correct_answer"]
+        _reverse_answer_stats(question, was_correct)
+
     elapsed_ms = int((time.monotonic() - st.session_state.shown_at) * 1000)
     is_correct = choice == question["correct_answer"]
     try:
@@ -1693,15 +1761,19 @@ def _submit_answer(question: dict, choice: int) -> None:
         skill_id, _BKT.params_for(skill_id).p_init
     )
     st.session_state.mastery[skill_id] = _BKT.update(prior, is_correct, skill_id)
-    st.session_state.seen_question_ids.add(question["id"])
+    st.session_state.seen_question_ids.add(qid)
     bucket = quota_bucket(loader.get_skill(skill_id)["category"])
-    st.session_state.quota_used[bucket] += 1
-    st.session_state.session_total += 1
+    if prev is None:
+        st.session_state.quota_used[bucket] += 1
+        st.session_state.session_total += 1
     st.session_state.session_correct += int(is_correct)
     _record_stats(question, is_correct)
     if not is_correct:
-        st.session_state.mistakes.append({"question": question, "choice": int(choice)})
-    st.session_state.answers[question["id"]] = int(choice)
+        st.session_state.mistakes = [
+            m for m in st.session_state.mistakes if m["question"]["id"] != qid
+        ]
+        st.session_state.mistakes.append({"question": question, "choice": choice})
+    st.session_state.answers[qid] = choice
     _advance_to_next_question()
     st.rerun()
 
@@ -1745,27 +1817,6 @@ def _render_question_panel(question: dict) -> None:
     saved = st.session_state.answers.get(qid)
     is_current = queue[idx] == qid if queue else True
 
-    st.markdown('<div class="quiz-nav-marker"></div>', unsafe_allow_html=True)
-    nav_l, nav_m, nav_r = st.columns([1, 2, 1])
-    with nav_l:
-        if st.button("← Orqaga", type="primary", use_container_width=True, disabled=idx <= 0):
-            _load_question_at_index(idx - 1)
-            st.rerun()
-    with nav_m:
-        st.caption(f"Savol {idx + 1} / {len(queue)}")
-    with nav_r:
-        forward_disabled = saved is None or idx >= len(queue) - 1
-        if st.button("Keyingi →", type="primary", use_container_width=True, disabled=forward_disabled):
-            if saved is None:
-                st.session_state.nav_msg = "Avval javobni saqlang."
-            else:
-                _load_question_at_index(idx + 1)
-            st.rerun()
-
-    nav_msg = st.session_state.pop("nav_msg", None)
-    if nav_msg:
-        st.info(nav_msg)
-
     st.write(f"**{_format_question_prompt(question)}**")
 
     if saved is not None and not is_current:
@@ -1780,12 +1831,23 @@ def _render_question_panel(question: dict) -> None:
             key=f"choice_{question['id']}",
         )
         if st.button(
-            "Javobni saqlash va davom etish",
+            "Javobni saqlash",
             type="primary",
             use_container_width=True,
             disabled=choice is None,
         ):
             _submit_answer(question, choice)
+
+    st.markdown('<div class="quiz-nav-marker"></div>', unsafe_allow_html=True)
+    nav_l, nav_r = st.columns(2)
+    with nav_l:
+        if st.button("← Orqaga", type="primary", use_container_width=True, disabled=idx <= 0):
+            _load_question_at_index(idx - 1)
+            st.rerun()
+    with nav_r:
+        if st.button("Keyingi →", type="primary", use_container_width=True, disabled=idx >= len(queue) - 1):
+            _load_question_at_index(idx + 1)
+            st.rerun()
 
     st.divider()
     _render_finish_warnings()
@@ -1810,10 +1872,9 @@ def _quiz_view() -> None:
     _live_timer()
     question = st.session_state.current
     r_pass = st.session_state.get("reading_passage_ids", [])
-    title, detail = quiz_caption_details(question, r_pass)
-    st.caption(_format_savol_caption(st.session_state.session_total + 1, title, detail))
     if question.get("passage_id"):
         ex = question.get("exercise")
+        _, detail = quiz_caption_details(question, r_pass)
         heading = READING_EXERCISE_HEADINGS.get(ex, f"Exercise {ex}")
         st.subheader(f"📖 READING — {detail}")
         passage = loader.get_reading_passage(question["passage_id"])
@@ -1823,7 +1884,7 @@ def _quiz_view() -> None:
         passage_body = loader.passage_display_text(question["passage_id"])
         left, right = st.columns([1.5, 1])
         with left:
-            st.markdown(passage_body)
+            st.markdown(passage_body, unsafe_allow_html=True)
         with right:
             _render_question_panel(question)
     else:
@@ -2055,7 +2116,7 @@ def _summary_view() -> None:
 
     if report["overall_band"] is not None:
         _summary_section_header(
-            "🎯 Taxminiy IELTS bali (Listening'siz)",
+            "🎯 Taxminiy IELTS bali (Listening va Speaking'siz)",
             "Bu ball faqat shu mashq sessiyasidagi natijalaringizga asoslangan taxminiy "
             "ko'rsatkich — haqiqiy IELTS imtihonidagi ballingiz farq qilishi mumkin.",
         )

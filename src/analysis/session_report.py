@@ -1,15 +1,18 @@
 """Post-session analytics: per-bucket accuracy, weaknesses, and IELTS band estimates.
 
-Listening is excluded by design — only Reading, Grammar (language use), and
+Listening and Speaking are excluded by design — only Reading, Grammar (language use), and
 Vocabulary (lexical resource) bands are estimated from this session's data.
 """
 from __future__ import annotations
 
-from src.data import loader
 
+def accuracy_to_band(accuracy: float) -> float | None:
+    """Map a (0, 1] accuracy to an IELTS band in [2.5, 9.0] (0.5 steps).
 
-def accuracy_to_band(accuracy: float) -> float:
-    """Map a [0, 1] accuracy to an IELTS band in [2.0, 9.0] (0.5 steps)."""
+    Returns ``None`` when there are no correct answers (0% accuracy).
+    """
+    if accuracy <= 0.0:
+        return None
     if accuracy >= 0.97:
         return 9.0
     if accuracy >= 0.93:
@@ -38,7 +41,7 @@ def accuracy_to_band(accuracy: float) -> float:
         return 3.0
     if accuracy >= 0.10:
         return 2.5
-    return 2.0
+    return None
 
 
 def build_session_report(
@@ -55,30 +58,40 @@ def build_session_report(
     bucket_accuracy = {}
     for bucket, stats in bucket_stats.items():
         n = stats.get("total", 0)
-        acc = (stats["correct"] / n) if n else 0.0
+        bucket_correct = stats.get("correct", 0)
+        acc = (bucket_correct / n) if n else 0.0
         bucket_accuracy[bucket] = acc
-        bucket_bands[bucket] = accuracy_to_band(acc) if n else None
+        if n == 0 or bucket_correct == 0:
+            bucket_bands[bucket] = None
+        else:
+            bucket_bands[bucket] = accuracy_to_band(acc)
 
     scored = [b for b, v in bucket_bands.items() if v is not None]
     overall_band = round(sum(bucket_bands[b] for b in scored) / len(scored), 1) if scored else None
 
+    bucket_labels = {
+        "Reading": "READING",
+        "Grammar": "Grammatika",
+        "Vocabulary": "Lug'at",
+    }
     weaknesses = []
-    for skill_id, stats in skill_stats.items():
+    for bucket in ("Reading", "Grammar", "Vocabulary"):
+        stats = bucket_stats.get(bucket) or {"correct": 0, "total": 0}
         n = stats.get("total", 0)
         if n == 0:
             continue
         acc = stats["correct"] / n
         weaknesses.append(
             {
-                "skill_id": skill_id,
-                "name": loader.display_skill_name(skill_id),
-                "category": loader.get_skill(skill_id)["category"],
+                "skill_id": bucket,
+                "name": bucket_labels.get(bucket, bucket),
+                "category": bucket,
                 "accuracy": acc,
                 "total": n,
-                "mastery": mastery.get(skill_id, 0.0),
+                "mastery": 0.0,
             }
         )
-    weaknesses.sort(key=lambda w: (w["accuracy"], w["mastery"]))
+    weaknesses.sort(key=lambda w: w["accuracy"])
 
     recommendations = _recommendations(weaknesses[:5], bucket_accuracy)
 
