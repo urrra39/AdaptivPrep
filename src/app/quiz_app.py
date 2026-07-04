@@ -36,7 +36,7 @@ from src.models.bkt import BKTModel, get_mastery  # noqa: E402
 
 APP_TITLE = "AdaptivPrep - IELTS mashqlari"
 APP_VERSION = "v5"
-SESSION_SCHEMA_VERSION = 10
+SESSION_SCHEMA_VERSION = 11
 _BKT = BKTModel()
 _EPSILON = 0.15
 
@@ -206,9 +206,12 @@ def _session_needs_repair() -> bool:
         return False
     if st.session_state.get("session_schema_version") != SESSION_SCHEMA_VERSION:
         return True
+    if int(st.session_state.get("session_grammar_quota", 0)) != QUOTAS["Grammar"]:
+        return True
+    if int(st.session_state.get("session_vocabulary_quota", 0)) != QUOTAS["Vocabulary"]:
+        return True
     if st.session_state.get("finished"):
         return False
-        return True
     r_pass = st.session_state.get("reading_passage_ids") or []
     if len(r_pass) != min(READING_PASSAGES_PER_SESSION, loader.reading_passage_count()):
         return True
@@ -220,14 +223,12 @@ def _session_needs_repair() -> bool:
         return True
     if not st.session_state.get("grammar_question_ids"):
         return True
+    if len(st.session_state.get("grammar_question_ids", [])) != QUOTAS["Grammar"]:
+        return True
     if not st.session_state.get("session_queue"):
         return True
     queue = st.session_state.get("session_queue") or []
-    expected = (
-        int(st.session_state.get("session_reading_quota", 0))
-        + int(st.session_state.get("session_grammar_quota", 0))
-        + int(st.session_state.get("session_vocabulary_quota", 0))
-    )
+    expected = READING_TOTAL + QUOTAS["Grammar"] + QUOTAS["Vocabulary"]
     if expected and len(queue) != expected:
         return True
 
@@ -1327,10 +1328,11 @@ def _compare_banner(message: str, improved: bool) -> None:
 
 
 def _session_quotas() -> dict:
+    """Fixed section quotas shown in UI and used for IELTS scoring."""
     return {
-        "Reading": int(st.session_state.get("session_reading_quota", QUOTAS["Reading"])),
-        "Grammar": int(st.session_state.get("session_grammar_quota", QUOTAS["Grammar"])),
-        "Vocabulary": int(st.session_state.get("session_vocabulary_quota", QUOTAS["Vocabulary"])),
+        "Reading": QUOTAS["Reading"],
+        "Grammar": QUOTAS["Grammar"],
+        "Vocabulary": QUOTAS["Vocabulary"],
     }
 
 
@@ -1654,9 +1656,9 @@ def _sidebar() -> None:
         )
         st.metric("Javob berilgan", _answered_count())
         st.markdown(
-            f"**READING: {READING_TOTAL} ta** · "
-            f"**Grammar: {st.session_state.get('session_grammar_quota', QUOTAS['Grammar'])} ta** · "
-            f"**Vocabulary: {st.session_state.get('session_vocabulary_quota', QUOTAS['Vocabulary'])} ta**"
+            f"**READING: {QUOTAS['Reading']} ta** · "
+            f"**Grammar: {QUOTAS['Grammar']} ta** · "
+            f"**Vocabulary: {QUOTAS['Vocabulary']} ta**"
         )
         cur = st.session_state.get("current")
         if cur and not st.session_state.finished:
@@ -1940,15 +1942,13 @@ def _quiz_view() -> None:
             idx = int(st.session_state.get("queue_index", 0))
             reading_count = len(st.session_state.get("reading_order", []))
             gram_num = idx - reading_count + 1
-            gram_total = int(st.session_state.get("session_grammar_quota", QUOTAS["Grammar"]))
-            st.subheader(f"📝 GRAMMAR — Savol {gram_num}/{gram_total}")
+            st.subheader(f"📝 GRAMMAR — Savol {gram_num}/{QUOTAS['Grammar']}")
         elif q_bank == "vocabulary":
             idx = int(st.session_state.get("queue_index", 0))
             reading_count = len(st.session_state.get("reading_order", []))
             gram_count = len(st.session_state.get("grammar_order", []))
             vocab_num = idx - reading_count - gram_count + 1
-            vocab_total = int(st.session_state.get("session_vocabulary_quota", QUOTAS["Vocabulary"]))
-            st.subheader(f"📚 VOCABULARY — Savol {vocab_num}/{vocab_total}")
+            st.subheader(f"📚 VOCABULARY — Savol {vocab_num}/{QUOTAS['Vocabulary']}")
         _render_question_panel(question)
 
 
