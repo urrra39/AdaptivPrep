@@ -1,0 +1,16 @@
+# Production configuration for Streamlit Community Cloud.
+# Secrets do NOT live here - they go in the Cloud "Secrets" UI (or a local
+# .streamlit/secrets.toml, which is git-ignored).
+
+[server]
+headless = true
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+primaryColor = "#2E86AB"        # matches the dashboard accent colour
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F0F4F8"
+textColor = "#1A1A2E"
+font = "sans serif"

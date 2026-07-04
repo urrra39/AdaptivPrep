@@ -1,0 +1,27 @@
+"""Tests for IELTS band mapping and session report structure."""
+from src.analysis import session_report
+
+
+def test_accuracy_to_band_monotonic():
+    assert session_report.accuracy_to_band(0.99) >= session_report.accuracy_to_band(0.50)
+
+
+def test_build_session_report_shape():
+    report = session_report.build_session_report(
+        bucket_stats={
+            "Reading": {"correct": 8, "total": 10},
+            "Grammar": {"correct": 30, "total": 50},
+            "Vocabulary": {"correct": 25, "total": 50},
+        },
+        skill_stats={"sat_transitions": {"correct": 2, "total": 4}},
+        mastery={"sat_transitions": 0.4},
+        mistakes=[{"question": {}, "choice": 0}],
+        elapsed_secs=600,
+        total=110,
+        correct=63,
+    )
+    assert report["total"] == 110
+    assert report["wrong"] == 47
+    assert report["overall_band"] is not None
+    assert len(report["weaknesses"]) >= 1
+    assert report["bucket_bands"]["Reading"] is not None

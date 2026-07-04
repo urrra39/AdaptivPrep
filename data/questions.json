@@ -1,0 +1,158 @@
+[
+  {
+    "id": "use_collocations_q1",
+    "skill_id": "use_collocations",
+    "question_text": "You should ______ a decision only after weighing all the options.",
+    "options": [
+      "make",
+      "do",
+      "take",
+      "have"
+    ],
+    "correct_answer": 0,
+    "difficulty": "easy"
+  },
+  {
+    "id": "use_collocations_q2",
+    "skill_id": "use_collocations",
+    "question_text": "I need to ______ some research before I write the essay.",
+    "options": [
+      "make",
+      "take",
+      "give",
+      "do"
+    ],
+    "correct_answer": 3,
+    "difficulty": "medium"
+  },
+  {
+    "id": "use_collocations_q3",
+    "skill_id": "use_collocations",
+    "question_text": "She has been invited to ______ a speech at the conference.",
+    "options": [
+      "say",
+      "give",
+      "tell",
+      "do"
+    ],
+    "correct_answer": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "use_collocations_q4",
+    "skill_id": "use_collocations",
+    "question_text": "The start-up failed to ______ a profit in its first two years.",
+    "options": [
+      "do",
+      "take",
+      "make",
+      "get"
+    ],
+    "correct_answer": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": "use_word_formation_q1",
+    "skill_id": "use_word_formation",
+    "question_text": "Her sheer ______ to succeed impressed the whole panel.",
+    "options": [
+      "determination",
+      "determined",
+      "determine",
+      "determinedly"
+    ],
+    "correct_answer": 0,
+    "difficulty": "easy"
+  },
+  {
+    "id": "use_word_formation_q2",
+    "skill_id": "use_word_formation",
+    "question_text": "The research team made a remarkable ______ about the new virus.",
+    "options": [
+      "discover",
+      "discovery",
+      "discovered",
+      "discoverable"
+    ],
+    "correct_answer": 1,
+    "difficulty": "medium"
+  },
+  {
+    "id": "use_word_formation_q3",
+    "skill_id": "use_word_formation",
+    "question_text": "The government's decision proved highly ______.",
+    "options": [
+      "controversy",
+      "controversially",
+      "controversial",
+      "controvert"
+    ],
+    "correct_answer": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": "use_word_formation_q4",
+    "skill_id": "use_word_formation",
+    "question_text": "The company is fully committed to environmental ______.",
+    "options": [
+      "sustain",
+      "sustainable",
+      "sustainably",
+      "sustainability"
+    ],
+    "correct_answer": 3,
+    "difficulty": "hard"
+  },
+  {
+    "id": "use_confusable_words_q1",
+    "skill_id": "use_confusable_words",
+    "question_text": "The stormy weather will seriously ______ our travel plans.",
+    "options": [
+      "effect",
+      "affect",
+      "affair",
+      "effort"
+    ],
+    "correct_answer": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": "use_confusable_words_q2",
+    "skill_id": "use_confusable_words",
+    "question_text": "There are fewer cars on the road, so there is ______ traffic now.",
+    "options": [
+      "less",
+      "fewer",
+      "lesser",
+      "little"
+    ],
+    "correct_answer": 0,
+    "difficulty": "medium"
+  },
+  {
+    "id": "use_confusable_words_q3",
+    "skill_id": "use_confusable_words",
+    "question_text": "You should ______ your colleagues on their excellent presentation.",
+    "options": [
+      "complement",
+      "complain",
+      "comply",
+      "compliment"
+    ],
+    "correct_answer": 3,
+    "difficulty": "medium"
+  },
+  {
+    "id": "use_confusable_words_q4",
+    "skill_id": "use_confusable_words",
+    "question_text": "A good wine should ______ the flavours of a meal.",
+    "options": [
+      "compliment",
+      "comprehend",
+      "complement",
+      "complete"
+    ],
+    "correct_answer": 2,
+    "difficulty": "hard"
+  }
+]

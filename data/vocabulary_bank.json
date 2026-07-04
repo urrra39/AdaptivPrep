@@ -1,0 +1,3635 @@
+{
+  "meta": {
+    "source": "Vocabook by @satashkent (College Panda + Ivy Global)",
+    "pdf": "Vocabook.pdf",
+    "question_count": 200,
+    "target_count": 200,
+    "college_panda_sets": 16,
+    "ivy_global_sets": 4,
+    "parse_errors": []
+  },
+  "skills": [
+    "vocab_college_panda_set_01",
+    "vocab_college_panda_set_02",
+    "vocab_college_panda_set_03",
+    "vocab_college_panda_set_04",
+    "vocab_college_panda_set_05",
+    "vocab_college_panda_set_06",
+    "vocab_college_panda_set_07",
+    "vocab_college_panda_set_08",
+    "vocab_college_panda_set_09",
+    "vocab_college_panda_set_10",
+    "vocab_college_panda_set_11",
+    "vocab_college_panda_set_12",
+    "vocab_college_panda_set_13",
+    "vocab_college_panda_set_14",
+    "vocab_college_panda_set_15",
+    "vocab_college_panda_set_16",
+    "vocab_ivy_global_set_01",
+    "vocab_ivy_global_set_02",
+    "vocab_ivy_global_set_03",
+    "vocab_ivy_global_set_04"
+  ],
+  "questions": [
+    {
+      "id": "vocab_college_panda_s01_q01",
+      "skill_id": "vocab_college_panda_set_01",
+      "question_text": "The weather was so ______ that no one could predict if the picnic would be rained out. The constant changes made it hard to plan anything outdoors.",
+      "options": [
+        "content",
+        "erratic",
+        "adequate",
+        "unassuming"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 1 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_college_panda_s01_q02",
+      "skill_id": "vocab_college_panda_set_01",
+      "question_text": "The old house was ______ deep in the woods, making it the perfect hideaway for those seeking privacy. Few people ever ventured that far into the forest.",
+      "options": [
+        "eccentric",
+        "vexing",
+        "secluded",
+        "radical"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 1 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_college_panda_s01_q03",
+      "skill_id": "vocab_college_panda_set_01",
+      "question_text": "Stock prices tend to ______ throughout the day, with values rising and falling unpredictably. Investors need to be prepared for these constant changes.",
+      "options": [
+        "alienate",
+        "fluctuate",
+        "coerce",
+        "reconcile"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 1 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_college_panda_s01_q04",
+      "skill_id": "vocab_college_panda_set_01",
+      "question_text": "The community gathered to ______ their leader, showing their admiration with songs and speeches. His contributions were widely recognized and celebrated.",
+      "options": [
+        "contend",
+        "admonish",
+        "distinguish",
+        "exalt"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 1 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_college_panda_s01_q05",
+      "skill_id": "vocab_college_panda_set_01",
+      "question_text": "The teacher had to ______ the students for not completing their homework on time. Her warning made it clear they needed to be more responsible.",
+      "options": [
+        "attest",
+        "coerce",
+        "reconcile",
+        "admonish"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 1 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_college_panda_s01_q06",
+      "skill_id": "vocab_college_panda_set_01",
+      "question_text": "His departure from the meeting was so ______ that no one had time to ask him any questions. The sudden exit caught everyone by surprise.",
+      "options": [
+        "eccentric",
+        "abrupt",
+        "erratic",
+        "vexing"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 1 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_college_panda_s01_q07",
+      "skill_id": "vocab_college_panda_set_01",
+      "question_text": "The lawyer’s closing statement was so ______ that the jury couldn’t help but be persuaded by his arguments. His ability to speak fluently and convincingly made him a formidable opponent in the courtroom.",
+      "options": [
+        "austere",
+        "eloquent",
+        "inevitable",
+        "tangible"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 1 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_college_panda_s01_q08",
+      "skill_id": "vocab_college_panda_set_01",
+      "question_text": "The monk’s room was ______, containing only a bed and a desk without any decorations. His simple lifestyle reflected his focus on spiritual matters rather than material comforts.",
+      "options": [
+        "austere",
+        "secular",
+        "innovative",
+        "tangible"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 1 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_college_panda_s01_q09",
+      "skill_id": "vocab_college_panda_set_01",
+      "question_text": "Many people ______ the thought of speaking in front of a large crowd, their anxiety increasing as the event gets closer. This fear often prevents them from participating in important occasions.",
+      "options": [
+        "spawn",
+        "speculate",
+        "broach",
+        "dread"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 1 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_college_panda_s01_q10",
+      "skill_id": "vocab_college_panda_set_01",
+      "question_text": "With the storm approaching fast, evacuating the town seemed ______. The authorities knew there was no way to avoid the oncoming danger.",
+      "options": [
+        "detrimental",
+        "sporadic",
+        "inevitable",
+        "unprecedented"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 1 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_college_panda_s02_q01",
+      "skill_id": "vocab_college_panda_set_02",
+      "question_text": "During the meeting, the manager made sure to ______ the importance of meeting deadlines. He repeated his point several times to ensure that everyone understood its significance.",
+      "options": [
+        "stress",
+        "postulate",
+        "conflate",
+        "spawn"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 2 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_college_panda_s02_q02",
+      "skill_id": "vocab_college_panda_set_02",
+      "question_text": "Due to the ______ of resources in the region, many families struggled to access clean water. The scarcity of this vital resource led to widespread concern.",
+      "options": [
+        "reverence",
+        "boast",
+        "disparity",
+        "paucity"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 2 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_college_panda_s02_q03",
+      "skill_id": "vocab_college_panda_set_02",
+      "question_text": "The cherry blossoms in Japan are famous for their ______ beauty, blooming for just a short period each year. Visitors travel from all over to witness this fleeting display.",
+      "options": [
+        "dispassionate",
+        "entrenched",
+        "irksome",
+        "ephemeral"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 2 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_college_panda_s02_q04",
+      "skill_id": "vocab_college_panda_set_02",
+      "question_text": "The teacher’s praise seemed to ______ the student into working even harder. The encouragement pushed the student to complete the project ahead of time.",
+      "options": [
+        "allude",
+        "prompt",
+        "provoke",
+        "inhibit"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 2 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_college_panda_s02_q05",
+      "skill_id": "vocab_college_panda_set_02",
+      "question_text": "His decision to drive through the storm was incredibly ______, as the weather conditions were dangerous and the roads were slippery. This reckless choice could have easily led to an accident.",
+      "options": [
+        "venerable",
+        "feasible",
+        "imprudent",
+        "sluggish"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 2 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_college_panda_s02_q06",
+      "skill_id": "vocab_college_panda_set_02",
+      "question_text": "Despite facing many challenges, her ______ kept her pushing forward toward her goals. Her persistence was the reason she eventually succeeded.",
+      "options": [
+        "vanity",
+        "tenacity",
+        "insurrection",
+        "intuition"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 2 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_college_panda_s02_q07",
+      "skill_id": "vocab_college_panda_set_02",
+      "question_text": "The professor was considered ______ by his peers because of his decades of contributions to the field. His wisdom and experience earned him great respect.",
+      "options": [
+        "venerable",
+        "imprudent",
+        "arbitrary",
+        "equivocal"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 2 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_college_panda_s02_q08",
+      "skill_id": "vocab_college_panda_set_02",
+      "question_text": "The government’s ______ policies left little room for personal freedom, as citizens were expected to obey without question. Strict obedience was demanded in all aspects of life.",
+      "options": [
+        "feasible",
+        "arbitrary",
+        "ambivalent",
+        "authoritarian"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 2 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_college_panda_s02_q09",
+      "skill_id": "vocab_college_panda_set_02",
+      "question_text": "The company’s new policy was designed to ______ more collaboration among team members. The hope was that it would create a stronger sense of unity in the workplace.",
+      "options": [
+        "engender",
+        "procure",
+        "embrace",
+        "evoke"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 2 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_college_panda_s02_q10",
+      "skill_id": "vocab_college_panda_set_02",
+      "question_text": "His calm ______ allowed him to handle stressful situations without becoming overwhelmed. His composed character was admired by his colleagues.",
+      "options": [
+        "upheaval",
+        "scorn",
+        "indifference",
+        "temperament"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 2 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_college_panda_s03_q01",
+      "skill_id": "vocab_college_panda_set_03",
+      "question_text": "The sudden political ______ in the country led to widespread protests and demonstrations. The chaos disrupted daily life and created uncertainty for the future.",
+      "options": [
+        "scorn",
+        "transgress",
+        "upheaval",
+        "tact"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 3 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_college_panda_s03_q02",
+      "skill_id": "vocab_college_panda_set_03",
+      "question_text": "The community was quick to ______ the idea of building a new park, supporting it with donations and volunteer work. Their willingness to accept the project helped it move forward.",
+      "options": [
+        "construe",
+        "embrace",
+        "procure",
+        "burden"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 3 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_college_panda_s03_q03",
+      "skill_id": "vocab_college_panda_set_03",
+      "question_text": "Her calm ______ made her the perfect leader during the crisis, as her composed attitude reassured everyone around her. People were drawn to her confident and positive appearance.",
+      "options": [
+        "obstinacy",
+        "monotony",
+        "demeanor",
+        "confinement"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 3 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_college_panda_s03_q04",
+      "skill_id": "vocab_college_panda_set_03",
+      "question_text": "After the political unrest, many people considered ______ to neighboring countries, hoping to start a new life abroad. Leaving their homeland was a difficult decision for most.",
+      "options": [
+        "confinement",
+        "emigration",
+        "trifling",
+        "relegate"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 3 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_college_panda_s03_q05",
+      "skill_id": "vocab_college_panda_set_03",
+      "question_text": "The customer became ______ after waiting in line for over an hour without being helped. His frustration quickly turned to anger, and he demanded to see the manager.",
+      "options": [
+        "trifling",
+        "tentative",
+        "aesthetic",
+        "irate"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 3 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_college_panda_s03_q06",
+      "skill_id": "vocab_college_panda_set_03",
+      "question_text": "The meeting time is still ______, as we are waiting to hear back from a few key participants. We might need to reschedule if they can't attend.",
+      "options": [
+        "tentative",
+        "decrepit",
+        "unwieldy",
+        "obstinacy"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 3 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_college_panda_s03_q07",
+      "skill_id": "vocab_college_panda_set_03",
+      "question_text": "The witness’s testimony was essential to ______ the defendant's alibi, providing evidence that supported his version of events. This confirmation was key in the case.",
+      "options": [
+        "degrade",
+        "corroborate",
+        "stimulate",
+        "proliferate"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 3 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_college_panda_s03_q08",
+      "skill_id": "vocab_college_panda_set_03",
+      "question_text": "She did not ______ when asked to present her findings to the board, confidently explaining her ideas despite the opposition she faced. Her ability to stand her ground impressed everyone in the room.",
+      "options": [
+        "consolidate",
+        "demur",
+        "enact",
+        "abject"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 3 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_college_panda_s03_q09",
+      "skill_id": "vocab_college_panda_set_03",
+      "question_text": "The new product design was considered ______ for its unique and creative features. It stood out from the competition because of its unusual approach.",
+      "options": [
+        "novel",
+        "subservient",
+        "abstract",
+        "affluent"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 3 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_college_panda_s03_q10",
+      "skill_id": "vocab_college_panda_set_03",
+      "question_text": "His theories were largely ______, lacking any tangible evidence to support them. The ideas were more conceptual than grounded in real-world applications.",
+      "options": [
+        "pious",
+        "hostile",
+        "abstract",
+        "empirical"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 3 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_college_panda_s04_q01",
+      "skill_id": "vocab_college_panda_set_04",
+      "question_text": "Scientists discovered that the wings of certain birds were ______, no longer used for flying due to evolutionary changes. These underdeveloped features provided clues about the species’ past.",
+      "options": [
+        "affluent",
+        "empirical",
+        "ignominious",
+        "vestigial"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 4 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_college_panda_s04_q02",
+      "skill_id": "vocab_college_panda_set_04",
+      "question_text": "She was so ______ her research that she often forgot to eat or sleep. Her obsession with the project consumed all her time and energy.",
+      "options": [
+        "subservient to",
+        "preoccupied with",
+        "optimistic about",
+        "hostile toward"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 4 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_college_panda_s04_q03",
+      "skill_id": "vocab_college_panda_set_04",
+      "question_text": "The report included an ______ of data from multiple sources, providing a complete overview of the research. The sum total of the findings allowed for a comprehensive analysis.",
+      "options": [
+        "sentiment",
+        "aggregate",
+        "obsolete",
+        "deference"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 4 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_college_panda_s04_q04",
+      "skill_id": "vocab_college_panda_set_04",
+      "question_text": "She was known for being ______, often forgetting important meetings and losing track of her tasks. Her disorganized nature made it difficult for her to stay on top of her work.",
+      "options": [
+        "articulate",
+        "distinct",
+        "scatterbrained",
+        "pristine"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 4 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_college_panda_s04_q05",
+      "skill_id": "vocab_college_panda_set_04",
+      "question_text": "After years abroad, he began to ______ for the peaceful countryside of his hometown. The intense feeling of longing for the past consumed his thoughts.",
+      "options": [
+        "aspire",
+        "impose",
+        "yearn",
+        "ascertain"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 4 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_college_panda_s04_q06",
+      "skill_id": "vocab_college_panda_set_04",
+      "question_text": "The athlete was a ______ performer, executing every move with perfection and demonstrating a high degree of skill. Her flawless abilities made her a standout in her field.",
+      "options": [
+        "obsolete",
+        "consummate",
+        "ubiquitous",
+        "onerous"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 4 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_college_panda_s04_q07",
+      "skill_id": "vocab_college_panda_set_04",
+      "question_text": "The senator decided to ______ the new bill, publicly showing his support for the proposed legislation. His endorsement helped gain more followers for the cause.",
+      "options": [
+        "subjugate",
+        "yearn",
+        "ascertain",
+        "endorse"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 4 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_college_panda_s04_q08",
+      "skill_id": "vocab_college_panda_set_04",
+      "question_text": "The investigator worked hard to ______ the truth behind the mystery. After days of research, he finally found the definitive answers he was looking for.",
+      "options": [
+        "articulate",
+        "ascertain",
+        "impose",
+        "aspire"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 4 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_college_panda_s04_q09",
+      "skill_id": "vocab_college_panda_set_04",
+      "question_text": "The two neighbors got into a heated ______ over the property line, raising their voices for everyone to hear. Their noisy disagreement disturbed the entire street.",
+      "options": [
+        "repose",
+        "altercation",
+        "antipathy",
+        "glut"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 4 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_college_panda_s04_q10",
+      "skill_id": "vocab_college_panda_set_04",
+      "question_text": "After years of training, the athlete was in ______ shape, able to lift heavy weights and run long distances without fatigue. His strength and durability were impressive to everyone.",
+      "options": [
+        "robust",
+        "wayward",
+        "dismal",
+        "complacent"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 4 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_college_panda_s05_q01",
+      "skill_id": "vocab_college_panda_set_05",
+      "question_text": "The rebels sought to ______ the government by secretly undermining its authority. Their goal was to weaken the existing system and overthrow it.",
+      "options": [
+        "deploy",
+        "repose",
+        "deter",
+        "subvert"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 5 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 5,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_college_panda_s05_q02",
+      "skill_id": "vocab_college_panda_set_05",
+      "question_text": "Her reaction to the surprise party was so ______ that it seemed like she was performing in a drama. Her exaggerated emotions made everyone laugh.",
+      "options": [
+        "perilous",
+        "ambiguous",
+        "melodramatic",
+        "dismal"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 5 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 5,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_college_panda_s05_q03",
+      "skill_id": "vocab_college_panda_set_05",
+      "question_text": "The company had a ______ of unsold products, which led to a huge sale to reduce excess inventory. The oversupply made it difficult to maintain normal prices.",
+      "options": [
+        "glut",
+        "prospect",
+        "repose",
+        "antipathy"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 5 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 5,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_college_panda_s05_q04",
+      "skill_id": "vocab_college_panda_set_05",
+      "question_text": "The long-standing ______ between the two rival schools led to constant disputes and hostility. The deep dislike made cooperation nearly impossible.",
+      "options": [
+        "implication",
+        "antipathy",
+        "altercation",
+        "credibility"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 5 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 5,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_college_panda_s05_q05",
+      "skill_id": "vocab_college_panda_set_05",
+      "question_text": "Her ______ at being unfairly accused of the mistake was clear from the way she slammed the door. The anger she felt was hard to contain.",
+      "options": [
+        "solicitude",
+        "provision",
+        "indignation",
+        "discord"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 5 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 5,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_college_panda_s05_q06",
+      "skill_id": "vocab_college_panda_set_05",
+      "question_text": "The new rules seemed to ______ the workers, limiting their ability to take breaks and making their jobs harder. The restrictions made them feel chained down.",
+      "options": [
+        "immure",
+        "fetter",
+        "cultivate",
+        "dissipate"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 5 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 5,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_college_panda_s05_q07",
+      "skill_id": "vocab_college_panda_set_05",
+      "question_text": "The company’s policies were so ______ that employees had no room for creativity or change. Their strict and unchangeable nature frustrated the staff.",
+      "options": [
+        "insolent",
+        "pervasive",
+        "rigid",
+        "apprehensive"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 5 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 5,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_college_panda_s05_q08",
+      "skill_id": "vocab_college_panda_set_05",
+      "question_text": "Farmers must ______ the land to ensure healthy crops each season. Proper care and development lead to successful harvests.",
+      "options": [
+        "cultivate",
+        "devise",
+        "recount",
+        "dissipate"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 5 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 5,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_college_panda_s05_q09",
+      "skill_id": "vocab_college_panda_set_05",
+      "question_text": "His ______ behavior at the meeting, constantly interrupting others and making rude comments, shocked everyone. No one expected him to be so disrespectful.",
+      "options": [
+        "apprehensive",
+        "juvenile",
+        "insolent",
+        "adversary"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 5 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 5,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_college_panda_s05_q10",
+      "skill_id": "vocab_college_panda_set_05",
+      "question_text": "The university was able to ______ its new research center with a generous grant from an anonymous donor. The funds provided crucial resources for the students and faculty.",
+      "options": [
+        "endow",
+        "usurp",
+        "undermine",
+        "tout"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 5 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 5,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_college_panda_s06_q01",
+      "skill_id": "vocab_college_panda_set_06",
+      "question_text": "The mayor stood in front of the crowd to ______ the opening of the new community center. The official announcement marked a major milestone for the town.",
+      "options": [
+        "deplete",
+        "adorn",
+        "proclaim",
+        "diverge"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 6 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 6,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_college_panda_s06_q02",
+      "skill_id": "vocab_college_panda_set_06",
+      "question_text": "The tornado left a wide ______ of destruction across the farmland, with a long strip of ruined crops and debris. The path of damage was visible for miles.",
+      "options": [
+        "swath",
+        "plight",
+        "dominion",
+        "mediation"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 6 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 6,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_college_panda_s06_q03",
+      "skill_id": "vocab_college_panda_set_06",
+      "question_text": "She likes to ______ in painting from time to time, though she never takes it too seriously. Her casual approach to the hobby keeps it fun and low-pressure.",
+      "options": [
+        "exploit",
+        "lament",
+        "dabble",
+        "comprise"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 6 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 6,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_college_panda_s06_q04",
+      "skill_id": "vocab_college_panda_set_06",
+      "question_text": "As the group sat around the campfire, they began to ______ about their high school days, sharing funny stories and happy memories. Talking about the past brought smiles to everyone’s faces.",
+      "options": [
+        "scrutinize",
+        "reminisce",
+        "disparage",
+        "induce"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 6 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 6,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_college_panda_s06_q05",
+      "skill_id": "vocab_college_panda_set_06",
+      "question_text": "His job involved performing the same ______ tasks every day, with nothing exciting ever happening. The repetitive nature of his work made it feel dull and uninteresting.",
+      "options": [
+        "subtle",
+        "potent",
+        "mundane",
+        "tedious"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 6 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 6,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_college_panda_s06_q06",
+      "skill_id": "vocab_college_panda_set_06",
+      "question_text": "The coach’s encouragement helped ______ the team to work harder and play better. His words caused the players to improve their performance.",
+      "options": [
+        "repudiate",
+        "spur",
+        "assess",
+        "render"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 6 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 6,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_college_panda_s06_q07",
+      "skill_id": "vocab_college_panda_set_06",
+      "question_text": "The quiet library provided a ______ environment for studying, helping students focus without distractions. The peaceful atmosphere was perfect for concentrating.",
+      "options": [
+        "reserved",
+        "profound",
+        "conducive",
+        "timid"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 6 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 6,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_college_panda_s06_q08",
+      "skill_id": "vocab_college_panda_set_06",
+      "question_text": "Though he was friendly, he remained ______ about his personal life, preferring to keep his thoughts and feelings private. His quiet nature made him seem mysterious.",
+      "options": [
+        "oscillating",
+        "reserved",
+        "ingenious",
+        "insatiable"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 6 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 6,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_college_panda_s06_q09",
+      "skill_id": "vocab_college_panda_set_06",
+      "question_text": "The professor’s explanation was so ______ that few students could understand the point he was trying to make. His argument was filled with complex theories and technical jargon.",
+      "options": [
+        "apt",
+        "abstruse",
+        "elucidate",
+        "florid"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 6 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 6,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_college_panda_s06_q10",
+      "skill_id": "vocab_college_panda_set_06",
+      "question_text": "His response was ______, perfectly matching the tone and style of the conversation. It was just what was needed in that moment.",
+      "options": [
+        "apt",
+        "nebulous",
+        "equivocal",
+        "expedient"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 6 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 6,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_college_panda_s07_q01",
+      "skill_id": "vocab_college_panda_set_07",
+      "question_text": "She managed to ______ her friend into agreeing to help with the project, despite his initial hesitation. Her persuasive tactics worked like a charm.",
+      "options": [
+        "enumerate",
+        "elucidate",
+        "cajole",
+        "digress"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 7 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 7,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_college_panda_s07_q02",
+      "skill_id": "vocab_college_panda_set_07",
+      "question_text": "The speaker gave a ______ summary of the complex issue, covering all the important points without going into unnecessary detail. It was clear and to the point.",
+      "options": [
+        "compendious",
+        "embroiled",
+        "abstruse",
+        "lucid"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 7 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 7,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_college_panda_s07_q03",
+      "skill_id": "vocab_college_panda_set_07",
+      "question_text": "Both sides of the debate finally managed to ______ on the proposed solution. Their agreement marked a turning point in the negotiations.",
+      "options": [
+        "flagrant",
+        "concur",
+        "digress",
+        "elucidate"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 7 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 7,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_college_panda_s07_q04",
+      "skill_id": "vocab_college_panda_set_07",
+      "question_text": "The writer’s style was so ______ that readers struggled to find her main argument amid the excessive details. She used an excessive amount of unnecessary words throughout the article.",
+      "options": [
+        "buoyant",
+        "verbose",
+        "proponent",
+        "rescind"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 7 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 7,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_college_panda_s07_q05",
+      "skill_id": "vocab_college_panda_set_07",
+      "question_text": "The CEO made a ______ in the meeting, announcing a major shift in company policy. It was a formal declaration that surprised many employees.",
+      "options": [
+        "rebuttal",
+        "recant",
+        "pronouncement",
+        "capricious"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 7 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 7,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_college_panda_s07_q06",
+      "skill_id": "vocab_college_panda_set_07",
+      "question_text": "After receiving the bad news, she felt completely ______ and struggled to find the motivation to continue her work. Her depression was evident to everyone around her.",
+      "options": [
+        "despondent",
+        "jovial",
+        "fortitude",
+        "felicitous"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 7 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 7,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_college_panda_s07_q07",
+      "skill_id": "vocab_college_panda_set_07",
+      "question_text": "The philanthropist decided to ______ the scholarship fund, providing financial support to deserving students. His generous donation made a significant impact on their education.",
+      "options": [
+        "usurp",
+        "endow",
+        "ameliorate",
+        "bluster"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 7 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 7,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_college_panda_s07_q08",
+      "skill_id": "vocab_college_panda_set_07",
+      "question_text": "The magician’s tricks never failed to ______ the audience, leaving them both amazed and confused. His performances were always full of surprises.",
+      "options": [
+        "confound",
+        "reiterate",
+        "concur",
+        "mediate"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 7 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 7,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_college_panda_s07_q09",
+      "skill_id": "vocab_college_panda_set_07",
+      "question_text": "During the meeting, she didn’t hesitate to ______ her belief that the project was essential for the company’s growth. Her confident stance persuaded many of her colleagues.",
+      "options": [
+        "undermine",
+        "repudiate",
+        "assert",
+        "conform"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 7 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 7,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_college_panda_s07_q10",
+      "skill_id": "vocab_college_panda_set_07",
+      "question_text": "The teacher’s criticism was so ______ that it left a bitter atmosphere in the room. Her harsh words created tension among the students.",
+      "options": [
+        "amicable",
+        "acrimony",
+        "congenial",
+        "placid"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 7 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 7,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_college_panda_s08_q01",
+      "skill_id": "vocab_college_panda_set_08",
+      "question_text": "The lake was so ______ that not even the smallest ripple could be seen on its surface. The stillness added a sense of calm to the surroundings.",
+      "options": [
+        "raucous",
+        "scintillating",
+        "static",
+        "unruly"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 8 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 8,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_college_panda_s08_q02",
+      "skill_id": "vocab_college_panda_set_08",
+      "question_text": "After the intense debate, there was a brief ______ in the conversation as both sides took a moment to reflect. This short pause allowed everyone to regain their composure.",
+      "options": [
+        "lull",
+        "antipathy",
+        "empathy",
+        "torpor"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 8 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 8,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_college_panda_s08_q03",
+      "skill_id": "vocab_college_panda_set_08",
+      "question_text": "Despite the ______ crowd, the speaker maintained her calm demeanor and continued her presentation. The rowdy audience didn’t seem to faze her.",
+      "options": [
+        "placid",
+        "raucous",
+        "static",
+        "vapid"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 8 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 8,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_college_panda_s08_q04",
+      "skill_id": "vocab_college_panda_set_08",
+      "question_text": "The new manager was often criticized for being too ______, constantly interfering in his employees’ tasks and making unnecessary suggestions. His meddlesome behavior created tension in the workplace.",
+      "options": [
+        "solitude",
+        "parody",
+        "rancorous",
+        "officious"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 8 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 8,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_college_panda_s08_q05",
+      "skill_id": "vocab_college_panda_set_08",
+      "question_text": "The comedian’s latest skit was a ______ of current political events, using humor to criticize the government. His intentional mockery entertained the audience while making a point.",
+      "options": [
+        "solicitous",
+        "parody",
+        "mendacity",
+        "semblance"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 8 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 8,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_college_panda_s08_q06",
+      "skill_id": "vocab_college_panda_set_08",
+      "question_text": "After the argument, there was still a lot of ______ between the two friends, making reconciliation difficult. Their bitter resentment prevented them from moving past the disagreement.",
+      "options": [
+        "rapport",
+        "solicitous",
+        "rancorous",
+        "deference"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 8 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 8,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_college_panda_s08_q07",
+      "skill_id": "vocab_college_panda_set_08",
+      "question_text": "Living as a ______, he chose to isolate himself from society and rarely interacted with others. His reclusive nature made him a mystery to his neighbors.",
+      "options": [
+        "recluse",
+        "solicitous",
+        "genial",
+        "ephemeral"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 8 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 8,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_college_panda_s08_q08",
+      "skill_id": "vocab_college_panda_set_08",
+      "question_text": "After hours of negotiation, both parties found themselves at an ______, unable to reach an agreement. The stalemate left everyone frustrated and uncertain about the future.",
+      "options": [
+        "tribulation",
+        "epiphany",
+        "impasse",
+        "cosmopolitan"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 8 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 8,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_college_panda_s08_q09",
+      "skill_id": "vocab_college_panda_set_08",
+      "question_text": "Her ______ spirit never allowed her to give up, even in the face of overwhelming challenges. She remained strong and determined throughout the entire ordeal.",
+      "options": [
+        "servile",
+        "indomitable",
+        "boorish",
+        "tenuous"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 8 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 8,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_college_panda_s08_q10",
+      "skill_id": "vocab_college_panda_set_08",
+      "question_text": "The ______ explorer ventured into uncharted territories, undeterred by the dangers that lay ahead. His bravery inspired many others to pursue their own adventures.",
+      "options": [
+        "tenacious",
+        "intrepid",
+        "conscientious",
+        "churlish"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 8 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 8,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_college_panda_s09_q01",
+      "skill_id": "vocab_college_panda_set_09",
+      "question_text": "Managing the project was an ______ task, requiring long hours and meticulous attention to detail. The workload was both burdensome and exhausting for the entire team.",
+      "options": [
+        "onerous",
+        "cosmopolitan",
+        "discerning",
+        "erudite"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 9 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 9,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_college_panda_s09_q02",
+      "skill_id": "vocab_college_panda_set_09",
+      "question_text": "His approach to problem-solving was ______, relying on highly specialized knowledge that few others understood. Only a small group could grasp the intricacies of his methods.",
+      "options": [
+        "futile",
+        "esoteric",
+        "diligent",
+        "superficial"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 9 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 9,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_college_panda_s09_q03",
+      "skill_id": "vocab_college_panda_set_09",
+      "question_text": "The construction of the new building was considered a ______, as it ignored all safety regulations and led to several accidents. The project was an example of reckless decision-making.",
+      "options": [
+        "folly",
+        "astuteness",
+        "remedy",
+        "finesse"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 9 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 9,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_college_panda_s09_q04",
+      "skill_id": "vocab_college_panda_set_09",
+      "question_text": "The comedian’s jokes were so ______ that the audience found them pointless and unfunny. His humor lacked depth and meaning, leaving people bored.",
+      "options": [
+        "inane",
+        "profound",
+        "lucid",
+        "meticulous"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 9 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 9,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_college_panda_s09_q05",
+      "skill_id": "vocab_college_panda_set_09",
+      "question_text": "Despite her young age, she was ______ and never easily fooled by others’ intentions. Her honesty made her a trustworthy friend.",
+      "options": [
+        "shrewd",
+        "ingenuous",
+        "obstinate",
+        "oblivious"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 9 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 9,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_college_panda_s09_q06",
+      "skill_id": "vocab_college_panda_set_09",
+      "question_text": "The elderly professor was known for his ______ manner, always treating everyone with elegance and sophistication. His style reflected his years of experience and refined taste.",
+      "options": [
+        "urbane",
+        "wry",
+        "ungainly",
+        "altruistic"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 9 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 9,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_college_panda_s09_q07",
+      "skill_id": "vocab_college_panda_set_09",
+      "question_text": "The ______ businessman refused to spend any more than absolutely necessary, earning a reputation for being stingy. His frugality bordered on being overly cheap.",
+      "options": [
+        "provident",
+        "penurious",
+        "magnanimous",
+        "lucrative"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 9 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 9,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_college_panda_s09_q08",
+      "skill_id": "vocab_college_panda_set_09",
+      "question_text": "The lawyer insisted on fighting against the ______ fees charged by the agency, arguing that they were far too expensive for the services provided.",
+      "options": [
+        "exorbitant",
+        "lucrative",
+        "perquisite",
+        "apathetic"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 9 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 9,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_college_panda_s09_q09",
+      "skill_id": "vocab_college_panda_set_09",
+      "question_text": "Known for her ______, the celebrity often donated millions to charity, making a difference in her community. Her generosity was widely appreciated.",
+      "options": [
+        "mercenary",
+        "destitution",
+        "magnanimity",
+        "frugality"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 9 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 9,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_college_panda_s09_q10",
+      "skill_id": "vocab_college_panda_set_09",
+      "question_text": "The organization aimed to help the ______ by providing resources and support to those who were struggling. They believed in uplifting the poor and destitute.",
+      "options": [
+        "venal",
+        "lucrative",
+        "destitute",
+        "adamant"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 9 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 9,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_college_panda_s10_q01",
+      "skill_id": "vocab_college_panda_set_10",
+      "question_text": "After receiving a significant ______ at work, Mark was able to afford a well-deserved vacation. The additional payment made a huge difference for him.",
+      "options": [
+        "perquisite",
+        "depreciation",
+        "vocation",
+        "patron"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 10 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 10,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_college_panda_s10_q02",
+      "skill_id": "vocab_college_panda_set_10",
+      "question_text": "His ideas were considered ______ because they contradicted the established beliefs of his community. Many saw him as someone who challenged traditional views.",
+      "options": [
+        "heretical",
+        "orthodox",
+        "idiosyncratic",
+        "banal"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 10 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 10,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_college_panda_s10_q03",
+      "skill_id": "vocab_college_panda_set_10",
+      "question_text": "Despite their differing political views, both parties reached a ______ agreement to support the new bill. Their cooperation showed a rare moment of unity.",
+      "options": [
+        "fanaticism",
+        "pacifist",
+        "bipartisan",
+        "exhibitionist"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 10 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 10,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_college_panda_s10_q04",
+      "skill_id": "vocab_college_panda_set_10",
+      "question_text": "Despite his accomplishments, he maintained a ______ attitude, avoiding arrogance and showing a modest demeanor. His humility was appreciated by all.",
+      "options": [
+        "hubris",
+        "demure",
+        "tirade",
+        "complacent"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 10 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 10,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_college_panda_s10_q05",
+      "skill_id": "vocab_college_panda_set_10",
+      "question_text": "The critic’s review was so ______ that it left the actor feeling humiliated and disheartened. The harsh words were difficult to hear.",
+      "options": [
+        "laudatory",
+        "conciliatory",
+        "scathing",
+        "slight"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 10 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 10,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_college_panda_s10_q06",
+      "skill_id": "vocab_college_panda_set_10",
+      "question_text": "The politician's recent scandal brought him a level of ______ that tarnished his once-respected reputation. This public humiliation was hard for him to overcome.",
+      "options": [
+        "irreverence",
+        "notoriety",
+        "ignominy",
+        "effervescence"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 10 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 10,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_college_panda_s10_q07",
+      "skill_id": "vocab_college_panda_set_10",
+      "question_text": "Her ______ attitude toward authority figures often got her into trouble, as she showed little respect for their rules or expectations. This disrespect made her a frequent topic of conversation among her peers.",
+      "options": [
+        "self-righteousness",
+        "impudence",
+        "coalescence",
+        "confluence"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 10 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 10,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_college_panda_s10_q08",
+      "skill_id": "vocab_college_panda_set_10",
+      "question_text": "The scientist hoped to ______ interest in environmental issues by presenting shocking statistics to the audience. Her goal was to spark a desire for change.",
+      "options": [
+        "elicit",
+        "effervesce",
+        "disseminate",
+        "induce"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 10 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 10,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_college_panda_s10_q09",
+      "skill_id": "vocab_college_panda_set_10",
+      "question_text": "Their behaviors were so ______ that neither side was willing to compromise during the negotiations. This stubbornness prevented any meaningful progress.",
+      "options": [
+        "peremptory",
+        "effervescent",
+        "recalcitrant",
+        "indigenous"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 10 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 10,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_college_panda_s10_q10",
+      "skill_id": "vocab_college_panda_set_10",
+      "question_text": "The scientist noticed that the seeds began to ______ shortly after they were planted, showing signs of life within days. The early growth stage was promising for the experiment.",
+      "options": [
+        "extricate",
+        "incubate",
+        "germinate",
+        "abate"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 10 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 10,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_college_panda_s11_q01",
+      "skill_id": "vocab_college_panda_set_11",
+      "question_text": "The archaeologists carefully ______ the ancient artifact from the ground, revealing a piece of history buried for centuries. This careful unearthing required skill and patience.",
+      "options": [
+        "excavated",
+        "encompassed",
+        "attenuated",
+        "diminished"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 11 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 11,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_college_panda_s11_q02",
+      "skill_id": "vocab_college_panda_set_11",
+      "question_text": "The strict rules placed on the students were meant to ______ their behavior, keeping them within certain limits during school hours. This restriction was aimed at maintaining order.",
+      "options": [
+        "diffuse",
+        "circumscribe",
+        "germinate",
+        "atrophy"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 11 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 11,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_college_panda_s11_q03",
+      "skill_id": "vocab_college_panda_set_11",
+      "question_text": "Without regular physical activity, muscles can quickly begin to ______, losing strength and size over time. This deterioration can lead to further health issues.",
+      "options": [
+        "germinate",
+        "abate",
+        "encompass",
+        "atrophy"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 11 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 11,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_college_panda_s11_q04",
+      "skill_id": "vocab_college_panda_set_11",
+      "question_text": "The forest was ______ of any large predators, allowing smaller animals to roam freely without fear. This lack of natural threats led to an abundance of wildlife.",
+      "options": [
+        "incubated",
+        "devoid",
+        "circumscribed",
+        "gargantuan"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 11 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 11,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_college_panda_s11_q05",
+      "skill_id": "vocab_college_panda_set_11",
+      "question_text": "The researcher found that the growth of the bacteria began to ______ once the temperature was lowered significantly. This restraint helped prevent an overgrowth in the petri dish.",
+      "options": [
+        "proliferate",
+        "inhibit",
+        "parch",
+        "reap"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 11 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 11,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_college_panda_s11_q06",
+      "skill_id": "vocab_college_panda_set_11",
+      "question_text": "Nothing better shows the plasticity of her character than the ease with which she adapted herself to this sudden change. A. proliferation B. plasticity C. latent D. innate 3. The fields were ______ with crops after the heavy rains, leading to one of the most productive harvests in recent memory. The farmers were pleased with the abundance of their yield.",
+      "options": [
+        "inundated",
+        "abated",
+        "inhibited",
+        "ravenous"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 11 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 11,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_college_panda_s11_q07",
+      "skill_id": "vocab_college_panda_set_11",
+      "question_text": "After the heavy rain, the ground was so ______ that even stepping on it caused water to pool around your feet. The soil was completely soaked.",
+      "options": [
+        "ubiquitous",
+        "saturated",
+        "scanty",
+        "vacuous"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 11 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 11,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_college_panda_s11_q08",
+      "skill_id": "vocab_college_panda_set_11",
+      "question_text": "The old building was in such a ______ state that parts of the roof collapsed whenever a strong wind blew. Its poor construction made it a safety hazard.",
+      "options": [
+        "ubiquitous",
+        "teeming",
+        "ramshackle",
+        "cursory"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 11 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 11,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_college_panda_s11_q09",
+      "skill_id": "vocab_college_panda_set_11",
+      "question_text": "The designer’s choice of colors was criticized as being too ______, with bright, clashing hues that hurt the eyes. The display was overwhelmingly flashy.",
+      "options": [
+        "garish",
+        "gluttonous",
+        "trifling",
+        "viscous"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 11 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 11,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_college_panda_s11_q10",
+      "skill_id": "vocab_college_panda_set_11",
+      "question_text": "Her explanation was so ______ that few people in the audience could follow her ideas. The complex language left many feeling lost.",
+      "options": [
+        "cursory",
+        "byzantine",
+        "vacuous",
+        "waning"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 11 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 11,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_college_panda_s12_q01",
+      "skill_id": "vocab_college_panda_set_12",
+      "question_text": "With every grocery shelf filled to capacity, the store seemed to have a ______ of supplies that could easily meet the needs of the entire neighborhood. The abundance was evident.",
+      "options": [
+        "surfeit",
+        "scanty",
+        "ubiquitous",
+        "cacophony"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 12 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 12,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_college_panda_s12_q02",
+      "skill_id": "vocab_college_panda_set_12",
+      "question_text": "The detective found it difficult to gather information because the witness remained ______, refusing to share any details about what happened. The secrecy hindered the investigation.",
+      "options": [
+        "clandestine",
+        "charlatan",
+        "regressive",
+        "dilatory"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 12 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 12,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_college_panda_s12_q03",
+      "skill_id": "vocab_college_panda_set_12",
+      "question_text": "Her speech was filled with ______ statements that gave listeners a completely inaccurate impression of the company’s performance. Her insincerity was evident to everyone.",
+      "options": [
+        "succulence",
+        "duplicitous",
+        "redolent",
+        "ephemeral"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 12 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 12,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_college_panda_s12_q04",
+      "skill_id": "vocab_college_panda_set_12",
+      "question_text": "The abandoned house was ______ of the past, with a faint smell of old wood and dust that hinted at its long history. The scent brought back memories of a bygone era.",
+      "options": [
+        "transient",
+        "circuitous",
+        "redolent",
+        "antediluvian"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 12 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 12,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_college_panda_s12_q05",
+      "skill_id": "vocab_college_panda_set_12",
+      "question_text": "Despite his charming exterior, he was actually a ______, tricking people into buying his ineffective remedies. His deception led to a public outcry.",
+      "options": [
+        "shroud",
+        "oracle",
+        "charlatan",
+        "transient"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 12 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 12,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_college_panda_s12_q06",
+      "skill_id": "vocab_college_panda_set_12",
+      "question_text": "The journalist’s ______ on the corrupt practices of the company shocked the public and led to immediate investigations. The report revealed truths that were hidden for years.",
+      "options": [
+        "irony",
+        "sanctimonious",
+        "expose",
+        "spurious"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 12 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 12,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_college_panda_s12_q07",
+      "skill_id": "vocab_college_panda_set_12",
+      "question_text": "Her claims about the product’s effectiveness were ultimately proven ______, as there was no evidence to support her statements. The false advertising led to a lawsuit.",
+      "options": [
+        "ostensible",
+        "fraudulent",
+        "incredulous",
+        "rectified"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 12 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 12,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_college_panda_s12_q08",
+      "skill_id": "vocab_college_panda_set_12",
+      "question_text": "The manager tried to ______ the situation by addressing the complaints directly and making necessary changes. His actions helped correct the issues quickly.",
+      "options": [
+        "furtive",
+        "bolster",
+        "prevaricate",
+        "rectify"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 12 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 12,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_college_panda_s12_q09",
+      "skill_id": "vocab_college_panda_set_12",
+      "question_text": "His ______ tone, pretending to be concerned, annoyed his colleagues who saw through his hypocritical attitude. This pretense was common in his behavior.",
+      "options": [
+        "sanctimonious",
+        "furtive",
+        "plausible",
+        "incredulous"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 12 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 12,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_college_panda_s12_q10",
+      "skill_id": "vocab_college_panda_set_12",
+      "question_text": "The student’s excuse for missing the test seemed ______, but the teacher decided to give him the benefit of the doubt. The reason sounded likely, even if uncertain.",
+      "options": [
+        "spurious",
+        "incredulous",
+        "plausible",
+        "sanctimonious"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 12 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 12,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_college_panda_s13_q01",
+      "skill_id": "vocab_college_panda_set_13",
+      "question_text": "The fire quickly turned into a ______, spreading through the forest and destroying everything in its path. Firefighters struggled to control the massive blaze.",
+      "options": [
+        "conflagration",
+        "serendipity",
+        "spartan",
+        "vindictiveness"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 13 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 13,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_college_panda_s13_q02",
+      "skill_id": "vocab_college_panda_set_13",
+      "question_text": "Her tendency to hold grudges made her appear ______, as she often sought revenge for even minor offenses. This vengeful attitude caused problems in her relationships.",
+      "options": [
+        "vigilant",
+        "virulent",
+        "vindictive",
+        "divisive"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 13 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 13,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_college_panda_s13_q03",
+      "skill_id": "vocab_college_panda_set_13",
+      "question_text": "The criminal managed to ______ the authorities for months, using clever disguises and constantly changing locations. His ability to evade capture frustrated the investigators.",
+      "options": [
+        "mar",
+        "raze",
+        "embitter",
+        "circumvent"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 13 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 13,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_college_panda_s13_q04",
+      "skill_id": "vocab_college_panda_set_13",
+      "question_text": "Their arguments were often ______, causing constant tension and disagreement within the group. The quarrelsome nature of their discussions made cooperation difficult.",
+      "options": [
+        "dire",
+        "contentious",
+        "fortuitous",
+        "virulent"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 13 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 13,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_college_panda_s13_q05",
+      "skill_id": "vocab_college_panda_set_13",
+      "question_text": "The committee feared that adopting the policy would prove ______, as it could lead to decreased efficiency rather than improved productivity. Their concern was that the new rules might discourage innovation and collaboration.",
+      "options": [
+        "pragmatic",
+        "counterproductive",
+        "clinical",
+        "geriatric"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 13 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 13,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_college_panda_s13_q06",
+      "skill_id": "vocab_college_panda_set_13",
+      "question_text": "Although the author expressed a strong dislike for the new law, she refused to ______ her previous position on similar reforms. She stated that her prior support had been based on a detailed and thorough analysis.",
+      "options": [
+        "validate",
+        "renounce",
+        "advocate",
+        "constitute"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 13 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 13,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_college_panda_s13_q07",
+      "skill_id": "vocab_college_panda_set_13",
+      "question_text": "The professor’s lecture focused on how social attitudes often ______ over time, depending on external cultural and economic pressures. He provided examples of historical trends that shifted dramatically within a generation.",
+      "options": [
+        "yield",
+        "fluctuate",
+        "constitute",
+        "entail"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 13 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 13,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_college_panda_s13_q08",
+      "skill_id": "vocab_college_panda_set_13",
+      "question_text": "Despite initial skepticism, the new leadership program began to __________ significant enthusiasm among students. This reaction surprised many, as the students had been hesitant to engage in similar activities in the past.",
+      "options": [
+        "capitalize",
+        "demur",
+        "incite",
+        "subordinate"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 13 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 13,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_college_panda_s13_q09",
+      "skill_id": "vocab_college_panda_set_13",
+      "question_text": "The scientist’s groundbreaking research marked the __________ of a new era in quantum physics. Her discoveries challenged long-held assumptions and introduced innovative theoretical frameworks.",
+      "options": [
+        "advent",
+        "inversion",
+        "bias",
+        "ambivalence"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 13 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 13,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_college_panda_s13_q10",
+      "skill_id": "vocab_college_panda_set_13",
+      "question_text": "The CEO’s remarks seemed to __________ a sense of optimism among the employees. However, some critics argued that her comments lacked a concrete basis in reality.",
+      "options": [
+        "opine",
+        "incite",
+        "condone",
+        "capitalize"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 13 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 13,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_college_panda_s14_q01",
+      "skill_id": "vocab_college_panda_set_14",
+      "question_text": "The professor’s critique of the new policy was rooted in __________ rather than personal animosity. Her reservations reflected a carefully considered evaluation of potential long-term consequences.",
+      "options": [
+        "bias",
+        "demur",
+        "ambivalence",
+        "conviction"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 14 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 14,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_college_panda_s14_q02",
+      "skill_id": "vocab_college_panda_set_14",
+      "question_text": "The harsh economic policies have placed a significant ______ on small business owners, making it increasingly difficult for them to sustain their operations. Many argue that such policies unfairly burden those who lack the resources to adapt quickly.",
+      "options": [
+        "imposition",
+        "decree",
+        "discord",
+        "envy"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 14 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 14,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_college_panda_s14_q03",
+      "skill_id": "vocab_college_panda_set_14",
+      "question_text": "The scientist’s goal was to ______ curiosity in young minds by creating engaging and interactive educational tools. She believed that sparking interest early could lead to groundbreaking discoveries in the future.",
+      "options": [
+        "exploit",
+        "cultivate",
+        "conduct",
+        "promulgate"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 14 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 14,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_college_panda_s14_q04",
+      "skill_id": "vocab_college_panda_set_14",
+      "question_text": "The two politicians got into a heated ______ during the debate, each accusing the other of dishonesty. The argument was so intense that the moderator had to intervene several times.",
+      "options": [
+        "discord",
+        "alteration",
+        "altercation",
+        "decree"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 14 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 14,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_college_panda_s14_q05",
+      "skill_id": "vocab_college_panda_set_14",
+      "question_text": "The team’s lack of preparation created an ______ error that ultimately cost them the championship. This mistake was so severe that it became a topic of widespread criticism.",
+      "options": [
+        "erratic",
+        "egregious",
+        "sufficient",
+        "subtle"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 14 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 14,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_college_panda_s14_q06",
+      "skill_id": "vocab_college_panda_set_14",
+      "question_text": "The inspiring speech served to ______ a sense of determination among the workers, motivating them to push through the difficult project. The leader's words left the team feeling energized and focused.",
+      "options": [
+        "spur",
+        "evoke",
+        "impart",
+        "galvanizing"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 14 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 14,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_college_panda_s14_q07",
+      "skill_id": "vocab_college_panda_set_14",
+      "question_text": "The young entrepreneur’s new product idea was so innovative that it left her more experienced ______ struggling to keep up. This shift marked a turning point in the industry’s approach to technology.",
+      "options": [
+        "anomaly",
+        "avenue",
+        "predecessor",
+        "principle"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 14 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 14,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_college_panda_s14_q08",
+      "skill_id": "vocab_college_panda_set_14",
+      "question_text": "The teacher emphasized the importance of following the ______ set by previous generations of scientists. These examples served as a guide for how to approach complex research problems.",
+      "options": [
+        "precedent",
+        "principle",
+        "consensus",
+        "dominion"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 14 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 14,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_college_panda_s14_q09",
+      "skill_id": "vocab_college_panda_set_14",
+      "question_text": "The scientist’s breakthrough discovery was hailed as a ______ achievement, one that would alter the field of biology forever. Its significance was so profound that it earned her international recognition.",
+      "options": [
+        "momentous",
+        "rash",
+        "ubiquitous",
+        "unilateral"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 14 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 14,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_college_panda_s14_q10",
+      "skill_id": "vocab_college_panda_set_14",
+      "question_text": "The politician’s ______ remarks about his opponent caused an uproar in the media. Many criticized him for his unnecessarily offensive tone during the debate.",
+      "options": [
+        "scorn",
+        "scandalous",
+        "surly",
+        "petulant"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 14 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 14,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_college_panda_s15_q01",
+      "skill_id": "vocab_college_panda_set_15",
+      "question_text": "The teacher encouraged students to ______ the claims made in the article before accepting them as truth. This exercise was meant to develop their critical thinking skills.",
+      "options": [
+        "reproach",
+        "invoke",
+        "scrutinize",
+        "reinforce"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 15 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 15,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_college_panda_s15_q02",
+      "skill_id": "vocab_college_panda_set_15",
+      "question_text": "The charismatic leader was able to ______ a strong sense of loyalty among his followers. His ability to inspire was unmatched, making him a formidable force in politics.",
+      "options": [
+        "indiscriminately",
+        "invoke",
+        "reinforce",
+        "urge"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 15 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 15,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_college_panda_s15_q03",
+      "skill_id": "vocab_college_panda_set_15",
+      "question_text": "Her ______ decision to invest in the risky venture resulted in significant financial losses. She later admitted that she had not fully considered the potential consequences.",
+      "options": [
+        "rash",
+        "momentous",
+        "surly",
+        "innovative"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 15 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 15,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_college_panda_s15_q04",
+      "skill_id": "vocab_college_panda_set_15",
+      "question_text": "The debate over the policy was marked by ______ opinions, with some participants openly criticizing the proposed changes. The tone of the discussion grew increasingly aggressive as the meeting progressed.",
+      "options": [
+        "hostile",
+        "tactful",
+        "eminent",
+        "dubious"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 15 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 15,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_college_panda_s15_q05",
+      "skill_id": "vocab_college_panda_set_15",
+      "question_text": "The athlete’s ______ performance during the championship earned her widespread praise from fans and critics alike. Her ability to excel under pressure was considered a testament to her skill and dedication.",
+      "options": [
+        "hypothetical",
+        "eminent",
+        "adept",
+        "deficient"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 15 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 15,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_college_panda_s15_q06",
+      "skill_id": "vocab_college_panda_set_15",
+      "question_text": "The scientist sought to ______ her findings in order to better align them with new evidence. She emphasized that this adjustment was necessary to ensure accuracy.",
+      "options": [
+        "modify",
+        "infer",
+        "undulate",
+        "allow"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 15 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 15,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_college_panda_s15_q07",
+      "skill_id": "vocab_college_panda_set_15",
+      "question_text": "The researcher presented her findings in a clear and ______ manner, ensuring that everyone could easily understand her conclusions. Her open and honest approach earned her the trust of the audience.",
+      "options": [
+        "transparent",
+        "ornate",
+        "frankly",
+        "provocative"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 15 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 15,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_college_panda_s15_q08",
+      "skill_id": "vocab_college_panda_set_15",
+      "question_text": "The criminal’s ______ behavior during the trial made it clear that he felt no remorse for his actions. This unnerving attitude left everyone in the courtroom uneasy.",
+      "options": [
+        "sinister",
+        "avid",
+        "squalid",
+        "unjust"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 15 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 15,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_college_panda_s15_q09",
+      "skill_id": "vocab_college_panda_set_15",
+      "question_text": "The director’s new movie was described as ______, deliberately designed to spark debate and challenge societal norms. Critics praised its ability to provoke thought and discussion.",
+      "options": [
+        "lucrative",
+        "ornate",
+        "provocative",
+        "basic"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 15 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 15,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_college_panda_s15_q10",
+      "skill_id": "vocab_college_panda_set_15",
+      "question_text": "The soldiers endured ______ conditions in the camp, where they lacked clean water and adequate shelter. Their resilience in such an environment was nothing short of remarkable.",
+      "options": [
+        "simple",
+        "squalid",
+        "transparent",
+        "sheer"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 15 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 15,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_college_panda_s16_q01",
+      "skill_id": "vocab_college_panda_set_16",
+      "question_text": "The young inventor’s idea was considered ______, as it introduced a completely unique approach to solving the problem. Many experts hailed it as a breakthrough that could revolutionize the industry.",
+      "options": [
+        "novel",
+        "conventional",
+        "obsolete",
+        "peculiar"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 16 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 16,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_college_panda_s16_q02",
+      "skill_id": "vocab_college_panda_set_16",
+      "question_text": "Despite his success, he was never ______ by material possessions and instead focused on building meaningful relationships. His values were admired by many who sought a simpler way of living.",
+      "options": [
+        "materialistic",
+        "adequate",
+        "vital",
+        "satiated"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 16 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 16,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_college_panda_s16_q03",
+      "skill_id": "vocab_college_panda_set_16",
+      "question_text": "The coach’s motivational speech served to ______ the team’s determination to win the championship. His words emphasized their strengths and inspired them to work harder.",
+      "options": [
+        "deplete",
+        "underscore",
+        "persecute",
+        "conceive"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 16 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 16,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_college_panda_s16_q04",
+      "skill_id": "vocab_college_panda_set_16",
+      "question_text": "The debate moderator emphasized the need for ______ in handling the discussion, ensuring no bias influenced the process. This fairness was crucial in maintaining the integrity of the event.",
+      "options": [
+        "malicious",
+        "ferocity",
+        "impartiality",
+        "benevolent"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 16 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 16,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_college_panda_s16_q05",
+      "skill_id": "vocab_college_panda_set_16",
+      "question_text": "The team’s dedication to their project was ______; no matter how much they achieved, they always pushed for more. Their relentless drive impressed everyone who worked with them.",
+      "options": [
+        "sparingly",
+        "insatiable",
+        "pinnacle",
+        "nuance"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 16 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 16,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_college_panda_s16_q06",
+      "skill_id": "vocab_college_panda_set_16",
+      "question_text": "The general’s leadership was considered ______ to the success of the mission, as his decisions determined the outcome. Without his guidance, the troops might have failed.",
+      "options": [
+        "ambiguous",
+        "paramount",
+        "fundamental",
+        "postulate"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 16 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 16,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_college_panda_s16_q07",
+      "skill_id": "vocab_college_panda_set_16",
+      "question_text": "The artist’s work was praised for its ______ attention to detail, as even the smallest elements were carefully considered. This dedication ensured that each piece was both precise and meaningful.",
+      "options": [
+        "outsized",
+        "nebulous",
+        "sporadic",
+        "scrupulous"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 16 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 16,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_college_panda_s16_q08",
+      "skill_id": "vocab_college_panda_set_16",
+      "question_text": "The lack of clear policies has created a ______ situation where employees are unsure of how to proceed. This ambiguity has led to delays and confusion within the organization.",
+      "options": [
+        "palpable",
+        "nebulous",
+        "momentous",
+        "irreproachable"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 16 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 16,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_college_panda_s16_q09",
+      "skill_id": "vocab_college_panda_set_16",
+      "question_text": "The historical discovery was considered ______, as it shed new light on long-debated theories. Historians hailed it as one of the most significant finds of the decade.",
+      "options": [
+        "lamentable",
+        "momentous",
+        "sporadic",
+        "pristine"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 16 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 16,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_college_panda_s16_q10",
+      "skill_id": "vocab_college_panda_set_16",
+      "question_text": "The politician tried to ______ his reputation by providing evidence that he had no involvement in the scandal. Despite his efforts, public trust in him remained low.",
+      "options": [
+        "accentuate",
+        "preclude",
+        "vindicate",
+        "counteract"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook college_panda Set 16 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 16,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_ivy_global_s01_q01",
+      "skill_id": "vocab_ivy_global_set_01",
+      "question_text": "The ancient ruins remained ______, untouched by modern development and preserving their original beauty. Visitors often marveled at how well the site had been maintained.",
+      "options": [
+        "pristine",
+        "insuperable",
+        "irreproachable",
+        "buttressed"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 1 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_ivy_global_s01_q02",
+      "skill_id": "vocab_ivy_global_set_01",
+      "question_text": "The teacher’s explanation was so ______ that many students left the lecture feeling more confused than before. Her lack of clarity made the material difficult to understand.",
+      "options": [
+        "equivocal",
+        "conventional",
+        "pretentiousness",
+        "manifestations"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 1 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_ivy_global_s01_q03",
+      "skill_id": "vocab_ivy_global_set_01",
+      "question_text": "The architect’s design was criticized for being overly ______, with unnecessary details that distracted from the building’s purpose. Some argued that a simpler approach would have been more effective.",
+      "options": [
+        "austere",
+        "superfluous",
+        "idiosyncratic",
+        "ineluctable"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 1 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_ivy_global_s01_q04",
+      "skill_id": "vocab_ivy_global_set_01",
+      "question_text": "The company aimed to ______ its product offerings by adding new features to appeal to a broader audience. This strategy was expected to boost sales significantly.",
+      "options": [
+        "supplant",
+        "rectify",
+        "ameliorate",
+        "augment"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 1 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_ivy_global_s01_q05",
+      "skill_id": "vocab_ivy_global_set_01",
+      "question_text": "Despite her best efforts, she realized that some of her goals were simply ______ given the current circumstances. This realization prompted her to reassess her priorities.",
+      "options": [
+        "superfluous",
+        "unattainable",
+        "idiosyncratic",
+        "equitable"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 1 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_ivy_global_s01_q06",
+      "skill_id": "vocab_ivy_global_set_01",
+      "question_text": "The historian was known for his ______ work ethic, often spending hours poring over dusty archives to uncover forgotten details. His dedication inspired many of his colleagues.",
+      "options": [
+        "arduous",
+        "benevolent",
+        "orthodox",
+        "erratic"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 1 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_ivy_global_s01_q07",
+      "skill_id": "vocab_ivy_global_set_01",
+      "question_text": "The author’s argument was ______, leaving no room for doubt or misinterpretation among readers. Her confidence in the evidence she presented was apparent.",
+      "options": [
+        "prestige",
+        "tenuous",
+        "homogeneous",
+        "unequivocal"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 1 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_ivy_global_s01_q08",
+      "skill_id": "vocab_ivy_global_set_01",
+      "question_text": "The old process was ______ by a newer, more efficient method, drastically improving production times. This change marked a significant advancement for the company.",
+      "options": [
+        "yielded",
+        "superseded",
+        "impeded",
+        "monetized"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 1 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_ivy_global_s01_q09",
+      "skill_id": "vocab_ivy_global_set_01",
+      "question_text": "The scientist’s findings were met with intense ______ by her peers, who wanted to ensure the validity of her claims. This level of analysis reflected the importance of her research.",
+      "options": [
+        "prestige",
+        "scrutiny",
+        "antagonist",
+        "emulate"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 1 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_ivy_global_s01_q10",
+      "skill_id": "vocab_ivy_global_set_01",
+      "question_text": "His determination was ______, as he refused to compromise even when faced with significant challenges. Many admired his resolve, while others found it frustrating.",
+      "options": [
+        "individualistic",
+        "tenuous",
+        "unyielding",
+        "comparison"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 1 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 1,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_ivy_global_s02_q01",
+      "skill_id": "vocab_ivy_global_set_02",
+      "question_text": "The software aims to ______ the user experience by imitating natural human interactions. This feature makes it stand out from competitors in the market.",
+      "options": [
+        "supersede",
+        "emulate",
+        "impede",
+        "convey"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 2 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_ivy_global_s02_q02",
+      "skill_id": "vocab_ivy_global_set_02",
+      "question_text": "The investigation team was instructed to ______ every detail of the case, leaving no piece of evidence unchecked. This rigorous process was essential to uncover the truth.",
+      "options": [
+        "scrutinize",
+        "startle",
+        "familiarize",
+        "reject"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 2 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_ivy_global_s02_q03",
+      "skill_id": "vocab_ivy_global_set_02",
+      "question_text": "The material used for the sculpture was so ______ that even minor impacts could cause damage. This fragility made transporting it extremely challenging.",
+      "options": [
+        "robust",
+        "fragile",
+        "untoward",
+        "omnipresent"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 2 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_ivy_global_s02_q04",
+      "skill_id": "vocab_ivy_global_set_02",
+      "question_text": "The scientist was able to ______ patterns in the data to predict future trends in climate change. Her method of projecting possibilities earned her significant recognition.",
+      "options": [
+        "visualize",
+        "partition",
+        "define",
+        "extrapolate"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 2 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_ivy_global_s02_q05",
+      "skill_id": "vocab_ivy_global_set_02",
+      "question_text": "The disagreement caused the two factions to ______, each pursuing entirely different approaches to solving the problem. This split weakened their overall effectiveness.",
+      "options": [
+        "scrutinize",
+        "reject",
+        "diverge",
+        "replace"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 2 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_ivy_global_s02_q06",
+      "skill_id": "vocab_ivy_global_set_02",
+      "question_text": "Despite her calm demeanor, the sudden noise managed to ______ her, causing her to jump in surprise. Her reaction was caught on camera, much to everyone’s amusement.",
+      "options": [
+        "reject",
+        "startle",
+        "observe",
+        "manifest"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 2 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_ivy_global_s02_q07",
+      "skill_id": "vocab_ivy_global_set_02",
+      "question_text": "2. The concept of fairness is ______ to the judicial system, as it forms the foundation of all legal decisions. Without it, the system would lose its credibility.",
+      "options": [
+        "amplify",
+        "intrinsic",
+        "ambiguous",
+        "subordinate"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 2 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_ivy_global_s02_q08",
+      "skill_id": "vocab_ivy_global_set_02",
+      "question_text": "The researcher’s use of outdated methods was criticized as ______, as they failed to provide any meaningful contribution to the study. Her reliance on unnecessary procedures wasted valuable time and resources.",
+      "options": [
+        "gratuitous",
+        "contingent",
+        "exploitative",
+        "arcane"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 2 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_ivy_global_s02_q09",
+      "skill_id": "vocab_ivy_global_set_02",
+      "question_text": "The journalist was careful not to ______ the reputation of the public figure, ensuring that her reporting remained objective. Her commitment to fairness earned her respect in her field.",
+      "options": [
+        "dignify",
+        "denigrate",
+        "nullify",
+        "stymie"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 2 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_ivy_global_s02_q10",
+      "skill_id": "vocab_ivy_global_set_02",
+      "question_text": "The team’s progress was ______ by constant technical issues, forcing them to delay the project repeatedly. They eventually called in outside experts to resolve the problems.",
+      "options": [
+        "stymied",
+        "gratuitous",
+        "obliged",
+        "circumvented"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 2 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 2,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_ivy_global_s03_q01",
+      "skill_id": "vocab_ivy_global_set_03",
+      "question_text": "The film featured an ______ plot twist that left the audience guessing until the very end. Its complexity added depth to the overall story.",
+      "options": [
+        "adept",
+        "palatable",
+        "arcane",
+        "lighthearted"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 3 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_ivy_global_s03_q02",
+      "skill_id": "vocab_ivy_global_set_03",
+      "question_text": "The treaty negotiations were successful because both sides agreed to ______ their demands for the sake of peace. This compromise allowed for a resolution to the conflict.",
+      "options": [
+        "dignify",
+        "nullify",
+        "circumvent",
+        "reprieve"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 3 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_ivy_global_s03_q03",
+      "skill_id": "vocab_ivy_global_set_03",
+      "question_text": "The therapist’s advice helped to ______ the deeper causes of the patient’s anxiety, allowing for more targeted treatment. This insight marked a turning point in the patient’s recovery.",
+      "options": [
+        "illuminate",
+        "counterfactual",
+        "demarcation",
+        "intercede"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 3 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_ivy_global_s03_q04",
+      "skill_id": "vocab_ivy_global_set_03",
+      "question_text": "The teacher’s ______ attitude made it difficult for students to ask questions, as they feared her disapproval of their curiosity. Her uncooperative nature often hindered productive discussions in the classroom.",
+      "options": [
+        "recalcitrant",
+        "sincere",
+        "tranquil",
+        "analogous"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 3 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_ivy_global_s03_q05",
+      "skill_id": "vocab_ivy_global_set_03",
+      "question_text": "The scientist’s argument was based largely on ______, as she lacked sufficient data to fully support her hypothesis. This speculative approach drew criticism from her peers.",
+      "options": [
+        "profound",
+        "notional",
+        "coincidence",
+        "conjecture"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 3 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_ivy_global_s03_q06",
+      "skill_id": "vocab_ivy_global_set_03",
+      "question_text": "The diplomat was known for his ability to ______ in tense negotiations, often helping opposing parties find common ground. His interventions were instrumental in resolving numerous international conflicts.",
+      "options": [
+        "amass",
+        "intercede",
+        "demarcation",
+        "contentious"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 3 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_ivy_global_s03_q07",
+      "skill_id": "vocab_ivy_global_set_03",
+      "question_text": "The modest, unassuming artist preferred to remain ______, avoiding the limelight even after gaining critical acclaim. Her low profile made her a mystery to many fans.",
+      "options": [
+        "adroit",
+        "inconspicuous",
+        "unwarranted",
+        "veritable"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 3 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_ivy_global_s03_q08",
+      "skill_id": "vocab_ivy_global_set_03",
+      "question_text": "The board emphasized the importance of ______ in handling sensitive company information to avoid any potential leaks. This quality was crucial for maintaining trust within the organization.",
+      "options": [
+        "novel",
+        "blend",
+        "discretion",
+        "relocation"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 3 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_ivy_global_s03_q09",
+      "skill_id": "vocab_ivy_global_set_03",
+      "question_text": "The rising cost of housing in the city has reached ______ levels, forcing many residents to move to more affordable areas. Critics argue that this trend has deepened economic inequality.",
+      "options": [
+        "exorbitant",
+        "reconstituted",
+        "inconspicuous",
+        "jointly"
+      ],
+      "correct_answer": 3,
+      "correct_letter": "D",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 3 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_ivy_global_s03_q10",
+      "skill_id": "vocab_ivy_global_set_03",
+      "question_text": "The city decided to ________ the old theater, bringing it back to its former glory with updated seating and modernized lighting. The restoration aimed to preserve its historical charm while improving functionality.",
+      "options": [
+        "Expand",
+        "Renovate",
+        "Demolish",
+        "Replace"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 3 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 3,
+      "set_question": 10
+    },
+    {
+      "id": "vocab_ivy_global_s04_q01",
+      "skill_id": "vocab_ivy_global_set_04",
+      "question_text": "After realizing she had left her phone at the café, Emma hurried back to ________ it. She was relieved when the barista handed it back to her, safe and sound.",
+      "options": [
+        "Relinquish",
+        "Retrieve",
+        "Conceal",
+        "Reject"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 4 Fighting Time Q1",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 1
+    },
+    {
+      "id": "vocab_ivy_global_s04_q02",
+      "skill_id": "vocab_ivy_global_set_04",
+      "question_text": "His speech was ________, filled with nervous pauses and abrupt stops. The audience could tell that he was struggling to find the right words.",
+      "options": [
+        "Conceal",
+        "Retrieve",
+        "Halting",
+        "Hallmark"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 4 Fighting Time Q2",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 2
+    },
+    {
+      "id": "vocab_ivy_global_s04_q03",
+      "skill_id": "vocab_ivy_global_set_04",
+      "question_text": "A strong work ethic is often considered a ________ of successful entrepreneurs. This defining trait allows them to persist through challenges and achieve their goals.",
+      "options": [
+        "Burden",
+        "Hallmark",
+        "Discrepancy",
+        "Obstacle"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 4 Fighting Time Q3",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 3
+    },
+    {
+      "id": "vocab_ivy_global_s04_q04",
+      "skill_id": "vocab_ivy_global_set_04",
+      "question_text": "The ancient bridge was built to ________ the weight of heavy wagons and pedestrians. Even after centuries, it remains strong and reliable.",
+      "options": [
+        "Bear",
+        "Remove",
+        "Lift",
+        "Avoid"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 4 Fighting Time Q4",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 4
+    },
+    {
+      "id": "vocab_ivy_global_s04_q05",
+      "skill_id": "vocab_ivy_global_set_04",
+      "question_text": "The magician’s tricks seemed ______, leaving the audience unsure of what was real and what was illusion.",
+      "options": [
+        "Illusory",
+        "Inexplicable",
+        "Put down",
+        "Coordinate"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 4 Fighting Time Q5",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 5
+    },
+    {
+      "id": "vocab_ivy_global_s04_q06",
+      "skill_id": "vocab_ivy_global_set_04",
+      "question_text": "The sudden disappearance of the documents was completely ______, baffling everyone in the office.",
+      "options": [
+        "Considerate",
+        "Inexplicable",
+        "Expedite",
+        "Apprentice"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 4 Fighting Time Q6",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 6
+    },
+    {
+      "id": "vocab_ivy_global_s04_q07",
+      "skill_id": "vocab_ivy_global_set_04",
+      "question_text": "His sarcastic remark was meant as a joke but came across as a ______ to the young intern.",
+      "options": [
+        "Fecundity",
+        "Decry",
+        "Put down",
+        "Melodic"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 4 Fighting Time Q7",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 7
+    },
+    {
+      "id": "vocab_ivy_global_s04_q08",
+      "skill_id": "vocab_ivy_global_set_04",
+      "question_text": "The manager tried to ______ the schedules of all team members to ensure a smooth workflow.",
+      "options": [
+        "Coordinate",
+        "Soothe",
+        "Withdraw",
+        "Expediency"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 4 Fighting Time Q8",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 8
+    },
+    {
+      "id": "vocab_ivy_global_s04_q09",
+      "skill_id": "vocab_ivy_global_set_04",
+      "question_text": "Students must officially ______ in the course before the deadline if they wish to have their grades recorded for the semester.",
+      "options": [
+        "value",
+        "enroll",
+        "detect",
+        "disregard"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 4 Fighting Time Q9",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 9
+    },
+    {
+      "id": "vocab_ivy_global_s04_q10",
+      "skill_id": "vocab_ivy_global_set_04",
+      "question_text": "The company made the unfortunate decision to ______ the veteran employees' years of service, treating them as if their past contributions meant nothing.",
+      "options": [
+        "value",
+        "display",
+        "disregard",
+        "restate"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "source": "Vocabook ivy_global Set 4 Fighting Time Q10",
+      "bank": "vocabulary",
+      "set": 4,
+      "set_question": 10
+    }
+  ]
+}

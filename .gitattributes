@@ -1,0 +1,9 @@
+# Normalize all text files to LF in the repository for cross-platform
+# consistency (the app targets Linux-based deployment: Streamlit Cloud /
+# Hugging Face Spaces). Working-copy checkout still uses the platform default.
+* text=auto eol=lf
+
+# Treat SQLite databases and common assets as binary (never normalize/diff).
+*.db  binary
+*.png binary
+*.jpg binary

@@ -1,0 +1,132 @@
+[
+  {
+    "id": "use_collocations",
+    "name": "Vocabulary in Use: Verb-Noun Collocations",
+    "category": "Vocabulary in Use"
+  },
+  {
+    "id": "use_word_formation",
+    "name": "Vocabulary in Use: Word Formation",
+    "category": "Vocabulary in Use"
+  },
+  {
+    "id": "use_confusable_words",
+    "name": "Vocabulary in Use: Confusable Words",
+    "category": "Vocabulary in Use"
+  },
+  {
+    "id": "sat_rhetorical_synthesis",
+    "name": "SAT Writing: Rhetorical Synthesis",
+    "category": "Grammar"
+  },
+  {
+    "id": "sat_standard_english",
+    "name": "SAT Writing: Standard English Conventions",
+    "category": "Grammar"
+  },
+  {
+    "id": "sat_transitions",
+    "name": "SAT Writing: Transitions",
+    "category": "Grammar"
+  },
+  {
+    "id": "vocab_college_panda_set_01",
+    "name": "Vocab: College Panda Set 1",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_college_panda_set_02",
+    "name": "Vocab: College Panda Set 2",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_college_panda_set_03",
+    "name": "Vocab: College Panda Set 3",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_college_panda_set_04",
+    "name": "Vocab: College Panda Set 4",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_college_panda_set_05",
+    "name": "Vocab: College Panda Set 5",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_college_panda_set_06",
+    "name": "Vocab: College Panda Set 6",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_college_panda_set_07",
+    "name": "Vocab: College Panda Set 7",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_college_panda_set_08",
+    "name": "Vocab: College Panda Set 8",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_college_panda_set_09",
+    "name": "Vocab: College Panda Set 9",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_college_panda_set_10",
+    "name": "Vocab: College Panda Set 10",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_college_panda_set_11",
+    "name": "Vocab: College Panda Set 11",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_college_panda_set_12",
+    "name": "Vocab: College Panda Set 12",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_college_panda_set_13",
+    "name": "Vocab: College Panda Set 13",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_college_panda_set_14",
+    "name": "Vocab: College Panda Set 14",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_college_panda_set_15",
+    "name": "Vocab: College Panda Set 15",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_college_panda_set_16",
+    "name": "Vocab: College Panda Set 16",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_ivy_global_set_01",
+    "name": "Vocab: Ivy Global Set 1",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_ivy_global_set_02",
+    "name": "Vocab: Ivy Global Set 2",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_ivy_global_set_03",
+    "name": "Vocab: Ivy Global Set 3",
+    "category": "Vocabulary"
+  },
+  {
+    "id": "vocab_ivy_global_set_04",
+    "name": "Vocab: Ivy Global Set 4",
+    "category": "Vocabulary"
+  }
+]
