@@ -965,6 +965,59 @@ def _apply_theme_css() -> None:
     if not is_night:
         theme_css += day_final_css
 
+    # Reading/grammar/vocabulary content boxes — real CSS (inline !important gets
+    # stripped by Streamlit's HTML sanitizer, so it MUST live in a <style> block).
+    if is_night:
+        content_box_css = """
+        .stApp .content-box {
+            background: #0f1b2d !important;
+            border: 1px solid #64748b !important;
+            border-left: 4px solid #38bdf8 !important;
+        }
+        .stApp .content-box,
+        .stApp .content-box *,
+        .stApp .content-box span,
+        .stApp .content-box p {
+            color: #f8fafc !important;
+        }
+        """
+    else:
+        content_box_css = """
+        .stApp .content-box {
+            background: #f1f5f9 !important;
+            border: 1px solid #94a3b8 !important;
+            border-left: 4px solid #1f77b4 !important;
+        }
+        .stApp .content-box,
+        .stApp .content-box *,
+        .stApp .content-box span,
+        .stApp .content-box p {
+            color: #0f172a !important;
+        }
+        """
+    theme_css += content_box_css
+
+    # Summary/expander header must stay readable in both themes (was white-on-white).
+    if is_night:
+        theme_css += """
+        .stApp [data-testid="stExpander"] summary,
+        .stApp [data-testid="stExpander"] summary * ,
+        .stApp details summary,
+        .stApp details summary * {
+            color: #f8fafc !important;
+        }
+        .stApp [data-testid="stExpander"] summary,
+        .stApp details summary {
+            background-color: #0f1b2d !important;
+        }
+        .stApp [data-testid="stExpander"],
+        .stApp [data-testid="stExpander"] details {
+            background-color: #0f1b2d !important;
+            border: 1px solid #334155 !important;
+            border-radius: 10px !important;
+        }
+        """
+
     eye_toggle_css = """
     .stApp [data-testid="stTextInputRootElement"],
     .stApp [data-testid="stTextInput"] > div,
@@ -1823,22 +1876,9 @@ def _render_finish_warnings() -> None:
             st.rerun()
 
 
-def _theme_box_colors() -> tuple[str, str, str, str]:
-    """Return (bg, fg, border, accent) tuned for current theme."""
-    if st.session_state.get("theme") == "night":
-        # High-contrast on pure-black page: dark slate box, bright text.
-        return "#111c2e", "#f8fafc", "#64748b", "#38bdf8"
-    return "#f1f5f9", "#0f172a", "#94a3b8", "#1f77b4"
-
-
 def _render_reading_passage_box(text: str) -> None:
-    bg, fg, border, accent = _theme_box_colors()
     st.markdown(
         f"""<div class="content-box" style="
-            background:{bg} !important;
-            color:{fg} !important;
-            border:1px solid {border};
-            border-left:4px solid {accent};
             border-radius:10px;
             padding:1.2rem 1.5rem;
             margin-bottom:1rem;
@@ -1846,19 +1886,14 @@ def _render_reading_passage_box(text: str) -> None:
             overflow-y:auto;
             line-height:1.7;
             font-size:1rem;
-        "><span style="color:{fg} !important;">{text}</span></div>""",
+        "><span>{text}</span></div>""",
         unsafe_allow_html=True,
     )
 
 
 def _render_prompt_box(text: str) -> None:
-    bg, fg, border, accent = _theme_box_colors()
     st.markdown(
         f"""<div class="content-box" style="
-            background:{bg} !important;
-            color:{fg} !important;
-            border:1px solid {border};
-            border-left:4px solid {accent};
             border-radius:10px;
             padding:1rem 1.2rem;
             margin-bottom:1rem;
@@ -1867,7 +1902,7 @@ def _render_prompt_box(text: str) -> None:
             line-height:1.65;
             font-size:1rem;
             font-weight:600;
-        "><span style="color:{fg} !important;">{text}</span></div>""",
+        "><span>{text}</span></div>""",
         unsafe_allow_html=True,
     )
 
