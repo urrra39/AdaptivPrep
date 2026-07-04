@@ -2,7 +2,7 @@
   "meta": {
     "source": "SAT Suite Question Bank (Writing Questions.pdf)",
     "pdf": "Writing Questions.pdf",
-    "question_count": 20,
+    "question_count": 50,
     "pdf_question_count": 20,
     "answer_sources": {
       "2b08f514": "verified_key",
@@ -27,7 +27,7 @@
       "512f0ac9": "sat_suite_qb"
     },
     "parse_errors": [],
-    "note": "Writing Questions.pdf contains 20 official SAT Writing items, not 200. All available items from the book are included."
+    "note": "20 SAT official + 30 supplementary = 50 total grammar items."
   },
   "skills": [
     "sat_rhetorical_synthesis",
@@ -373,6 +373,516 @@
       "correct_letter": "A",
       "difficulty": "hard",
       "source": "SAT Suite QB (SAT Reading and Writing Standard English Form, Structure, and Hard Conventions Sense)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "The ancient Egyptians developed one of the earliest writing systems. ______ the Sumerians in Mesopotamia independently created cuneiform around the same period. Which choice completes the text with the most logical transition?",
+      "options": [
+        "Therefore,",
+        "Similarly,",
+        "In contrast,",
+        "As a result,"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "id": "gram_8bace9a7",
+      "external_id": "8bace9a7",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "Renewable energy sources like solar and wind power produce no greenhouse gas emissions during operation. ______ they require significant initial investment in infrastructure. Which choice completes the text with the most logical transition?",
+      "options": [
+        "Furthermore,",
+        "However,",
+        "Therefore,",
+        "In other words,"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "id": "gram_7103ffaf",
+      "external_id": "7103ffaf",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "The city council approved the new park design after months of public consultation. ______ construction is expected to begin early next year. Which choice completes the text with the most logical transition?",
+      "options": [
+        "Nevertheless,",
+        "In contrast,",
+        "Accordingly,",
+        "On the other hand,"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "id": "gram_e82a9a46",
+      "external_id": "e82a9a46",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "Many scientists initially dismissed the theory of continental drift proposed by Alfred Wegener in 1912. ______ mounting evidence from fossils, rock formations, and ocean floor mapping eventually led to its acceptance as plate tectonics. Which choice completes the text with the most logical transition?",
+      "options": [
+        "Moreover,",
+        "For instance,",
+        "Yet,",
+        "In addition,"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "hard",
+      "id": "gram_b7344a8b",
+      "external_id": "b7344a8b",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "The museum had planned to open its new wing in September. ______ unexpected delays in construction pushed the opening to December. Which choice completes the text with the most logical transition?",
+      "options": [
+        "However,",
+        "Furthermore,",
+        "Likewise,",
+        "For example,"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "easy",
+      "id": "gram_9f768878",
+      "external_id": "9f768878",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "Dr. Martinez has published extensively on the effects of sleep deprivation on cognitive function. Her research shows that even moderate sleep loss impairs attention. ______ she has demonstrated that chronic sleep deprivation can lead to long-term memory deficits. Which choice completes the text with the most logical transition?",
+      "options": [
+        "In contrast,",
+        "Additionally,",
+        "Nevertheless,",
+        "Instead,"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "id": "gram_402cfbcb",
+      "external_id": "402cfbcb",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "The small island nation faced severe economic challenges due to its limited natural resources and remote location. ______ it developed a thriving tourism industry that now accounts for more than half of its GDP. Which choice completes the text with the most logical transition?",
+      "options": [
+        "Similarly,",
+        "Consequently,",
+        "Nonetheless,",
+        "In addition,"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "hard",
+      "id": "gram_ea6f4526",
+      "external_id": "ea6f4526",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "Classical music concerts traditionally require audiences to remain silent during performances. ______ many contemporary orchestras have introduced casual concerts where audience members may clap between movements. Which choice completes the text with the most logical transition?",
+      "options": [
+        "Therefore,",
+        "For instance,",
+        "In recent years, however,",
+        "As a result,"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "id": "gram_ae53d5ed",
+      "external_id": "ae53d5ed",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "The experiment confirmed that higher temperatures accelerate chemical reactions. ______ the rate of reaction doubled with every 10-degree increase in temperature, consistent with the Arrhenius equation. Which choice completes the text with the most logical transition?",
+      "options": [
+        "Specifically,",
+        "However,",
+        "In contrast,",
+        "Nevertheless,"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "id": "gram_2ff21c37",
+      "external_id": "2ff21c37",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "Urban gardens provide fresh produce to communities that may lack access to affordable healthy food. ______ they create green spaces that improve air quality and reduce the urban heat island effect. Which choice completes the text with the most logical transition?",
+      "options": [
+        "In contrast,",
+        "Moreover,",
+        "Nevertheless,",
+        "Instead,"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "easy",
+      "id": "gram_7efbb2e4",
+      "external_id": "7efbb2e4",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "The new hybrid vehicle consumes 40% less fuel than its predecessor. ______ its reduced emissions make it an environmentally friendlier option for daily commuting. Which choice completes the text with the most logical transition?",
+      "options": [
+        "In contrast,",
+        "Furthermore,",
+        "Nevertheless,",
+        "Instead,"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "easy",
+      "id": "gram_0d778816",
+      "external_id": "0d778816",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "The ancient Romans built an extensive network of roads that connected the far reaches of their empire. These roads facilitated trade, military movement, and communication. ______ many of these roads still exist today and form the basis of modern European highway systems. Which choice completes the text with the most logical transition?",
+      "options": [
+        "In contrast,",
+        "Remarkably,",
+        "Therefore,",
+        "Instead,"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "id": "gram_9358d6f2",
+      "external_id": "9358d6f2",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_standard_english",
+      "question_text": "The committee, along with several independent advisors, ______ reviewed the proposal before submitting the final report to the board. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "have thoroughly",
+        "has thoroughly",
+        "are thoroughly",
+        "were thoroughly"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "id": "gram_8adfaa23",
+      "external_id": "8adfaa23",
+      "source": "Grammar supplement (sat_standard_english)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_standard_english",
+      "question_text": "Neither the students nor the teacher ______ aware of the schedule change until the morning announcement. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "were",
+        "was",
+        "are",
+        "have been"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "id": "gram_008b684f",
+      "external_id": "008b684f",
+      "source": "Grammar supplement (sat_standard_english)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_standard_english",
+      "question_text": "The painting, which was completed in 1889 by Vincent van ______ depicts a swirling night sky over a quiet village. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "Gogh,",
+        "Gogh:",
+        "Gogh;",
+        "Gogh"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "easy",
+      "id": "gram_1cc3b5be",
+      "external_id": "1cc3b5be",
+      "source": "Grammar supplement (sat_standard_english)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_standard_english",
+      "question_text": "Having completed ______ research on migratory patterns, the ornithologist published her findings in a peer-reviewed journal. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "hers",
+        "her",
+        "their",
+        "its"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "easy",
+      "id": "gram_b67b902b",
+      "external_id": "b67b902b",
+      "source": "Grammar supplement (sat_standard_english)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_standard_english",
+      "question_text": "The data collected from the satellite ______ that ocean temperatures have risen significantly over the past two decades. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "suggests",
+        "suggest",
+        "is suggesting",
+        "has suggested"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "id": "gram_2d643801",
+      "external_id": "2d643801",
+      "source": "Grammar supplement (sat_standard_english)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_standard_english",
+      "question_text": "Each of the participants in the study ______ required to sign a consent form before the experiment began. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "were",
+        "was",
+        "are",
+        "have been"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "easy",
+      "id": "gram_d23e70dc",
+      "external_id": "d23e70dc",
+      "source": "Grammar supplement (sat_standard_english)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_standard_english",
+      "question_text": "The novelist, known for her vivid descriptions of rural ______ has won numerous literary awards, including the Pulitzer Prize. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "life,",
+        "life;",
+        "life:",
+        "life"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "id": "gram_247ee399",
+      "external_id": "247ee399",
+      "source": "Grammar supplement (sat_standard_english)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_standard_english",
+      "question_text": "The research team found that plants exposed to classical music grew ______ than those kept in silence. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "more taller",
+        "most tallest",
+        "taller",
+        "more tall"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "easy",
+      "id": "gram_9cb5e532",
+      "external_id": "9cb5e532",
+      "source": "Grammar supplement (sat_standard_english)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_standard_english",
+      "question_text": "The archaeologist carefully ______ the artifacts, making sure not to damage any of the delicate pottery fragments found at the site. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "cataloged",
+        "has cataloged",
+        "cataloging",
+        "catalog"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "id": "gram_b9dc4324",
+      "external_id": "b9dc4324",
+      "source": "Grammar supplement (sat_standard_english)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_standard_english",
+      "question_text": "Between the two proposed ______ the board chose the one that required less initial investment. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "solutions:",
+        "solutions;",
+        "solutions,",
+        "solutions"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "id": "gram_10dceee7",
+      "external_id": "10dceee7",
+      "source": "Grammar supplement (sat_standard_english)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_standard_english",
+      "question_text": "The professor, along with two graduate ______ is conducting a study on the effects of urbanization on local bird populations. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "students,",
+        "students;",
+        "students:",
+        "students"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "id": "gram_19b062cc",
+      "external_id": "19b062cc",
+      "source": "Grammar supplement (sat_standard_english)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_standard_english",
+      "question_text": "After the team ______ the experiment three times and obtained consistent results, they submitted their findings for publication. Which choice completes the text so that it conforms to the conventions of Standard English?",
+      "options": [
+        "had replicated",
+        "have replicated",
+        "replicating",
+        "replicate"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "hard",
+      "id": "gram_2170aa22",
+      "external_id": "2170aa22",
+      "source": "Grammar supplement (sat_standard_english)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_rhetorical_synthesis",
+      "question_text": "While researching a topic, a student has taken the following notes: The Great Barrier Reef is the world's largest coral reef system. It is located off the coast of Queensland, Australia. Rising ocean temperatures have caused mass coral bleaching events. A 2022 survey found that 91% of the reef's coral had been bleached. Conservation efforts include reducing agricultural runoff and limiting fishing. The student wants to emphasize the severity of the environmental threat to the reef. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+      "options": [
+        "A 2022 survey revealed that 91% of the Great Barrier Reef's coral had been bleached due to rising ocean temperatures.",
+        "The Great Barrier Reef, the world's largest coral reef system, is located off the coast of Queensland, Australia.",
+        "Conservation efforts for the Great Barrier Reef include reducing agricultural runoff and limiting fishing.",
+        "Rising ocean temperatures have affected coral reefs worldwide, including the Great Barrier Reef."
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "medium",
+      "id": "gram_122a8d06",
+      "external_id": "122a8d06",
+      "source": "Grammar supplement (sat_rhetorical_synthesis)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "The volcanic eruption destroyed much of the infrastructure. ______ the resilient community rebuilt within two years, attracting global admiration. Which choice completes the text with the most logical transition?",
+      "options": [
+        "Similarly,",
+        "In addition,",
+        "Nevertheless,",
+        "For example,"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "medium",
+      "id": "gram_dfbced6c",
+      "external_id": "dfbced6c",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_standard_english",
+      "question_text": "The discovery of penicillin by Alexander Fleming in 1928 ______ one of the most important breakthroughs in medical history. Which choice conforms to Standard English?",
+      "options": [
+        "remain",
+        "remains",
+        "are remaining",
+        "have remained"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "easy",
+      "id": "gram_248c60f3",
+      "external_id": "248c60f3",
+      "source": "Grammar supplement (sat_standard_english)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_standard_english",
+      "question_text": "The athletes who trained the ______ during the off-season showed the greatest improvement. Which choice conforms to Standard English?",
+      "options": [
+        "most hardest",
+        "more harder",
+        "hardest",
+        "most hard"
+      ],
+      "correct_answer": 2,
+      "correct_letter": "C",
+      "difficulty": "easy",
+      "id": "gram_e2ce603a",
+      "external_id": "e2ce603a",
+      "source": "Grammar supplement (sat_standard_english)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_transitions",
+      "question_text": "Deep-sea creatures have adapted to extreme pressure and complete darkness. ______ some species have evolved bioluminescence to attract prey. Which choice completes the text with the most logical transition?",
+      "options": [
+        "However,",
+        "For instance,",
+        "In contrast,",
+        "Nevertheless,"
+      ],
+      "correct_answer": 1,
+      "correct_letter": "B",
+      "difficulty": "medium",
+      "id": "gram_7a5ef6fa",
+      "external_id": "7a5ef6fa",
+      "source": "Grammar supplement (sat_transitions)",
+      "bank": "grammar"
+    },
+    {
+      "skill_id": "sat_standard_english",
+      "question_text": "The library, which houses over two million ______ is open to both students and the public. Which choice conforms to Standard English?",
+      "options": [
+        "volumes,",
+        "volumes;",
+        "volumes:",
+        "volumes"
+      ],
+      "correct_answer": 0,
+      "correct_letter": "A",
+      "difficulty": "easy",
+      "id": "gram_5be6b9ce",
+      "external_id": "5be6b9ce",
+      "source": "Grammar supplement (sat_standard_english)",
       "bank": "grammar"
     }
   ]

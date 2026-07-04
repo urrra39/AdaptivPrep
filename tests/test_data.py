@@ -25,7 +25,7 @@ class TestSkills:
 
 class TestDedicatedBanks:
     def test_grammar_and_vocabulary_counts(self):
-        assert len(GRAMMAR) == 20
+        assert len(GRAMMAR) == 50
         assert len(VOCAB) == 200
 
     def test_bank_ids_unique_and_separate(self):

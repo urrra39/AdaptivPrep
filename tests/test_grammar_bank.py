@@ -4,7 +4,7 @@ from src.data import loader
 
 def test_grammar_bank_loaded():
     bank = loader.load_grammar_bank()
-    assert bank["meta"]["question_count"] == 20
+    assert bank["meta"]["question_count"] == 50
     assert bank["meta"]["parse_errors"] == []
 
 
