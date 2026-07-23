@@ -80,14 +80,15 @@ def motivation_message(
 def band_score_pie(row: dict, title: str, *, tone: str = "old", dark: bool = False) -> go.Figure:
     """Donut chart for IELTS band (0–9). tone: old (grey), good (green), bad (red)."""
     band = row.get("overall_band")
+    # Old-money chart palette: parchment / racing green / antique gold.
     palettes = {
-        "old": ["#9e9e9e", "#424242"],
-        "good": ["#2ecc71", "#1b4332"],
-        "bad": ["#e74c3c", "#641e1e"],
+        "old": ["#C5A059", "#4A4436"],
+        "good": ["#4E7A57", "#22392B"],
+        "bad": ["#A9503C", "#4C2A20"],
     }
     colors = palettes.get(tone, palettes["old"])
-    paper_bg = "#000000" if dark else "#ffffff"
-    font_color = "#ffffff" if dark else "#0a3d62"
+    paper_bg = "#0B1610" if dark else "#FBF7EB"
+    font_color = "#E6D7AE" if dark else "#1F3D2B"
 
     if band is None:
         fig = go.Figure(
@@ -95,10 +96,10 @@ def band_score_pie(row: dict, title: str, *, tone: str = "old", dark: bool = Fal
                 go.Pie(
                     labels=["Natija yo'q"],
                     values=[1],
-                    marker={"colors": ["#e74c3c"]},
+                    marker={"line": {"color": "#C5A059", "width": 1.2}, "colors": ["#8A7F63"]},
                     hole=0.55,
                     textinfo="label",
-                    textfont={"size": 14, "color": font_color},
+                    textfont={"size": 14, "color": font_color, "family": "Georgia, serif"},
                 )
             ]
         )
@@ -106,7 +107,7 @@ def band_score_pie(row: dict, title: str, *, tone: str = "old", dark: bool = Fal
             text="<b>—</b>",
             x=0.5,
             y=0.5,
-            font={"size": 28, "color": font_color},
+            font={"size": 28, "color": font_color, "family": "Georgia, serif"},
             showarrow=False,
         )
     else:
@@ -117,10 +118,10 @@ def band_score_pie(row: dict, title: str, *, tone: str = "old", dark: bool = Fal
                 go.Pie(
                     labels=[f"Band {band_f:.1f}", ""],
                     values=[band_f, rest],
-                    marker={"colors": colors},
+                    marker={"line": {"color": "#C5A059", "width": 1.2}, "colors": colors},
                     hole=0.55,
                     textinfo="none",
-                    hovertemplate="IELTS band: %{value:.1f}<extra></extra>",
+                    hoverinfo="skip",
                 )
             ]
         )
@@ -128,19 +129,64 @@ def band_score_pie(row: dict, title: str, *, tone: str = "old", dark: bool = Fal
             text=f"<b>{band_f:.1f}</b>",
             x=0.5,
             y=0.5,
-            font={"size": 30, "color": font_color},
+            font={"size": 30, "color": font_color, "family": "Georgia, serif"},
             showarrow=False,
         )
 
     fig.update_layout(
-        title={"text": title, "x": 0.5, "xanchor": "center", "font": {"color": font_color}},
+        title={"text": title, "x": 0.5, "xanchor": "center", "font": {"color": font_color, "family": "Georgia, serif"}},
         margin={"t": 55, "b": 20, "l": 20, "r": 20},
         height=340,
         showlegend=False,
+        font={"family": "Georgia, serif", "color": font_color},
         paper_bgcolor=paper_bg,
         plot_bgcolor=paper_bg,
     )
     return fig
+
+
+def band_overview(rows: list[dict]) -> list[tuple[str, dict, str]]:
+    """Specs for the four overview donuts: best / average / worst / current.
+
+    Returns a list of (title, row, tone) tuples, newest session first in rows.
+    Tones: best=good (green), average=old (neutral gold), worst=bad (copper),
+    current is judged against the average. If every session has the same band,
+    all four donuts stay neutral gold (no fake green/red).
+    """
+    bands = [
+        float(r["overall_band"])
+        for r in rows
+        if r.get("overall_band") is not None
+    ]
+    current_band = rows[0].get("overall_band") if rows else None
+    if not bands:
+        none_row = {"overall_band": None}
+        return [
+            ("ENG YUQORI", dict(none_row), "old"),
+            ("O'RTACHA", dict(none_row), "old"),
+            ("ENG PASTI", dict(none_row), "old"),
+            ("HOZIRGI", dict(none_row), "old"),
+        ]
+    best = max(bands)
+    worst = min(bands)
+    avg = round(sum(bands) / len(bands), 1)
+    if best == worst:
+        tones = ("old", "old", "old", "old")
+    else:
+        cur = float(current_band) if current_band is not None else None
+        if cur is None or cur == avg:
+            cur_tone = "old"
+        elif cur > avg:
+            cur_tone = "good"
+        else:
+            cur_tone = "bad"
+        tones = ("good", "old", "bad", cur_tone)
+    return [
+        ("ENG YUQORI", {"overall_band": best}, tones[0]),
+        ("O'RTACHA", {"overall_band": avg}, tones[1]),
+        ("ENG PASTI", {"overall_band": worst}, tones[2]),
+        ("HOZIRGI", {"overall_band": current_band}, tones[3]),
+    ]
 
 
 def accuracy_pie(row: dict, title: str) -> go.Figure:
@@ -152,7 +198,7 @@ def accuracy_pie(row: dict, title: str) -> go.Figure:
             go.Pie(
                 labels=["To'g'ri", "Xato"],
                 values=[correct, wrong],
-                marker={"colors": ["#2ecc71", "#e74c3c"]},
+                marker={"line": {"color": "#C5A059", "width": 1.2}, "colors": ["#4E7A57", "#B0614B"]},
                 hole=0.35,
                 textinfo="label+percent",
                 textfont={"size": 14},
@@ -165,6 +211,7 @@ def accuracy_pie(row: dict, title: str) -> go.Figure:
         height=320,
         showlegend=True,
     )
+    fig.update_layout(font={"family": "Georgia, serif"})
     return fig
 
 
@@ -172,7 +219,7 @@ def bucket_error_pie(row: dict, title: str) -> go.Figure:
     """Pie chart of wrong answers split by Reading / Grammar / Vocabulary."""
     stats = row.get("bucket_stats") or {}
     labels, values = [], []
-    colors = {"Reading": "#3498db", "Grammar": "#9b59b6", "Vocabulary": "#e67e22"}
+    colors = {"Reading": "#C5A059", "Grammar": "#4E7A57", "Vocabulary": "#8C5A3C"}
     slice_colors = []
     for bucket in ("Reading", "Grammar", "Vocabulary"):
         block = stats.get(bucket) or {}
@@ -184,13 +231,13 @@ def bucket_error_pie(row: dict, title: str) -> go.Figure:
             values.append(wrong)
             slice_colors.append(colors[bucket])
     if not values:
-        labels, values, slice_colors = ["Xato yo'q"], [1], ["#2ecc71"]
+        labels, values, slice_colors = ["Xato yo'q"], [1], ["#4E7A57"]
     fig = go.Figure(
         data=[
             go.Pie(
                 labels=labels,
                 values=values,
-                marker={"colors": slice_colors},
+                marker={"line": {"color": "#C5A059", "width": 1.2}, "colors": slice_colors},
                 hole=0.35,
                 textinfo="label+value",
             )
@@ -201,6 +248,7 @@ def bucket_error_pie(row: dict, title: str) -> go.Figure:
         margin={"t": 50, "b": 20, "l": 20, "r": 20},
         height=320,
     )
+    fig.update_layout(font={"family": "Georgia, serif"})
     return fig
 
 
@@ -211,8 +259,10 @@ def top_weakness_lines(row: dict, limit: int = 5) -> list[str]:
     for w in weak[:limit]:
         name = w.get("name") or w.get("skill_id") or "Noma'lum"
         acc = 100 * float(w.get("accuracy") or 0.0)
-        total = int(w.get("total") or 0)
-        lines.append(f"{name}: {acc:.0f}% aniqlik ({total} savol)")
+        # Weakness rows store "quota"/"answered" (see session_report); the old
+        # "total" key never existed, so this always rendered "(0 savol)".
+        count = int(w.get("quota") or w.get("answered") or w.get("total") or 0)
+        lines.append(f"{name}: {acc:.0f}% aniqlik ({count} savol)")
     return lines
 
 

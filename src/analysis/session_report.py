@@ -8,7 +8,7 @@ a user who quits early gets a realistic low score, not an inflated percentage.
 """
 from __future__ import annotations
 
-DEFAULT_QUOTAS = {"Reading": 40, "Grammar": 50, "Vocabulary": 50}
+DEFAULT_QUOTAS = {"Reading": 50, "Grammar": 50, "Vocabulary": 50}
 
 
 def accuracy_to_band(accuracy: float) -> float | None:
@@ -67,7 +67,7 @@ def build_session_report(
 ) -> dict:
     """Return a structured report dict for the summary screen.
 
-    ``quotas`` maps bucket names to the full section size (e.g. Reading=40).
+    ``quotas`` maps bucket names to the full section size (e.g. Reading=50).
     Accuracy is computed as correct / quota so unanswered questions count as wrong.
     """
     quotas = quotas or DEFAULT_QUOTAS

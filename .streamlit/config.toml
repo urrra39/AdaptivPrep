@@ -9,8 +9,10 @@ headless = true
 gatherUsageStats = false
 
 [theme]
-primaryColor = "#2E86AB"        # matches the dashboard accent colour
-backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#F0F4F8"
-textColor = "#1A1A2E"
-font = "sans serif"
+# Old-money day palette: ivory paper, racing-green ink, antique-gold accent.
+# The in-app day/night toggle (quiz_app._apply_theme_css) layers on top.
+primaryColor = "#A67C2E"
+backgroundColor = "#F5EFE1"
+secondaryBackgroundColor = "#ECE3CC"
+textColor = "#2C2A1E"
+font = "serif"

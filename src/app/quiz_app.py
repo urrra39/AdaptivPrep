@@ -1,6 +1,6 @@
 """AdaptivPrep - Streamlit quiz interface (v5: 4 ELS passages per session).
 
-Phase order: Reading (4 random ELS passages, Ex 1-2-3 each) -> Grammar (50) ->
+Phase order: Reading (5 random ELS passages, Ex 1-2-3 each) -> Grammar (50) ->
 Vocabulary (50).  Reading passages are sampled per session so each user sees a
 different random subset from the full book corpus.
 """
@@ -42,9 +42,9 @@ _EPSILON = 0.15
 
 # Fixed exam section order — UI and selector both iterate this tuple.
 PHASE_ORDER = ("Reading", "Grammar", "Vocabulary")
-READING_PASSAGES_PER_SESSION = 4
+READING_PASSAGES_PER_SESSION = 5
 READING_QUESTIONS_PER_PASSAGE = 10
-READING_TOTAL = READING_PASSAGES_PER_SESSION * READING_QUESTIONS_PER_PASSAGE  # 40
+READING_TOTAL = READING_PASSAGES_PER_SESSION * READING_QUESTIONS_PER_PASSAGE  # 50
 QUOTAS = {"Reading": READING_TOTAL, "Grammar": 50, "Vocabulary": 50}
 
 
@@ -219,6 +219,7 @@ def _session_needs_repair() -> bool:
     expected = READING_TOTAL + QUOTAS["Grammar"] + QUOTAS["Vocabulary"]
     if expected and len(queue) != expected:
         return True
+    return False
 
 
 def _phase_has_supply(
@@ -318,7 +319,7 @@ def eligible_skills(seen_ids: set, quota_used: dict, session: dict | None = None
 
 
 def _select_reading_question(seen_ids: set, session: dict) -> dict | None:
-    """Next reading question following the pre-built 40-question session order."""
+    """Next reading question following the pre-built 50-question session order."""
     for qid in session.get("reading_order", []):
         if qid not in seen_ids:
             return loader.get_question(qid)
@@ -404,7 +405,7 @@ def _session_ctx() -> dict:
 
 
 def _init_reading_session(rng: random.Random) -> None:
-    """4 passages × 10 questions = 40 reading items (Ex 1→2→3 within each)."""
+    """5 passages × 10 questions = 50 reading items (Ex 1→2→3 within each)."""
     pool = loader.reading_passage_ids()
     eligible = [
         pid
@@ -475,794 +476,626 @@ def _switch_theme(mode: str) -> None:
     st.rerun()
 
 
+# ---------------------------------------------------------------------------
+# Old-money theme (day & night).  Both palettes share ONE structural
+# stylesheet driven by CSS custom properties (--om-*), so day and night can
+# never drift apart structurally -- only the palette block differs.
+# Day  = ivory & cream paper, racing green ink, antique gold accents.
+# Night = deep racing green, parchment ink, brighter gold accents.
+# ---------------------------------------------------------------------------
+
+_OM_DAY_PALETTE = """
+:root, .stApp {
+    --om-bg: #F5EFE1;
+    --om-bg-2: #ECE3CC;
+    --om-panel: #FBF7EB;
+    --om-tint: rgba(31, 61, 43, 0.05);
+    --om-tint-strong: rgba(31, 61, 43, 0.12);
+    --om-ink: #2C2A1E;
+    --om-ink-soft: #6E6450;
+    --om-heading: #1F3D2B;
+    --om-gold: #A67C2E;
+    --om-gold-bright: #C5A059;
+    --om-border: #D3C6A2;
+    --om-border-gold: rgba(166, 124, 46, 0.6);
+    --om-btn-bg: #1F3D2B;
+    --om-btn-hover: #2A5039;
+    --om-btn-ink: #F3ECD9;
+    --om-input-bg: #FFFDF4;
+    --om-shadow: 0 1px 12px rgba(102, 82, 40, 0.16);
+    --om-good: #4E7A57;
+    --om-bad: #A9503C;
+}
+"""
+
+_OM_NIGHT_PALETTE = """
+:root, .stApp {
+    --om-bg: #0B1610;
+    --om-bg-2: #0F1F15;
+    --om-panel: #142819;
+    --om-tint: rgba(197, 160, 89, 0.07);
+    --om-tint-strong: rgba(197, 160, 89, 0.16);
+    --om-ink: #EFE6CF;
+    --om-ink-soft: #B3A47F;
+    --om-heading: #E6D7AE;
+    --om-gold: #C5A059;
+    --om-gold-bright: #D4AF37;
+    --om-border: #2C4634;
+    --om-border-gold: rgba(197, 160, 89, 0.5);
+    --om-btn-bg: rgba(197, 160, 89, 0.15);
+    --om-btn-hover: rgba(197, 160, 89, 0.3);
+    --om-btn-ink: #EFE6CF;
+    --om-input-bg: #0E1D13;
+    --om-shadow: 0 0 16px rgba(197, 160, 89, 0.15);
+    --om-good: #7FB069;
+    --om-bad: #C4705B;
+}
+"""
+
+_OM_STRUCTURE_CSS = """
+/* ---- canvas ---- */
+.stApp, [data-testid="stAppViewContainer"], .main, [data-testid="stMain"] {
+    background-color: var(--om-bg) !important;
+}
+[data-testid="stHeader"] { background: transparent !important; }
+[data-testid="stSidebar"], [data-testid="stSidebarContent"] {
+    background-color: var(--om-bg-2) !important;
+    border-right: 1px solid var(--om-border) !important;
+}
+
+/* ---- typography ---- */
+.stApp h1, .stApp h2, .stApp h3, .stApp h4 {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif !important;
+    color: var(--om-heading) !important;
+    letter-spacing: 0.02em !important;
+}
+.stApp p, .stApp label, .stApp span, .stApp li,
+.stApp [data-testid="stMarkdownContainer"],
+.stApp .stMetric label {
+    color: var(--om-ink) !important;
+}
+.stApp p, .stApp li, .stApp label, .stApp [data-testid="stMarkdownContainer"] {
+    font-family: Georgia, "Times New Roman", serif;
+}
+.stApp [data-testid="stCaptionContainer"] p { color: var(--om-ink-soft) !important; }
+.stApp [data-testid="stMetricValue"] {
+    color: var(--om-heading) !important;
+    font-family: "Playfair Display", Georgia, serif !important;
+}
+.stApp hr { border-color: var(--om-border) !important; }
+.stApp pre, .stApp code {
+    background: var(--om-tint-strong) !important;
+    color: var(--om-ink) !important;
+}
+
+/* ---- alerts (info/success/error/warning) ---- */
+.stApp [data-testid="stAlert"] {
+    background: var(--om-tint) !important;
+    border: 1px solid var(--om-border-gold) !important;
+    border-radius: 8px !important;
+}
+.stApp [data-testid="stAlert"] p,
+.stApp [data-testid="stAlert"] span,
+.stApp [data-testid="stAlert"] [data-testid="stMarkdownContainer"] {
+    color: var(--om-ink) !important;
+}
+
+/* ---- inputs ---- */
+.stApp [data-testid="stTextInput"] input,
+.stApp [data-baseweb="input"],
+.stApp [data-testid="stNumberInput"] input {
+    background-color: var(--om-input-bg) !important;
+    color: var(--om-ink) !important;
+    border: 1px solid var(--om-border-gold) !important;
+    caret-color: var(--om-gold) !important;
+    font-family: Georgia, serif !important;
+}
+[data-testid="stSidebar"] [data-baseweb="input"],
+[data-testid="stSidebar"] [data-testid="stTextInput"] input {
+    background: var(--om-input-bg) !important;
+    background-color: var(--om-input-bg) !important;
+    color: var(--om-ink) !important;
+}
+.stApp [data-baseweb="select"] > div {
+    background-color: var(--om-input-bg) !important;
+    color: var(--om-ink) !important;
+    border: 1px solid var(--om-border-gold) !important;
+}
+.stApp [data-baseweb="select"] span,
+.stApp [data-baseweb="select"] div {
+    color: var(--om-ink) !important;
+    background-color: transparent !important;
+}
+[data-baseweb="popover"] [data-baseweb="menu"], ul[data-baseweb="menu"] {
+    background-color: var(--om-panel) !important;
+    border: 1px solid var(--om-border) !important;
+}
+[data-baseweb="menu"] li, [data-baseweb="menu"] li * {
+    color: var(--om-ink) !important;
+}
+
+/* ---- buttons: one tailored cut everywhere ---- */
+.stApp .stButton > button,
+.stApp [data-testid="stButton"] > button,
+.stApp button[kind="primary"],
+.stApp [data-testid="stBaseButton-primary"],
+.stApp [data-testid="stFormSubmitButton"] button,
+.stApp [data-testid="stFormSubmitButton"] > button,
+[data-testid="stSidebar"] [data-testid="stButton"] > button,
+[data-testid="stSidebar"] .stButton > button {
+    background: var(--om-btn-bg) !important;
+    background-color: var(--om-btn-bg) !important;
+    color: var(--om-btn-ink) !important;
+    border: 1px solid var(--om-gold) !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: 1.05rem !important;
+    letter-spacing: 0.06em !important;
+    min-height: 2.85rem !important;
+    box-shadow: var(--om-shadow) !important;
+}
+.stApp .stButton > button:hover,
+.stApp [data-testid="stButton"] > button:hover,
+.stApp button[kind="primary"]:hover,
+.stApp [data-testid="stBaseButton-primary"]:hover,
+.stApp [data-testid="stFormSubmitButton"] button:hover,
+[data-testid="stSidebar"] .stButton > button:hover {
+    background: var(--om-btn-hover) !important;
+    background-color: var(--om-btn-hover) !important;
+    border-color: var(--om-gold-bright) !important;
+}
+.stApp .stButton > button p,
+.stApp [data-testid="stButton"] > button p,
+.stApp [data-testid="stFormSubmitButton"] button p,
+[data-testid="stSidebar"] .stButton > button p {
+    color: var(--om-btn-ink) !important;
+}
+.stApp .quiz-nav-marker + div[data-testid="stHorizontalBlock"] .stButton > button {
+    white-space: nowrap !important;
+}
+
+/* ---- input placeholders: readable in both themes ---- */
+.stApp input::placeholder,
+.stApp textarea::placeholder {
+    color: var(--om-ink-soft) !important;
+    opacity: 0.8 !important;
+}
+
+/* ---- tabs: engraved gold underline ---- */
+.stApp [data-testid="stTabs"] [data-baseweb="tab-list"] {
+    gap: 0.65rem !important;
+    background: transparent !important;
+}
+.stApp [data-testid="stTabs"] [data-baseweb="tab-list"] button {
+    border: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding-bottom: 0.4rem !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: 1.1rem !important;
+    letter-spacing: 0.05em !important;
+}
+.stApp [data-testid="stTabs"] [data-baseweb="tab-list"] button[aria-selected="true"] {
+    color: var(--om-gold) !important;
+    border-bottom: 2px solid var(--om-gold) !important;
+    font-weight: 700 !important;
+}
+.stApp [data-testid="stTabs"] [data-baseweb="tab-list"] button[aria-selected="false"] {
+    color: var(--om-ink-soft) !important;
+    border-bottom: 2px solid transparent !important;
+}
+.stApp [data-testid="stTabs"] [data-baseweb="tab-list"] button[aria-selected="true"] p { color: var(--om-gold) !important; }
+.stApp [data-testid="stTabs"] [data-baseweb="tab-list"] button[aria-selected="false"] p { color: var(--om-ink-soft) !important; }
+
+/* ---- bordered containers, forms, chat: parchment panels ---- */
+.stApp [data-testid="stVerticalBlockBorderWrapper"],
+.stApp [data-testid="stForm"] {
+    background: var(--om-panel) !important;
+    border: 1px solid var(--om-border) !important;
+    border-radius: 10px !important;
+}
+.stApp [data-testid="stChatMessage"] {
+    background: var(--om-tint) !important;
+    border: 1px solid var(--om-border) !important;
+    border-radius: 10px !important;
+}
+
+/* ---- reading passage / prompt sheets ---- */
+.stApp .content-box {
+    background: var(--om-panel) !important;
+    border: 1px solid var(--om-border) !important;
+    border-left: 3px solid var(--om-gold) !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    box-shadow: var(--om-shadow) !important;
+}
+.stApp .content-box, .stApp .content-box *,
+.stApp .content-box span, .stApp .content-box p {
+    color: var(--om-ink) !important;
+}
+
+/* ---- expanders ---- */
+.stApp [data-testid="stExpander"],
+.stApp [data-testid="stExpander"] details {
+    background-color: var(--om-panel) !important;
+    border: 1px solid var(--om-border) !important;
+    border-radius: 8px !important;
+}
+.stApp [data-testid="stExpander"] summary,
+.stApp [data-testid="stExpander"] summary *,
+.stApp details summary, .stApp details summary * {
+    color: var(--om-ink) !important;
+    background-color: var(--om-panel) !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+}
+
+/* ---- user badge: club membership pin ---- */
+.user-badge {
+    display: inline-block;
+    background: var(--om-tint-strong) !important;
+    color: var(--om-heading) !important;
+    border: 1px solid var(--om-gold) !important;
+    padding: 0.12rem 0.65rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    letter-spacing: 0.05em;
+    box-shadow: var(--om-shadow);
+}
+
+/* ---- summary plaques ---- */
+.summary-section-header { margin: 0.5rem 0 0.85rem 0; }
+.summary-section-title {
+    color: var(--om-heading) !important;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+.summary-section-caption {
+    color: var(--om-ink-soft) !important;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    margin-bottom: 0.15rem;
+}
+.summary-card {
+    background: var(--om-panel);
+    border: 1px solid var(--om-border-gold);
+    border-radius: 10px;
+    padding: 1rem 0.75rem;
+    text-align: center;
+    box-shadow: var(--om-shadow);
+    margin-bottom: 0.35rem;
+}
+.summary-card-label {
+    color: var(--om-gold) !important;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+}
+.summary-card-value {
+    color: var(--om-heading) !important;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.65rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+.summary-list-panel {
+    background: var(--om-tint);
+    border: 1px solid var(--om-border);
+    border-left: 3px solid var(--om-gold);
+    border-radius: 0 10px 10px 0;
+    padding: 0.9rem 1.15rem;
+    margin: 0.65rem 0 1.1rem 0;
+}
+.summary-list-title {
+    color: var(--om-gold) !important;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    margin-bottom: 0.55rem;
+}
+.summary-list-panel ul { margin: 0; padding-left: 1.2rem; }
+.summary-list-panel li, .summary-list-panel li strong, .summary-list-panel p {
+    color: var(--om-ink) !important;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 0.35rem;
+}
+.compare-banner {
+    background: var(--om-panel);
+    border: 1px solid var(--om-border-gold);
+    border-radius: 10px;
+    padding: 0.95rem 1.2rem;
+    margin: 0.5rem 0 1rem 0;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: Georgia, serif;
+    color: var(--om-ink) !important;
+    box-shadow: var(--om-shadow);
+}
+.compare-banner-good { border-left: 5px solid var(--om-good); }
+.compare-banner-bad { border-left: 5px solid var(--om-bad); }
+
+/* ---- hide baseweb input instructions ---- */
+.stApp [data-testid="InputInstructions"],
+.stApp [data-testid="InputInstructions"] * {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* ---- password eye toggle: keep it inside the field, gold trim ---- */
+.stApp [data-testid="stTextInputRootElement"],
+.stApp [data-testid="stTextInput"] > div,
+.stApp [data-testid="stTextInput"] > div > div,
+.stApp [data-baseweb="input"] > div,
+.stApp [data-testid="stTextInput"] [data-baseweb="base-input"] {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+.stApp [data-baseweb="input"] [data-baseweb="input-suffix"],
+.stApp span[data-baseweb="input-suffix"],
+.stApp [data-baseweb="input"] [data-baseweb="input-suffix"] > div,
+.stApp span[data-baseweb="input-suffix"] > div {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 2px 0 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.stApp [data-baseweb="input"] [data-baseweb="button"],
+.stApp [data-baseweb="input"] button[type="button"],
+.stApp [data-testid="stTextInput"] [data-baseweb="button"],
+.stApp [data-testid="stTextInput"] button {
+    background: var(--om-btn-bg) !important;
+    background-color: var(--om-btn-bg) !important;
+    border: 1px solid var(--om-gold) !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+    outline: none !important;
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+    min-width: 2.2rem !important;
+    min-height: 2.2rem !important;
+    max-width: 2.2rem !important;
+    max-height: 2.2rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    overflow: hidden !important;
+    line-height: 1 !important;
+}
+.stApp [data-baseweb="input"] [data-baseweb="button"] > span,
+.stApp [data-baseweb="input"] [data-baseweb="button"] > div,
+.stApp [data-baseweb="input"] button > span,
+.stApp [data-baseweb="input"] button > div {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    line-height: 0 !important;
+}
+.stApp [data-baseweb="input"] [data-baseweb="button"] svg,
+.stApp [data-baseweb="input"] button svg {
+    width: 1rem !important;
+    height: 1rem !important;
+    min-width: 1rem !important;
+    min-height: 1rem !important;
+    display: block !important;
+    margin: 0 auto !important;
+    position: static !important;
+    flex-shrink: 0 !important;
+}
+.stApp [data-baseweb="input"] [data-baseweb="button"] svg path,
+.stApp [data-baseweb="input"] button svg path {
+    fill: var(--om-btn-ink) !important;
+    stroke: var(--om-btn-ink) !important;
+}
+.stApp [data-baseweb="input"] {
+    display: flex !important;
+    align-items: stretch !important;
+    flex-wrap: nowrap !important;
+    gap: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+}
+.stApp [data-baseweb="input"] > div:first-child {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+.stApp [data-testid="stTextInput"] input,
+.stApp [data-baseweb="input"] input {
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+}
+.stApp [data-baseweb="input"] [data-baseweb="button"],
+.stApp [data-baseweb="input"] button[type="button"] {
+    border-radius: 0 5px 5px 0 !important;
+    margin: 0 !important;
+    align-self: stretch !important;
+    height: auto !important;
+    max-height: none !important;
+}
+"""
+
+
+_OLD_MONEY_MOTION_CSS = """
+<style>
+/* ============ Old-money motion layer (safe): unhurried, gilded ============
+   PRINCIPLE: entrance motion NEVER touches opacity, so no element can ever be
+   left invisible (fixes registration/tab content vanishing). Only transforms
+   for entrances; opacity is used solely for hover-only decorative sheens. */
+
+@keyframes omRise      { from { transform: translateY(9px); } to { transform: translateY(0); } }
+@keyframes omRiseSide  { from { transform: translateX(-14px); } to { transform: translateX(0); } }
+@keyframes omSheen     { from { left: -70%; } to { left: 130%; } }
+@keyframes omGoldPulse { 0%, 100% { box-shadow: 0 0 0 rgba(197, 160, 89, 0); } 50% { box-shadow: 0 0 16px rgba(197, 160, 89, 0.35); } }
+@keyframes omUnderlineGrow { from { width: 0; } to { width: 56px; } }
+
+/* Whole view rises gently on each render (transform only - always visible) */
+.stApp [data-testid="stMainBlockContainer"],
+.stApp [data-testid="block-container"] {
+    animation: omRise 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+[data-testid="stSidebar"] {
+    animation: omRiseSide 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+/* Headings: a growing gold rule beneath (decorative, cannot hide the text) */
+h2::after, h3::after {
+    content: "";
+    display: block;
+    height: 2px;
+    margin-top: 0.3rem;
+    max-width: 56px;
+    background: linear-gradient(90deg, #C5A059, rgba(197, 160, 89, 0));
+    animation: omUnderlineGrow 0.9s ease 0.1s both;
+}
+
+/* Buttons: lift, deepen, and sweep a gold sheen on hover */
+.stButton > button, [data-testid="stFormSubmitButton"] > button {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+.stButton > button:hover, [data-testid="stFormSubmitButton"] > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(197, 160, 89, 0.28);
+}
+.stButton > button:active, [data-testid="stFormSubmitButton"] > button:active { transform: translateY(0); }
+.stButton > button::after, [data-testid="stFormSubmitButton"] > button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -70%;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(212, 175, 55, 0.28), transparent);
+    transform: skewX(-20deg);
+    pointer-events: none;
+    opacity: 0;
+}
+.stButton > button:hover::after, [data-testid="stFormSubmitButton"] > button:hover::after {
+    opacity: 1;
+    animation: omSheen 0.8s ease;
+}
+
+/* Summary plaques: rise on hover with a passing sheen */
+.summary-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.summary-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(102, 82, 40, 0.25);
+    border-color: #C5A059;
+}
+.summary-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -70%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(212, 175, 55, 0.16), transparent);
+    transform: skewX(-20deg);
+    pointer-events: none;
+}
+.summary-card:hover::before { animation: omSheen 1s ease; }
+
+/* Crest badge and comparison banner: a quiet gold pulse (box-shadow only) */
+.user-badge { animation: omGoldPulse 3.2s ease-in-out infinite; }
+.compare-banner { animation: omGoldPulse 4s ease-in-out 0.8s infinite; }
+
+/* Panels and reading sheets: gilded edge on hover */
+.summary-list-panel, .content-box { transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+.summary-list-panel:hover, .content-box:hover {
+    border-color: #C5A059;
+    box-shadow: 0 4px 16px rgba(197, 160, 89, 0.18);
+}
+
+/* Inputs: soft gold focus glow */
+[data-baseweb="input"], .stSelectbox [data-baseweb="select"] > div { transition: border-color 0.25s ease, box-shadow 0.25s ease; }
+[data-baseweb="input"]:focus-within { box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.22) !important; }
+
+/* Answer options and expanders: smooth hovers */
+.stRadio label, [data-testid="stExpander"] summary { transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+.stRadio label:hover { background: rgba(197, 160, 89, 0.10); border-radius: 6px; }
+
+/* Tabs: gold highlight glides */
+.stTabs [data-baseweb="tab-highlight"] { transition: all 0.3s ease; background-color: #C5A059; }
+
+/* SAFETY NET: guarantee tab panels, forms and their inputs are always visible,
+   whatever any animation elsewhere might attempt. */
+.stApp [data-baseweb="tab-panel"],
+.stApp [data-testid="stForm"],
+.stApp [data-testid="stTextInput"],
+.stApp [data-testid="stVerticalBlockBorderWrapper"] {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+"""
+
+
 def _apply_theme_css() -> None:
+    """Inject the old-money stylesheet for the active theme (day or night)."""
     theme = st.session_state.get("theme", "day")
     is_night = theme == "night"
-    sun_anim = "" if is_night else "animation: sunPulse 2s ease-in-out infinite;"
-    moon_anim = "animation: moonGlow 2s ease-in-out infinite;" if is_night else ""
-
-    accent_css = """
-    .stApp .new-session-marker + div[data-testid="stButton"] > button {
-        background: rgba(10, 61, 98, 0.75) !important;
-        background-color: rgba(10, 61, 98, 0.75) !important;
-        color: #ffffff !important;
-        border: 2px solid #0a3d62 !important;
-        border-radius: 10px !important;
-        font-weight: 700 !important;
-        min-height: 2.85rem !important;
-        box-shadow: 0 0 14px rgba(10, 61, 98, 0.35) !important;
-    }
-    .stApp .new-session-marker + div[data-testid="stButton"] > button:hover {
-        background: rgba(10, 61, 98, 0.92) !important;
-        background-color: rgba(10, 61, 98, 0.92) !important;
-    }
-    .stApp .new-session-marker + div[data-testid="stButton"] > button p {
-        color: #ffffff !important;
-    }
-    .stApp .quiz-nav-marker + div[data-testid="stHorizontalBlock"] .stButton > button {
-        background: rgba(10, 61, 98, 0.75) !important;
-        background-color: rgba(10, 61, 98, 0.75) !important;
-        color: #ffffff !important;
-        border: 2px solid #0a3d62 !important;
-        border-radius: 10px !important;
-        font-weight: 700 !important;
-        min-height: 2.85rem !important;
-        white-space: nowrap !important;
-        box-shadow: 0 0 14px rgba(10, 61, 98, 0.35) !important;
-    }
-    .stApp .quiz-nav-marker + div[data-testid="stHorizontalBlock"] .stButton > button:hover {
-        background: rgba(10, 61, 98, 0.92) !important;
-    }
-    .stApp .quiz-finish-marker + div[data-testid="stButton"] > button,
-    .stApp .quiz-confirm-marker + div[data-testid="stHorizontalBlock"] .stButton > button {
-        background: rgba(10, 61, 98, 0.75) !important;
-        background-color: rgba(10, 61, 98, 0.75) !important;
-        color: #ffffff !important;
-        border: 2px solid #0a3d62 !important;
-        border-radius: 10px !important;
-        font-weight: 700 !important;
-        box-shadow: 0 0 14px rgba(10, 61, 98, 0.35) !important;
-    }
-    .user-badge {
-        display: inline-block;
-        background: rgba(46, 134, 171, 0.35) !important;
-        color: #ffffff !important;
-        border: 1px solid #2E86AB !important;
-        padding: 0.12rem 0.65rem;
-        border-radius: 0.5rem;
-        font-weight: 600;
-        box-shadow: 0 0 10px rgba(46, 134, 171, 0.35);
-    }
-    .stApp button[kind="primary"],
-    .stApp [data-testid="stBaseButton-primary"],
-    .stApp [data-testid="stFormSubmitButton"] button,
-    .stApp [data-testid="stFormSubmitButton"] > button {
-        background: rgba(46, 134, 171, 0.45) !important;
-        color: #ffffff !important;
-        border: 1px solid #2E86AB !important;
-        font-weight: 700 !important;
-        box-shadow: 0 0 14px rgba(46, 134, 171, 0.45) !important;
-    }
-    .stApp button[kind="primary"]:hover,
-    .stApp [data-testid="stBaseButton-primary"]:hover,
-    .stApp [data-testid="stFormSubmitButton"] button:hover,
-    .stApp [data-testid="stFormSubmitButton"] > button:hover {
-        background: rgba(46, 134, 171, 0.65) !important;
-    }
-    .stApp [data-testid="stTabs"] button {
-        border: none !important;
-        background: transparent !important;
-        box-shadow: none !important;
-        padding-bottom: 0.4rem !important;
-    }
-    .stApp [data-testid="stTabs"] button[aria-selected="true"] {
-        color: #2E86AB !important;
-        border-bottom: 2px solid #2E86AB !important;
-        font-weight: 700 !important;
-    }
-    .stApp [data-testid="stTabs"] button[aria-selected="false"] {
-        color: #aaaaaa !important;
-        border-bottom: 2px solid transparent !important;
-    }
-    .stApp [data-baseweb="input"] span,
-    .stApp [data-baseweb="input"] [data-baseweb="input-suffix"],
-    .stApp span[data-baseweb="input-suffix"],
-    .stApp [data-baseweb="input"] [data-baseweb="input-suffix"] > div,
-    .stApp span[data-baseweb="input-suffix"] > div,
-    .stApp [data-baseweb="input"] > div:last-child,
-    .stApp [data-baseweb="input"] > div:last-child > div {
-        background: transparent !important;
-        background-color: transparent !important;
-        box-shadow: none !important;
-        border: none !important;
-    }
-    .stApp [data-baseweb="input"] [data-baseweb="button"],
-    .stApp [data-baseweb="input"] button,
-    .stApp [data-testid="stTextInput"] [data-baseweb="button"],
-    .stApp [data-testid="stTextInput"] button {
-        background: rgba(10, 61, 98, 0.88) !important;
-        background-color: rgba(10, 61, 98, 0.88) !important;
-        border: 1px solid #0a3d62 !important;
-        border-radius: 6px !important;
-        color: #ffffff !important;
-        box-shadow: none !important;
-        min-width: 2.4rem !important;
-        min-height: 2rem !important;
-        margin: 2px !important;
-        padding: 0 !important;
-        overflow: hidden !important;
-    }
-    .stApp [data-baseweb="input"] [data-baseweb="button"] svg,
-    .stApp [data-baseweb="input"] button svg,
-    .stApp [data-baseweb="input"] [data-baseweb="button"] svg path,
-    .stApp [data-baseweb="input"] button svg path {
-        fill: #ffffff !important;
-        stroke: #ffffff !important;
-    }
-    .stApp [data-testid="stTextInput"] [data-baseweb="base-input"],
-    .stApp [data-testid="stTextInput"] [data-baseweb="input"] {
-        overflow: hidden !important;
-    }
-    .summary-section-header {
-        margin: 0.5rem 0 0.85rem 0;
-    }
-    .summary-section-title {
-        color: #8ecae6 !important;
-        font-size: 1.2rem;
-        font-weight: 800;
-        margin-bottom: 0.2rem;
-    }
-    .summary-section-caption {
-        color: #aaaaaa !important;
-        font-size: 0.82rem;
-        line-height: 1.45;
-        margin-bottom: 0.15rem;
-    }
-    .summary-card {
-        background: rgba(46, 134, 171, 0.22);
-        border: 1px solid #2E86AB;
-        border-radius: 12px;
-        padding: 1rem 0.75rem;
-        text-align: center;
-        box-shadow: 0 0 18px rgba(46, 134, 171, 0.28);
-        margin-bottom: 0.35rem;
-    }
-    .summary-card-label {
-        color: #8ecae6 !important;
-        font-size: 0.82rem;
-        font-weight: 600;
-        margin-bottom: 0.4rem;
-    }
-    .summary-card-value {
-        color: #ffffff !important;
-        font-size: 1.65rem;
-        font-weight: 800;
-        line-height: 1.2;
-    }
-    .summary-list-panel {
-        background: rgba(46, 134, 171, 0.1);
-        border: 1px solid rgba(46, 134, 171, 0.45);
-        border-left: 4px solid #2E86AB;
-        border-radius: 0 12px 12px 0;
-        padding: 0.9rem 1.15rem;
-        margin: 0.65rem 0 1.1rem 0;
-    }
-    .summary-list-title {
-        color: #8ecae6 !important;
-        font-size: 1.05rem;
-        font-weight: 800;
-        margin-bottom: 0.55rem;
-    }
-    .summary-list-panel ul {
-        margin: 0;
-        padding-left: 1.2rem;
-    }
-    .compare-banner {
-        background: rgba(46, 134, 171, 0.18);
-        border: 1px solid rgba(46, 134, 171, 0.55);
-        border-radius: 12px;
-        padding: 0.95rem 1.2rem;
-        margin: 0.5rem 0 1rem 0;
-        font-weight: 600;
-        font-size: 1rem;
-        color: #ffffff !important;
-        box-shadow: 0 0 16px rgba(46, 134, 171, 0.25);
-    }
-    .compare-banner-good {
-        border-left: 5px solid #2ecc71;
-    }
-    .compare-banner-bad {
-        border-left: 5px solid #e74c3c;
-    }
-    .stApp [data-testid="InputInstructions"],
-    .stApp [data-testid="InputInstructions"] * {
-        display: none !important;
-        visibility: hidden !important;
-        height: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-    """
-
-    login_night_css = """
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stTabs"] [data-baseweb="tab-list"] {
-        gap: 0.65rem !important;
-        background: transparent !important;
-    }
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stTabs"] button {
-        background: rgba(46, 134, 171, 0.28) !important;
-        background-color: rgba(46, 134, 171, 0.28) !important;
-        color: #8ecae6 !important;
-        border: 1px solid #2E86AB !important;
-        border-radius: 10px !important;
-        border-bottom: 1px solid #2E86AB !important;
-        padding: 0.5rem 1.4rem !important;
-        font-weight: 700 !important;
-        box-shadow: 0 0 12px rgba(46, 134, 171, 0.35) !important;
-    }
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stTabs"] button[aria-selected="true"] {
-        background: rgba(46, 134, 171, 0.65) !important;
-        background-color: rgba(46, 134, 171, 0.65) !important;
-        color: #ffffff !important;
-    }
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stForm"] {
-        background: rgba(46, 134, 171, 0.12) !important;
-        border: 1px solid rgba(46, 134, 171, 0.55) !important;
-        border-radius: 14px !important;
-        padding: 1.1rem 1.1rem 0.6rem 1.1rem !important;
-        margin-top: 0.75rem !important;
-    }
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stFormSubmitButton"] button,
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stForm"] button,
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stForm"] .stButton > button,
-    .stApp [data-testid="column"]:has(.login-panel-marker) .stButton > button {
-        background: rgba(46, 134, 171, 0.55) !important;
-        background-color: rgba(46, 134, 171, 0.55) !important;
-        color: #ffffff !important;
-        border: 2px solid #2E86AB !important;
-        border-radius: 10px !important;
-        font-weight: 700 !important;
-        min-height: 2.85rem !important;
-        box-shadow: 0 0 18px rgba(46, 134, 171, 0.5) !important;
-    }
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stFormSubmitButton"] button p,
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stForm"] button p,
-    .stApp [data-testid="column"]:has(.login-panel-marker) .stButton > button p {
-        color: #ffffff !important;
-    }
-    .stApp [data-testid="column"]:has(.login-panel-marker) .stButton {
-        margin-top: 0.65rem !important;
-    }
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stVerticalBlockBorderWrapper"] {
-        background: rgba(46, 134, 171, 0.12) !important;
-        border-color: rgba(46, 134, 171, 0.55) !important;
-        border-radius: 14px !important;
-        margin-top: 0.75rem !important;
-    }
-    .stApp [data-testid="column"]:has(.login-panel-marker) .stButton > button {
-        background: rgba(46, 134, 171, 0.55) !important;
-        background-color: rgba(46, 134, 171, 0.55) !important;
-        color: #ffffff !important;
-        border: 2px solid #2E86AB !important;
-        border-radius: 10px !important;
-        font-weight: 700 !important;
-        min-height: 2.85rem !important;
-        box-shadow: 0 0 18px rgba(46, 134, 171, 0.5) !important;
-    }
-    .stApp [data-testid="column"]:has(.login-panel-marker) .stButton > button p {
-        color: #ffffff !important;
-    }
-    """
-
-    login_day_css = """
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stTabs"] [data-baseweb="tab-list"] {
-        gap: 0.65rem !important;
-        background: transparent !important;
-    }
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stTabs"] button {
-        background: rgba(10, 61, 98, 0.12) !important;
-        background-color: rgba(10, 61, 98, 0.12) !important;
-        color: #0a3d62 !important;
-        border: 1px solid rgba(10, 61, 98, 0.55) !important;
-        border-radius: 10px !important;
-        border-bottom: 1px solid rgba(10, 61, 98, 0.55) !important;
-        padding: 0.5rem 1.4rem !important;
-        font-weight: 700 !important;
-        box-shadow: 0 0 10px rgba(10, 61, 98, 0.15) !important;
-    }
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stTabs"] button[aria-selected="true"] {
-        background: rgba(10, 61, 98, 0.9) !important;
-        background-color: rgba(10, 61, 98, 0.9) !important;
-        color: #ffffff !important;
-    }
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stForm"] {
-        background: rgba(10, 61, 98, 0.06) !important;
-        border: 1px solid rgba(10, 61, 98, 0.35) !important;
-        border-radius: 14px !important;
-        padding: 1.1rem 1.1rem 0.6rem 1.1rem !important;
-        margin-top: 0.75rem !important;
-    }
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stFormSubmitButton"] button,
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stForm"] button,
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stForm"] .stButton > button,
-    .stApp [data-testid="column"]:has(.login-panel-marker) .stButton > button {
-        background: rgba(10, 61, 98, 0.88) !important;
-        background-color: rgba(10, 61, 98, 0.88) !important;
-        color: #ffffff !important;
-        border: 2px solid #0a3d62 !important;
-        border-radius: 10px !important;
-        font-weight: 700 !important;
-        min-height: 2.85rem !important;
-        box-shadow: 0 0 14px rgba(10, 61, 98, 0.35) !important;
-    }
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stFormSubmitButton"] button p,
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stForm"] button p,
-    .stApp [data-testid="column"]:has(.login-panel-marker) .stButton > button p {
-        color: #ffffff !important;
-    }
-    .stApp [data-testid="column"]:has(.login-panel-marker) .stButton {
-        margin-top: 0.65rem !important;
-    }
-    """
-
-    day_css = """
-    [data-testid="stTextInput"] input {
-        background-color: #ffffff !important;
-        color: #1A1A2E !important;
-    }
-    .stApp button[kind="primary"],
-    .stApp [data-testid="stBaseButton-primary"],
-    .stApp [data-testid="stFormSubmitButton"] button,
-    .stApp [data-testid="stFormSubmitButton"] > button,
-    .stApp .stButton > button[kind="primary"] {
-        background: rgba(10, 61, 98, 0.88) !important;
-        background-color: rgba(10, 61, 98, 0.88) !important;
-        color: #ffffff !important;
-        border: 2px solid #0a3d62 !important;
-        box-shadow: 0 0 14px rgba(10, 61, 98, 0.35) !important;
-    }
-    .summary-section-title { color: #0a3d62 !important; }
-    .summary-card {
-        background: rgba(10, 61, 98, 0.08) !important;
-        border: 1px solid rgba(10, 61, 98, 0.45) !important;
-        box-shadow: 0 0 14px rgba(10, 61, 98, 0.12) !important;
-    }
-    .summary-card-label { color: #0a3d62 !important; }
-    .summary-card-value { color: #0a3d62 !important; }
-    .summary-list-panel {
-        background: rgba(10, 61, 98, 0.06) !important;
-        border: 1px solid rgba(10, 61, 98, 0.35) !important;
-        border-left: 4px solid #0a3d62 !important;
-    }
-    .summary-list-title { color: #0a3d62 !important; }
-    .summary-list-panel li,
-    .summary-list-panel li strong,
-    .summary-list-panel p { color: #1A1A2E !important; }
-    .summary-section-caption { color: #444444 !important; }
-    .compare-banner {
-        background: rgba(10, 61, 98, 0.08) !important;
-        border: 1px solid rgba(10, 61, 98, 0.4) !important;
-        color: #0a3d62 !important;
-        box-shadow: 0 0 14px rgba(10, 61, 98, 0.12) !important;
-    }
-    """
-
-    login_css = login_day_css if not is_night else login_night_css
-
-    day_final_css = """
-    .stApp .user-badge {
-        background: rgba(10, 61, 98, 0.75) !important;
-        border: 1px solid #0a3d62 !important;
-        color: #ffffff !important;
-        box-shadow: 0 0 12px rgba(10, 61, 98, 0.35) !important;
-    }
-    .stApp .summary-card {
-        background: rgba(10, 61, 98, 0.75) !important;
-        border: 1px solid #0a3d62 !important;
-        box-shadow: 0 0 16px rgba(10, 61, 98, 0.35) !important;
-    }
-    .stApp .summary-card-label { color: #8ecae6 !important; }
-    .stApp .summary-card-value { color: #ffffff !important; }
-    .stApp .compare-banner {
-        background: rgba(10, 61, 98, 0.75) !important;
-        border: 1px solid #0a3d62 !important;
-        color: #ffffff !important;
-        box-shadow: 0 0 16px rgba(10, 61, 98, 0.35) !important;
-    }
-    .stApp .summary-list-panel {
-        background: rgba(10, 61, 98, 0.06) !important;
-        border: 1px solid rgba(10, 61, 98, 0.35) !important;
-        border-left: 4px solid #0a3d62 !important;
-    }
-    .stApp .summary-list-title { color: #0a3d62 !important; }
-    .stApp .summary-list-panel li,
-    .stApp .summary-list-panel li strong,
-    .stApp .summary-list-panel p { color: #1A1A2E !important; }
-    .stApp .summary-section-title { color: #0a3d62 !important; }
-    .stApp .summary-section-caption { color: #444444 !important; }
-    .stApp [data-testid="column"]:has(.login-panel-marker) [data-testid="stVerticalBlockBorderWrapper"] {
-        background: rgba(10, 61, 98, 0.06) !important;
-        border-color: rgba(10, 61, 98, 0.35) !important;
-    }
-    .stApp [data-testid="column"]:has(.login-panel-marker) .stButton > button {
-        background: rgba(10, 61, 98, 0.88) !important;
-        background-color: rgba(10, 61, 98, 0.88) !important;
-        color: #ffffff !important;
-        border: 2px solid #0a3d62 !important;
-        border-radius: 10px !important;
-        font-weight: 700 !important;
-        min-height: 2.85rem !important;
-        box-shadow: 0 0 14px rgba(10, 61, 98, 0.35) !important;
-    }
-    .stApp [data-testid="column"]:has(.login-panel-marker) .stButton > button p {
-        color: #ffffff !important;
-    }
-    """
-
-    night_css = """
-    .stApp, [data-testid="stAppViewContainer"], .main, [data-testid="stMain"] {
-        background-color: #000000 !important;
-    }
-    [data-testid="stSidebar"], [data-testid="stSidebarContent"] {
-        background-color: #000000 !important;
-        border-right: 1px solid #333333 !important;
-    }
-    .stApp h1, .stApp h2, .stApp h3, .stApp h4,
-    .stApp p, .stApp label, .stApp span, .stApp li,
-    .stApp [data-testid="stMarkdownContainer"],
-    .stApp [data-testid="stCaptionContainer"] p,
-    .stApp .stMetric label {
-        color: #ffffff !important;
-    }
-    .stApp [data-testid="stMetricValue"] {
-        color: #ffffff !important;
-    }
-    .stApp [data-testid="stTextInput"] input,
-    .stApp [data-baseweb="input"] {
-        background-color: #000000 !important;
-        color: #ffffff !important;
-        border: 1px solid #555555 !important;
-        caret-color: #ffffff !important;
-    }
-    .stApp .stButton > button:not([kind="primary"]):not([data-testid="stBaseButton-primary"]) {
-        background-color: #000000 !important;
-        color: #ffffff !important;
-        border: 1px solid #555555 !important;
-        font-weight: 600 !important;
-    }
-    .stApp [data-baseweb="select"] > div {
-        background-color: #000000 !important;
-        color: #ffffff !important;
-        border: 1px solid #555555 !important;
-    }
-    .stApp [data-baseweb="select"] span,
-    .stApp [data-baseweb="select"] div {
-        color: #ffffff !important;
-        background-color: transparent !important;
-    }
-    .stApp [data-testid="stTabs"] [data-baseweb="tab-list"] {
-        background-color: transparent !important;
-    }
-    .stApp [data-testid="stTabs"] button[aria-selected="false"] {
-        color: #cccccc !important;
-    }
-    .stApp [data-testid="column"]:has(.theme-sun) button,
-    .stApp [data-testid="column"]:has(.theme-moon) button {
-        border-width: 2px !important;
-    }
-    .stApp hr { border-color: #333333 !important; }
-    .stApp .summary-list-panel li,
-    .stApp .summary-list-panel p {
-        color: #ffffff !important;
-        font-size: 0.95rem;
-        line-height: 1.55;
-        margin-bottom: 0.35rem;
-    }
-    .stApp .summary-section-caption { color: #aaaaaa !important; }
-    """
-
-    theme_css = (night_css if is_night else day_css) + accent_css + login_css
-    if not is_night:
-        theme_css += day_final_css
-
-    # Reading/grammar/vocabulary content boxes — real CSS (inline !important gets
-    # stripped by Streamlit's HTML sanitizer, so it MUST live in a <style> block).
-    if is_night:
-        content_box_css = """
-        .stApp .content-box {
-            background: #0f1b2d !important;
-            border: 1px solid #64748b !important;
-            border-left: 4px solid #38bdf8 !important;
-        }
-        .stApp .content-box,
-        .stApp .content-box *,
-        .stApp .content-box span,
-        .stApp .content-box p {
-            color: #f8fafc !important;
-        }
-        """
-    else:
-        content_box_css = """
-        .stApp .content-box {
-            background: #f1f5f9 !important;
-            border: 1px solid #94a3b8 !important;
-            border-left: 4px solid #1f77b4 !important;
-        }
-        .stApp .content-box,
-        .stApp .content-box *,
-        .stApp .content-box span,
-        .stApp .content-box p {
-            color: #0f172a !important;
-        }
-        """
-    theme_css += content_box_css
-
-    # Summary/expander header must stay readable in both themes (was white-on-white).
-    if is_night:
-        theme_css += """
-        .stApp [data-testid="stExpander"] summary,
-        .stApp [data-testid="stExpander"] summary * ,
-        .stApp details summary,
-        .stApp details summary * {
-            color: #f8fafc !important;
-        }
-        .stApp [data-testid="stExpander"] summary,
-        .stApp details summary {
-            background-color: #0f1b2d !important;
-        }
-        .stApp [data-testid="stExpander"],
-        .stApp [data-testid="stExpander"] details {
-            background-color: #0f1b2d !important;
-            border: 1px solid #334155 !important;
-            border-radius: 10px !important;
-        }
-        """
-
-    eye_toggle_css = """
-    .stApp [data-testid="stTextInputRootElement"],
-    .stApp [data-testid="stTextInput"] > div,
-    .stApp [data-testid="stTextInput"] > div > div,
-    .stApp [data-baseweb="input"],
-    .stApp [data-baseweb="input"] > div,
-    .stApp [data-testid="stTextInput"] [data-baseweb="base-input"] {
-        background: transparent !important;
-        background-color: transparent !important;
-        box-shadow: none !important;
-    }
-    .stApp [data-baseweb="input"] [data-baseweb="input-suffix"],
-    .stApp span[data-baseweb="input-suffix"],
-    .stApp [data-baseweb="input"] [data-baseweb="input-suffix"] > div,
-    .stApp span[data-baseweb="input-suffix"] > div {
-        background: transparent !important;
-        background-color: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 2px 0 0 !important;
-        margin: 0 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-    .stApp [data-baseweb="input"] [data-baseweb="button"],
-    .stApp [data-baseweb="input"] button[type="button"],
-    .stApp [data-testid="stTextInput"] [data-baseweb="button"],
-    .stApp [data-testid="stTextInput"] button {
-        background: rgba(10, 61, 98, 0.88) !important;
-        background-color: rgba(10, 61, 98, 0.88) !important;
-        border: 1px solid #0a3d62 !important;
-        border-radius: 6px !important;
-        box-shadow: none !important;
-        outline: none !important;
-        width: 2.2rem !important;
-        height: 2.2rem !important;
-        min-width: 2.2rem !important;
-        min-height: 2.2rem !important;
-        max-width: 2.2rem !important;
-        max-height: 2.2rem !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        flex-shrink: 0 !important;
-        overflow: hidden !important;
-        line-height: 1 !important;
-    }
-    .stApp [data-baseweb="input"] [data-baseweb="button"] > span,
-    .stApp [data-baseweb="input"] [data-baseweb="button"] > div,
-    .stApp [data-baseweb="input"] button > span,
-    .stApp [data-baseweb="input"] button > div {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        width: 100% !important;
-        height: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        background: transparent !important;
-        background-color: transparent !important;
-        border: none !important;
-        line-height: 0 !important;
-    }
-    .stApp [data-baseweb="input"] [data-baseweb="button"] svg,
-    .stApp [data-baseweb="input"] button svg {
-        width: 1rem !important;
-        height: 1rem !important;
-        min-width: 1rem !important;
-        min-height: 1rem !important;
-        display: block !important;
-        margin: 0 auto !important;
-        position: static !important;
-        flex-shrink: 0 !important;
-    }
-    .stApp [data-baseweb="input"] [data-baseweb="button"] svg path,
-    .stApp [data-baseweb="input"] button svg path {
-        fill: #ffffff !important;
-        stroke: #ffffff !important;
-    }
-    .stApp [data-baseweb="input"] {
-        display: flex !important;
-        align-items: stretch !important;
-        flex-wrap: nowrap !important;
-        gap: 0 !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        overflow: hidden !important;
-        border-radius: 8px !important;
-    }
-    .stApp [data-baseweb="input"] > div:first-child {
-        flex: 1 1 auto !important;
-        min-width: 0 !important;
-        background: transparent !important;
-        background-color: transparent !important;
-    }
-    .stApp [data-testid="stTextInput"] input,
-    .stApp [data-baseweb="input"] input {
-        border: none !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-        outline: none !important;
-        margin: 0 !important;
-        width: 100% !important;
-    }
-    .stApp [data-baseweb="input"] [data-baseweb="button"],
-    .stApp [data-baseweb="input"] button[type="button"] {
-        border-radius: 0 7px 7px 0 !important;
-        margin: 0 !important;
-        align-self: stretch !important;
-        height: auto !important;
-        max-height: none !important;
-    }
-    """
-    theme_css += eye_toggle_css
-
-    sidebar_css = """
-    [data-testid="stSidebar"] [data-baseweb="input"] {
-        border: 1px solid rgba(10, 61, 98, 0.35) !important;
-        background: #ffffff !important;
-        background-color: #ffffff !important;
-    }
-    [data-testid="stSidebar"] [data-testid="stTextInput"] input {
-        background: #ffffff !important;
-        background-color: #ffffff !important;
-        color: #1A1A2E !important;
-    }
-    [data-testid="stSidebar"] [data-testid="stButton"] > button,
-    [data-testid="stSidebar"] [data-testid="stButton"] button,
-    [data-testid="stSidebar"] .stButton > button {
-        background: rgba(10, 61, 98, 0.88) !important;
-        background-color: rgba(10, 61, 98, 0.88) !important;
-        color: #ffffff !important;
-        border: 2px solid #0a3d62 !important;
-        border-radius: 10px !important;
-        font-weight: 700 !important;
-        min-height: 2.6rem !important;
-        box-shadow: 0 0 12px rgba(10, 61, 98, 0.3) !important;
-    }
-    [data-testid="stSidebar"] [data-testid="stButton"] > button p,
-    [data-testid="stSidebar"] .stButton > button p {
-        color: #ffffff !important;
-    }
-    """
-    if is_night:
-        sidebar_css += """
-    [data-testid="stSidebar"] [data-baseweb="input"] {
-        border: 1px solid #555555 !important;
-        background: #000000 !important;
-        background-color: #000000 !important;
-    }
-    [data-testid="stSidebar"] [data-testid="stTextInput"] input {
-        background: #000000 !important;
-        background-color: #000000 !important;
-        color: #ffffff !important;
-    }
-    [data-testid="stSidebar"] [data-testid="stButton"] > button,
-    [data-testid="stSidebar"] [data-testid="stButton"] button,
-    [data-testid="stSidebar"] .stButton > button {
-        background: rgba(46, 134, 171, 0.55) !important;
-        background-color: rgba(46, 134, 171, 0.55) !important;
-        border: 2px solid #2E86AB !important;
-        box-shadow: 0 0 14px rgba(46, 134, 171, 0.4) !important;
-    }
-    """
-    theme_css += sidebar_css
-
-    login_page_css = """
-    .stApp:has(.login-page-active) [data-testid="stButton"] > button,
-    .stApp:has(.login-page-active) [data-testid="stButton"] button,
-    .stApp:has(.login-page-active) .stButton > button {
-        background: rgba(10, 61, 98, 0.78) !important;
-        background-color: rgba(10, 61, 98, 0.78) !important;
-        color: #ffffff !important;
-        border: 2px solid #0a3d62 !important;
-        border-radius: 10px !important;
-        font-weight: 700 !important;
-        min-height: 2.85rem !important;
-        width: 100% !important;
-        box-shadow: 0 0 16px rgba(10, 61, 98, 0.45) !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-    }
-    .stApp:has(.login-page-active) [data-testid="stButton"] > button p,
-    .stApp:has(.login-page-active) [data-testid="stButton"] > button span,
-    .stApp:has(.login-page-active) .stButton > button p {
-        color: #ffffff !important;
-    }
-    .stApp:has(.login-page-active) [data-testid="stButton"] {
-        margin-top: 0.65rem !important;
-    }
-    .stApp:has(.login-page-active) [data-testid="stVerticalBlockBorderWrapper"] {
-        background: rgba(10, 61, 98, 0.12) !important;
-        border-color: rgba(10, 61, 98, 0.45) !important;
-        border-radius: 14px !important;
-        margin-top: 0.75rem !important;
-    }
-    """
-    if is_night:
-        login_page_css += """
-    .stApp:has(.login-page-active) [data-testid="stButton"] > button,
-    .stApp:has(.login-page-active) [data-testid="stButton"] button,
-    .stApp:has(.login-page-active) .stButton > button {
-        background: rgba(46, 134, 171, 0.55) !important;
-        background-color: rgba(46, 134, 171, 0.55) !important;
-        border: 2px solid #2E86AB !important;
-        box-shadow: 0 0 18px rgba(46, 134, 171, 0.5) !important;
-    }
-    .stApp:has(.login-page-active) [data-testid="stTabs"] button {
-        background: rgba(46, 134, 171, 0.28) !important;
-        background-color: rgba(46, 134, 171, 0.28) !important;
-        color: #8ecae6 !important;
-        border: 1px solid #2E86AB !important;
-        border-radius: 10px !important;
-        padding: 0.5rem 1.4rem !important;
-        font-weight: 700 !important;
-        box-shadow: 0 0 12px rgba(46, 134, 171, 0.35) !important;
-    }
-    .stApp:has(.login-page-active) [data-testid="stTabs"] button[aria-selected="true"] {
-        background: rgba(46, 134, 171, 0.65) !important;
-        background-color: rgba(46, 134, 171, 0.65) !important;
-        color: #ffffff !important;
-    }
-    .stApp:has(.login-page-active) [data-testid="stVerticalBlockBorderWrapper"] {
-        background: rgba(46, 134, 171, 0.12) !important;
-        border-color: rgba(46, 134, 171, 0.55) !important;
-    }
-    """
-    theme_css += login_page_css
+    sun_anim = "" if is_night else "animation: sunPulse 2.4s ease-in-out infinite;"
+    moon_anim = "animation: moonGlow 2.4s ease-in-out infinite;" if is_night else ""
+    palette_css = _OM_NIGHT_PALETTE if is_night else _OM_DAY_PALETTE
 
     st.markdown(
         f"""
         <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Cormorant+Garamond:wght@500;600;700&display=swap');
+        {palette_css}
+        {_OM_STRUCTURE_CSS}
         @keyframes sunPulse {{
-            0%, 100% {{ transform: scale(1); filter: drop-shadow(0 0 6px #ffb300); }}
-            50% {{ transform: scale(1.15); filter: drop-shadow(0 0 18px #ff8f00); }}
+            0%, 100% {{ transform: scale(1); filter: drop-shadow(0 0 6px #D4AF37); }}
+            50% {{ transform: scale(1.12); filter: drop-shadow(0 0 16px #A67C2E); }}
         }}
         @keyframes moonGlow {{
-            0%, 100% {{ transform: scale(1); filter: drop-shadow(0 0 6px #90caf9); }}
-            50% {{ transform: scale(1.12); filter: drop-shadow(0 0 18px #42a5f5); }}
+            0%, 100% {{ transform: scale(1); filter: drop-shadow(0 0 6px #C5A059); }}
+            50% {{ transform: scale(1.1); filter: drop-shadow(0 0 16px #D4AF37); }}
         }}
         @keyframes flashSun {{
             0% {{ opacity: 0; transform: scale(0.4); }}
@@ -1280,34 +1113,37 @@ def _apply_theme_css() -> None:
             pointer-events: none;
         }}
         .theme-flash-sun {{
-            background: radial-gradient(circle, rgba(255,213,79,0.55), rgba(255,152,0,0.05));
+            background: radial-gradient(circle, rgba(212,175,55,0.5), rgba(166,124,46,0.05));
             animation: flashSun 1.2s ease-out forwards;
         }}
         .theme-flash-moon {{
-            background: radial-gradient(circle, rgba(66,165,245,0.45), rgba(26,35,126,0.05));
+            background: radial-gradient(circle, rgba(31,61,43,0.55), rgba(197,160,89,0.06));
             animation: flashMoon 1.2s ease-out forwards;
         }}
         .theme-flash-icon {{ font-size: 7rem; }}
         div[data-testid="column"]:has(.theme-sun) button {{
-            font-size: 1.6rem !important;
-            background: linear-gradient(135deg, #fff3e0, #ffe082) !important;
-            color: #1a1a2e !important;
-            border: 2px solid #ffb300 !important;
+            font-size: 1.5rem !important;
+            background: linear-gradient(135deg, #FBF3DC, #E7D6A4) !important;
+            color: #6B5220 !important;
+            border: 2px solid var(--om-gold) !important;
             {sun_anim}
         }}
         div[data-testid="column"]:has(.theme-moon) button {{
-            font-size: 1.6rem !important;
-            background: linear-gradient(135deg, #1a237e, #3949ab) !important;
-            color: #e3f2fd !important;
-            border: 2px solid #5c6bc0 !important;
+            font-size: 1.5rem !important;
+            background: linear-gradient(135deg, #0E1F15, #1F3D2B) !important;
+            color: #E6D7AE !important;
+            border: 2px solid var(--om-gold) !important;
             {moon_anim}
         }}
-        {theme_css}
         </style>
         """,
         unsafe_allow_html=True,
     )
     _render_theme_flash()
+
+
+    # Old-money motion layer (entrances, sheens, gilded hovers) for both themes.
+    st.markdown(_OLD_MONEY_MOTION_CSS, unsafe_allow_html=True)
 
 
 def _render_theme_toggle() -> None:
@@ -1651,10 +1487,13 @@ def _login_view() -> None:
         st.markdown('<div class="login-panel-marker"></div>', unsafe_allow_html=True)
         tab_in, tab_up = st.tabs(["Kirish", "Ro'yxatdan o'tish"])
         with tab_in:
-            with st.container(border=True):
+            with st.form("login_form", border=True):
                 email = st.text_input("Gmail", placeholder="siz@gmail.com", key="login_email")
                 password = st.text_input("Parol", type="password", key="login_password")
-            if st.button("Kirish", type="primary", use_container_width=True, key="btn_login"):
+                submitted_in = st.form_submit_button(
+                    "Kirish", type="primary", use_container_width=True
+                )
+            if submitted_in:
                 try:
                     uid, name = schema.authenticate_user(email, password)
                     _start_session(uid, name)
@@ -1667,13 +1506,21 @@ def _login_view() -> None:
                 st.rerun()
 
         with tab_up:
-            with st.container(border=True):
+            with st.form("signup_form", border=True):
                 name = st.text_input("Ismingiz", placeholder="Dilnoza", key="signup_name")
                 email = st.text_input("Gmail", placeholder="siz@gmail.com", key="signup_email")
                 password = st.text_input("Parol (kamida 8 belgi)", type="password", key="signup_password")
                 confirm = st.text_input("Parolni tasdiqlang", type="password", key="signup_confirm")
-            if st.button("Ro'yxatdan o'tish", type="primary", use_container_width=True, key="btn_signup"):
-                if password != confirm:
+                submitted_up = st.form_submit_button(
+                    "Ro'yxatdan o'tish", type="primary", use_container_width=True
+                )
+            if submitted_up:
+                if not password or not confirm:
+                    st.error(
+                        "Parol maydonlaridan biri bo'sh qoldi. Brauzer avtoto'ldirishiga "
+                        "ishonmasdan, ikkala parol maydonini ham qo'lda kiriting."
+                    )
+                elif password != confirm:
                     st.error("Parollar mos kelmadi.")
                 elif len(password) < 8:
                     st.error("Parol kamida 8 belgidan iborat bo'lishi kerak.")
@@ -1821,9 +1668,11 @@ def _commit_answer(question: dict, choice: int) -> None:
     st.session_state.mastery[skill_id] = _BKT.update(prior, is_correct, skill_id)
     st.session_state.seen_question_ids.add(qid)
     bucket = quota_bucket(loader.get_skill(skill_id)["category"])
-    if prev is None:
-        st.session_state.quota_used[bucket] += 1
-        st.session_state.session_total += 1
+    # Totals are incremented unconditionally: a re-answer already reversed the
+    # previous totals in _reverse_answer_stats, so skipping this would shrink
+    # session_total/quota_used by one on every answer change.
+    st.session_state.quota_used[bucket] += 1
+    st.session_state.session_total += 1
     st.session_state.session_correct += int(is_correct)
     _record_stats(question, is_correct)
     if not is_correct:
@@ -2079,6 +1928,20 @@ def _results_view() -> None:
         st.info("Hali saqlangan natija yo'q. Birinchi sessiyani yakunlang.")
         return
 
+    chart_dark = st.session_state.get("theme") == "night"
+    st.subheader("🏅 Umumiy manzara")
+    overview_cols = st.columns(4)
+    for overview_col, (o_title, o_row, o_tone) in zip(
+        overview_cols, session_history.band_overview(rows)
+    ):
+        with overview_col:
+            st.plotly_chart(
+                session_history.band_score_pie(
+                    o_row, o_title, tone=o_tone, dark=chart_dark
+                ),
+                use_container_width=True,
+            )
+
     if len(rows) >= 2:
         newer, older = rows[0], rows[1]
         cmp_ = session_history.compare_sessions(older, newer)
@@ -2109,30 +1972,6 @@ def _results_view() -> None:
                     "Aniqlik o'zgarishi",
                     f"{100 * cmp_['accuracy_delta']:+.0f}%",
                 )
-
-        tone_new = "good" if cmp_["improved"] else "bad"
-        chart_dark = st.session_state.get("theme") == "night"
-        p1, p2 = st.columns(2)
-        with p1:
-            st.plotly_chart(
-                session_history.band_score_pie(
-                    older,
-                    f"ESKI · {session_history.format_completed_at(older['completed_at'])}",
-                    tone="old",
-                    dark=chart_dark,
-                ),
-                use_container_width=True,
-            )
-        with p2:
-            st.plotly_chart(
-                session_history.band_score_pie(
-                    newer,
-                    f"HOZIRGI · {session_history.format_completed_at(newer['completed_at'])}",
-                    tone=tone_new,
-                    dark=chart_dark,
-                ),
-                use_container_width=True,
-            )
 
         st.markdown("#### Zaif tomonlar")
         w1, w2 = st.columns(2)
@@ -2383,7 +2222,7 @@ def _summary_view() -> None:
 
     detail_c1, detail_c2, detail_c3 = st.columns(3)
     with detail_c1:
-        r_q = quotas.get("Reading", 40)
+        r_q = quotas.get("Reading", 50)
         st.caption(f"Reading: {r_correct}/{r_q} to'g'ri ({100*r_correct/r_q:.0f}%)" if r_q else "")
     with detail_c2:
         g_q = quotas.get("Grammar", 50)

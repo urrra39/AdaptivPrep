@@ -47,8 +47,8 @@ from src.data import loader, schema  # noqa: E402
 from src.models.bkt import BKTModel, get_mastery  # noqa: E402
 
 # Colour constants shared across charts so the three views read as one report.
-ACCENT = "#2E86AB"
-ACCENT_FILL = "rgba(46, 134, 171, 0.30)"
+ACCENT = "#A67C2E"  # antique gold (old-money palette)
+ACCENT_FILL = "rgba(166, 124, 46, 0.28)"
 MASTERY_TARGET = 0.95  # BKT's conventional "mastered" threshold, shown as a guide
 
 # Rolling window for observed accuracy: long enough to smooth single-answer
@@ -149,7 +149,7 @@ def category_bar_chart(mastery: dict) -> go.Figure:
     fig.add_vline(
         x=MASTERY_TARGET,
         line_dash="dash",
-        line_color="green",
+        line_color="#4E7A57",
         annotation_text="maqsad 95%",
     )
     fig.update_layout(
@@ -175,7 +175,7 @@ def progress_chart(df: pd.DataFrame) -> go.Figure:
         go.Scatter(
             x=accuracy.index, y=accuracy, mode="lines",
             name=f"Aniqlik (oxirgi {ACCURACY_WINDOW} ta)",
-            line={"color": "#F18F01", "width": 2},
+            line={"color": "#C5A059", "width": 2},
             hovertemplate="savol %{x}: %{y:.0%}<extra></extra>",
         )
     )
